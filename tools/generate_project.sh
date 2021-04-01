@@ -8,6 +8,7 @@
 PROJECT_NAME="project_1"
 PART_NAME="xczu7ev-ffvc1156-2-e"
 DEFAULT_LANG="Verilog"
+TOP_MODULE="fpga"
 
 echo
 echo "#"
@@ -28,6 +29,15 @@ do
   fi
 done
 
+# vhdl/verilog (pcie core)
+for f in $(find ./git/verilog-pcie/rtl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
+do
+  if [ -f $f ];
+  then
+    echo "import_files -fileset sources_1 \".${f:1}\""
+  fi
+done
+
 # constr
 for f in ./git/src/constrs/*.xdc
 do
@@ -37,13 +47,22 @@ do
   fi
 done
 
+# ip tcls
 
-echo "source ./git/src/bd/design_1.tcl"
+for f in ./git/src/ip/*.tcl
+do
+  if [ -f $f ];
+  then
+    echo "source \".${f:1}\""
+  fi
+done
 
+# no block design for now
+# echo "source ./git/src/bd/design_1.tcl"
 # smp synthesis
-echo "set_property synth_checkpoint_mode Hierarchical [get_files ./${PROJECT_NAME}/${PROJECT_NAME}.srcs/sources_1/bd/design_1/design_1.bd]"
+# echo "set_property synth_checkpoint_mode Hierarchical [get_files ./${PROJECT_NAME}/${PROJECT_NAME}.srcs/sources_1/bd/design_1/design_1.bd]"
 
-echo "set_property top design_1_wrapper [current_fileset]"
+echo "set_property top ${TOP_MODULE} [current_fileset]"
 echo "update_compile_order -fileset sources_1"
 
 echo
