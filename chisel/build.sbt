@@ -26,28 +26,40 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
   }
 }
 
+organization := "antmicro.com"
+
 name := "nvme-target-controller"
 
-version := "3.1.1"
+version := "3.3.2"
 
-scalaVersion := "2.11.12"
+scalaVersion := "2.12.10"
 
-crossScalaVersions := Seq("2.11.12", "2.12.4")
+crossScalaVersions := Seq("2.12.10", "2.11.12")
+
+scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-language:reflectiveCalls")
+
+// Provide a managed dependency on X if -DXVersion="" is supplied on the command line.
+// The following are the default development versions, not the "release" versions.
+val defaultVersions = Seq(
+  "chisel-iotesters" -> "1.5.2"
+  )
+
+libraryDependencies ++= defaultVersions.map { case (dep, ver) =>
+  "edu.berkeley.cs" %% dep % sys.props.getOrElse(dep + "Version", ver) }
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("snapshots"),
   Resolver.sonatypeRepo("releases")
 )
 
-// Provide a managed dependency on X if -DXVersion="" is supplied on the command line.
-val defaultVersions = Map(
-  "chisel3" -> "3.1.+",
-  "chisel-iotesters" -> "1.2.5+"
-  )
+// Recommendations from http://www.scalatest.org/user_guide/using_scalatest_with_sbt
+logBuffered in Test := false
 
-libraryDependencies ++= Seq("chisel3","chisel-iotesters").map {
-  dep: String => "edu.berkeley.cs" %% dep % sys.props.getOrElse(dep + "Version", defaultVersions(dep)) }
+// Disable parallel execution when running tests.
+parallelExecution in Test := false
 
 scalacOptions ++= scalacOptionsVersion(scalaVersion.value)
 
 javacOptions ++= javacOptionsVersion(scalaVersion.value)
+
+trapExit := false
