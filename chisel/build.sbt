@@ -26,7 +26,7 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
   }
 }
 
-name := "chisel-dma"
+name := "nvme-target-controller"
 
 version := "3.1.1"
 
