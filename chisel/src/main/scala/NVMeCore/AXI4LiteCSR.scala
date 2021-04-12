@@ -11,7 +11,7 @@ import NVMeCore.CSR.{CSR, CSRBusBundle}
 import chisel3._
 import chisel3.util._
 
-class AXI4LiteCSR(addrWidth : Int, dataWidth : Int) extends Module{
+class AXI4LiteCSR(addrWidth : Int, dataWidth : Int, csrCount : Int) extends Module{
   val io = IO(new Bundle{
     val ctl = Flipped(new AXI4Lite(addrWidth, controlDataWidth))
     val bus = new CSRBusBundle
@@ -31,16 +31,19 @@ class AXI4LiteCSR(addrWidth : Int, dataWidth : Int) extends Module{
 
   val addr = RegInit(0.U(addrWidth.W))
 
+  val addrStart = log2Ceil(dataWidth/8)
+  val addrWidth = log2Ceil(csrCount)
+
   io.ctl.r.rdata := io.bus.dataIn
   io.bus.dataOut := io.ctl.w.wdata
 
   io.ctl.aw.awready := awready
-  io.ctl.w.wready := wready
+  io.ctl.w.wready := wready && io.bus.ready
   io.ctl.b.bvalid := bvalid
   io.ctl.b.bresp := bresp
 
   io.ctl.ar.arready := arready
-  io.ctl.r.rvalid := rvalid
+  io.ctl.r.rvalid := rvalid && io.bus.ready
   io.ctl.r.rresp := rresp
 
   io.bus.read := io.ctl.r.rready && rvalid
@@ -51,12 +54,12 @@ class AXI4LiteCSR(addrWidth : Int, dataWidth : Int) extends Module{
     is(sIdle){
       when(io.ctl.aw.awvalid){
         state := sWriteAddr
-        addr := io.ctl.aw.awaddr(5, 2)
+        addr := io.ctl.aw.awaddr(addrWidth + addrStart, addrStart)
         awready := true.B
 
       }.elsewhen(io.ctl.ar.arvalid){
         state := sReadAddr
-        addr := io.ctl.ar.araddr(5, 2)
+        addr := io.ctl.ar.araddr(addrWidth + addrStart, addrStart)
         arready := true.B
       }
     }
@@ -68,7 +71,7 @@ class AXI4LiteCSR(addrWidth : Int, dataWidth : Int) extends Module{
       }
     }
     is(sReadData){
-      when(io.ctl.r.rready && rvalid){
+      when(io.ctl.r.rready && io.ctl.r.rvalid){
         state := sIdle
         rvalid := false.B
       }
@@ -81,7 +84,7 @@ class AXI4LiteCSR(addrWidth : Int, dataWidth : Int) extends Module{
       }
     }
     is(sWriteData){
-      when(io.ctl.w.wvalid && wready){
+      when(io.ctl.w.wvalid && io.ctl.w.wready){
         state := sWriteResp
         wready := false.B
         bvalid := true.B

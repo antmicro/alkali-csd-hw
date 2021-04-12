@@ -8,13 +8,12 @@ package NVMeCore.CSR
 
 import chisel3._
 
-class CSRFile extends Bundle {
+class CSRFile extends Module {
   val io = IO(new Bundle {
     val csrBus = new CSRBusBundle
   })
 
-
-  when
+  io.csrBus.ready := true.B
 
 }
 

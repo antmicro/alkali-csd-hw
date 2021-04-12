@@ -16,4 +16,5 @@ class CSRBusBundle extends Bundle {
   val dataIn = Input(UInt(NVMeTop.controlDataWidth.W))
   val write = Output(Bool())
   val read = Output(Bool())
+  val ready = Input(Bool())
 }
