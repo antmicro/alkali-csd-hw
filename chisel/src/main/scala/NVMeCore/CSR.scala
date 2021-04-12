@@ -1,6 +1,18 @@
-package NVMeCore
+/*
+ * Copyright (c) 2021 Antmicro <www.antmicro.com>
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package NVMeCore.CSR
 
 import chisel3._
+
+//abstract class Register {
+//    val length : Int
+//    val map : Map [UInt, UInt]
+//    def write(d: UInt)
+//    def read: UInt
 
 class CAP extends Bundle {
     val length = 8
