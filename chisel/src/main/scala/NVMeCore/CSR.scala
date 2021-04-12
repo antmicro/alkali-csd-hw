@@ -8,11 +8,40 @@ package NVMeCore.CSR
 
 import chisel3._
 
-//abstract class Register {
-//    val length : Int
-//    val map : Map [UInt, UInt]
-//    def write(d: UInt)
-//    def read: UInt
+abstract class Register extends MultiIOModule {
+    val io = IO(new Bundle{
+	val bus = Flipped(new CSRRegBundle())
+    })
+
+    val length : Int
+    val map : Map [UInt, UInt]
+    def write(d: UInt)
+    def read: UInt
+
+    when(io.bus.dataWrite) {
+        write(io.bus.dataOut)
+    }
+
+    when(io.bus.dataRead) {
+        io.bus.dataIn := read()
+    }
+}
+
+
+class SimpleRegRegister extends Register {
+    val length = 4
+    val reg = RegInit(0.U(length * 8))
+    def write(d : UInt) : Unit = {
+        reg := d
+    }
+
+    def read : UInt = {
+        reg
+    }
+
+    // TODO: create second IO val with entries from map
+}
+
 
 class CAP extends Bundle {
     val length = 8
