@@ -4,13 +4,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package NVMeCore.CSR
+package NVMeCore
 
 import chisel3._
 
-class CSRFile extends Module {
+class CSRFile(dataWidth: Int) extends Module {
+  val csrCount = 32 // TODO: use regMap size
   val io = IO(new Bundle {
-    val csrBus = new CSRBusBundle
+    val csrBus = new RegBusBundle(csrCount, dataWidth)
   })
 
   io.csrBus.ready := true.B
@@ -18,6 +19,7 @@ class CSRFile extends Module {
 }
 
 object CSRFile {
+/*
   val regMap = Map [UInt, Bundle] (
     0x0 -> new CAP(),
     0x8 -> new VS(),
@@ -43,4 +45,5 @@ object CSRFile {
     0xe10 -> new PMRSWTP(),
     0xe14 -> new PMRMSC(),
     )
+*/
 }

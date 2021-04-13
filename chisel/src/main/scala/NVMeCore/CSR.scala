@@ -4,47 +4,48 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package NVMeCore.CSR
+package NVMeCore
 
 import chisel3._
 
-abstract class Register extends MultiIOModule {
-    val io = IO(new Bundle{
-	val bus = Flipped(new CSRRegBundle())
-    })
+abstract class RegisterDef extends Bundle {
 
-    val length : Int
-    val map : Map [UInt, UInt]
-    def write(d: UInt)
-    def read: UInt
+}
 
-    when(io.bus.dataWrite) {
-        write(io.bus.dataOut)
+class Register[T <: RegisterDef](gen: T, regWidth: Int) extends MultiIOModule {
+    val width = gen.getWidth
+
+    assert(width <= regWidth)
+
+    val io = IO(Flipped(new RegAccessBundle(regWidth)))
+
+    val storage = RegInit(0.U(width.W))
+
+    def write(d: UInt) = {
+        storage := d
     }
 
-    when(io.bus.dataRead) {
-        io.bus.dataIn := read()
+    def read() : UInt = storage
+
+    when(io.write) {
+        write(io.dataOut)
+    }
+
+    when(io.read) {
+        io.dataIn := read
+    }.otherwise{
+        io.dataIn := 0.U
     }
 }
 
+class SimpleRegRegister[T <: RegisterDef](gen: T, regWidth: Int) extends Register(gen, regWidth) {
+    val fields = IO(Output(gen))
 
-class SimpleRegRegister extends Register {
-    val length = 4
-    val reg = RegInit(0.U(length * 8))
-    def write(d : UInt) : Unit = {
-        reg := d
-    }
-
-    def read : UInt = {
-        reg
-    }
-
-    // TODO: create second IO val with entries from map
+    fields := storage.asTypeOf(gen)
 }
 
 
-class CAP extends Bundle {
-    val length = 8
+class CAP extends RegisterDef {
     val CMBS = Bool()
     val PMRS = Bool()
     val MPSMAX = Bool()
