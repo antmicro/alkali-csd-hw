@@ -11,16 +11,34 @@ import chisel3._
 class CSRFile(dataWidth: Int) extends Module {
   val csrCount = 32 // TODO: use regMap size
   val io = IO(new Bundle {
-    val csrBus = new RegBusBundle(csrCount, dataWidth)
+    val bus = Flipped(new RegBusBundle(csrCount, dataWidth))
+    val out = Output(UInt(4.W))
   })
 
-  io.csrBus.ready := true.B
+  io.bus.ready := true.B
+  io.bus.reg.dataIn := 0.U
+
+  for((addr, reg) <- CSRFile.regMap) {
+    when(io.bus.addr === (addr/(dataWidth/8)).U) {
+      reg.io <> io.bus.reg
+    }.otherwise{
+      reg.io.write := false.B
+      reg.io.read := false.B
+      reg.io.dataOut := 0.U
+    }
+  }
+
+  io.out := CSRFile.regMap(0xc).asInstanceOf[SimpleRegRegister[CC]].fields.IOCQES
 
 }
 
 object CSRFile {
+  val regMap = Map [Int, Register] (
+    0x0 -> Module(new SimpleRegRegister(new VS, 32)),
+    0x4 -> Module(new SimpleRegRegister(new INTMS, 32)),
+    0x8 -> Module(new SimpleRegRegister(new INTMC, 32)),
+    0xc -> Module(new SimpleRegRegister(new CC, 32)),
 /*
-  val regMap = Map [UInt, Bundle] (
     0x0 -> new CAP(),
     0x8 -> new VS(),
     0xc -> new INTMS(),
@@ -44,6 +62,6 @@ object CSRFile {
     0xe0c -> new PMREBS(),
     0xe10 -> new PMRSWTP(),
     0xe14 -> new PMRMSC(),
-    )
 */
+    )
 }

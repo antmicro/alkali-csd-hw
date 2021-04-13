@@ -14,11 +14,8 @@ class NVMeTop extends Module{
   val io = IO(new Bundle{
     //val host = Flipped(new AXI4Lite(NVMeTop.addrWidth, NVMeTop.dataWidth))
     //val controller = Flipped(new AXI4Lite(NVMeTop.addrWidth, NVMeTop.dataWidth))
-    val cap = Output(new CAP)
-    val dout = Output(UInt(64.W))
-    val re = Input(Bool())
-    val din = Input(UInt(64.W))
-    val we = Input(Bool())
+    val csrBus = Flipped(new RegBusBundle(32, 32))
+    val out = Output(UInt(4.W))
   })
 
 
@@ -37,7 +34,7 @@ class NVMeTop extends Module{
 
   //controllerCSRAxi.io.bus.ready := 0.U
   //controllerCSRAxi.io.bus.dataIn := 0.U
-
+/*
   val reg = Module(new SimpleRegRegister(new CAP, 64))
 
   io.cap := reg.fields
@@ -46,9 +43,14 @@ class NVMeTop extends Module{
   reg.io.write := io.we
   reg.io.read := io.re
   io.dout := reg.io.dataIn
+*/
 
   // register file
-  // val CSRFile = Module(new CSRFile())
+  val CSRFile = Module(new CSRFile(32))
+
+  CSRFile.io.bus <> io.csrBus
+
+  io.out := CSRFile.io.out
 
   //TODO: implement access logic
 }
