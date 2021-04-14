@@ -8,8 +8,7 @@ package NVMeCore
 
 import chisel3._
 
-class CSRFile(dataWidth: Int) extends Module {
-  val csrCount = 32 // TODO: use regMap size
+class CSRFile(val csrCount: Int, val dataWidth: Int) extends Module {
   val io = IO(new Bundle {
     val bus = Flipped(new RegBusBundle(csrCount, dataWidth))
     val out = Output(UInt(4.W))
