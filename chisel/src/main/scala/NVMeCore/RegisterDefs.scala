@@ -1,9 +1,18 @@
-// Generated on 13/04/2021 16:59:42
+// Generated on 14/04/2021 16:42:49
 package NVMeCore
 
 import chisel3._
 
-class CAP extends RegisterDef {
+class CAP_0 extends RegisterDef {
+	val TO = UInt(8.W)
+	val Reserved_2 = UInt(5.W)
+	val AMS = UInt(2.W)
+	val CQR = Bool()
+	val MQES = UInt(16.W)
+}
+
+
+class CAP_1 extends RegisterDef {
 	val Reserved_0 = UInt(6.W)
 	val CMBS = Bool()
 	val PMRS = Bool()
@@ -14,11 +23,6 @@ class CAP extends RegisterDef {
 	val CSS = UInt(8.W)
 	val NSSRS = Bool()
 	val DSTRD = UInt(4.W)
-	val TO = UInt(8.W)
-	val Reserved_2 = UInt(5.W)
-	val AMS = UInt(2.W)
-	val CQR = Bool()
-	val MQES = UInt(16.W)
 }
 
 
@@ -75,15 +79,25 @@ class AQA extends RegisterDef {
 }
 
 
-class ASQ extends RegisterDef {
-	val ASQB = UInt(52.W)
+class ASQ_0 extends RegisterDef {
+	val ASQB = UInt(20.W)
 	val Reserved_0 = UInt(12.W)
 }
 
 
-class ACQ extends RegisterDef {
-	val ACQB = UInt(52.W)
+class ASQ_1 extends RegisterDef {
+	val ASQB = UInt(32.W)
+}
+
+
+class ACQ_0 extends RegisterDef {
+	val ACQB = UInt(20.W)
 	val Reserved_0 = UInt(12.W)
+}
+
+
+class ACQ_1 extends RegisterDef {
+	val ACQB = UInt(32.W)
 }
 
 
@@ -129,17 +143,27 @@ class BPRSEL extends RegisterDef {
 }
 
 
-class BPMBL extends RegisterDef {
-	val BMBBA = UInt(52.W)
+class BPMBL_0 extends RegisterDef {
+	val BMBBA = UInt(20.W)
 	val Reserved_0 = UInt(12.W)
 }
 
 
-class CMBMSC extends RegisterDef {
-	val CBA = UInt(52.W)
+class BPMBL_1 extends RegisterDef {
+	val BMBBA = UInt(32.W)
+}
+
+
+class CMBMSC_0 extends RegisterDef {
+	val CBA = UInt(20.W)
 	val Reserved_0 = UInt(10.W)
 	val CMSE = Bool()
 	val CRE = Bool()
+}
+
+
+class CMBMSC_1 extends RegisterDef {
+	val CBA = UInt(32.W)
 }
 
 
@@ -149,7 +173,7 @@ class CMBSTS extends RegisterDef {
 }
 
 
-class PMRPCAP extends RegisterDef {
+class PMRCAP extends RegisterDef {
 	val Reserved_0 = UInt(7.W)
 	val CMSS = Bool()
 	val PMRTO = UInt(8.W)
@@ -178,7 +202,7 @@ class PMRSTS extends RegisterDef {
 }
 
 
-class PMERBS extends RegisterDef {
+class PMREBS extends RegisterDef {
 	val PMRWBZ = UInt(24.W)
 	val Reserved_0 = UInt(3.W)
 	val RBB = Bool()
@@ -193,15 +217,20 @@ class PMRSWTP extends RegisterDef {
 }
 
 
-class PMRMSCL extends RegisterDef {
-	val CBA = UInt(52.W)
+class PMRMSC_0 extends RegisterDef {
+	val CBA = UInt(20.W)
 	val Reserved_0 = UInt(10.W)
 	val CMSE = Bool()
 	val Reserved_1 = Bool()
 }
 
 
-class PMRMSCU extends RegisterDef {
+class PMRMSC_1 extends RegisterDef {
+	val CBA = UInt(32.W)
+}
+
+
+class SQ0TDBL extends RegisterDef {
 	val Reserved_0 = UInt(16.W)
 	val SQT = UInt(16.W)
 }
