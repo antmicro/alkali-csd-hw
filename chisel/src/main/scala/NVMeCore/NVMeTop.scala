@@ -45,4 +45,5 @@ object NVMeTop {
   val addrWidth = 32
   val dataWidth = 32
   val doorbellCount = 4
+  val doorbellBase = 0x1000
 }

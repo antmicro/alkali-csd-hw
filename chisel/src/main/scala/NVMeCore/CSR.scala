@@ -12,30 +12,37 @@ abstract class RegisterDef extends Bundle {
 
 }
 
-class Register(regWidth: Int) extends MultiIOModule {
-    val io = IO(Flipped(new RegAccessBundle(regWidth)))
-
-    val storage = RegInit(0.U(regWidth.W))
-
-    def write(d: UInt) = {
-        storage := d
-    }
-
-    def read() : UInt = storage
-
-    when(io.write) {
-        write(io.dataOut)
-    }
-
-    when(io.read) {
-        io.dataIn := read
-    }.otherwise{
-        io.dataIn := 0.U
-    }
+class TDBL extends RegisterDef {
+    val Reserved_0 = UInt(16.W)
+    val SQT = UInt(16.W)
 }
 
-class SimpleRegRegister[T <: RegisterDef](gen: T, regWidth: Int) extends Register(regWidth) {
+class HDBL extends RegisterDef {
+    val Reserved_0 = UInt(16.W)
+    val CQH = UInt(16.W)
+}
+
+class BaseRegister(regWidth: Int) extends MultiIOModule {
+    val io = IO(Flipped(new RegAccessBundle(regWidth)))
+
+    io.dataIn := 0.U
+}
+
+class StorageRegister[T <: RegisterDef](gen: T, regWidth: Int) extends BaseRegister(regWidth) {
     val fields = IO(Output(gen))
+    val storage = RegInit(0.U(regWidth.W))
 
     fields := storage.asTypeOf(gen)
+
+    when(io.write) {
+        storage := io.dataOut
+    }
+
+    io.dataIn := storage
+}
+
+class ReadOnlyRegister[T <: RegisterDef](gen: T, regWidth: Int) extends BaseRegister(regWidth) {
+    val fields = IO(Input(gen))
+
+    io.dataIn := fields.asUInt
 }

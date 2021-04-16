@@ -1,4 +1,4 @@
-// Generated on 14/04/2021 16:42:49
+// Generated on 16/04/2021 09:53:48 with get_reg_fields_chisel.py, git rev b05c426
 package NVMeCore
 
 import chisel3._
@@ -29,7 +29,7 @@ class CAP_1 extends RegisterDef {
 class VS extends RegisterDef {
 	val MJR = UInt(16.W)
 	val MNR = UInt(8.W)
-	val Reserved_0 = UInt(8.W)
+	val TER = UInt(8.W)
 }
 
 
