@@ -8,21 +8,21 @@ set_property -dict [list \
     CONFIG.axisten_if_enable_client_tag {true} \
     CONFIG.axisten_if_width {128_bit} \
     CONFIG.axisten_freq {250} \
-    CONFIG.PF0_CLASS_CODE {020000} \
+    CONFIG.PF0_CLASS_CODE {010802} \
     CONFIG.PF0_DEVICE_ID {0001} \
     CONFIG.PF0_MSI_CAP_MULTIMSGCAP {32_vectors} \
     CONFIG.PF0_SUBSYSTEM_ID {0001} \
-    CONFIG.PF0_SUBSYSTEM_VENDOR_ID {1234} \
-    CONFIG.PF0_Use_Class_Code_Lookup_Assistant {true} \
+    CONFIG.PF0_SUBSYSTEM_VENDOR_ID {1b96} \
+    CONFIG.PF0_Use_Class_Code_Lookup_Assistant {false} \
     CONFIG.pf0_class_code_sub {00} \
     CONFIG.pf0_base_class_menu {Network_controller} \
     CONFIG.pf0_sub_class_interface_menu {Ethernet_controller} \
     CONFIG.pf0_bar0_scale {Megabytes} \
-    CONFIG.pf0_bar0_size {16} \
+    CONFIG.pf0_bar0_size {1} \
     CONFIG.pf0_bar1_enabled {true} \
     CONFIG.pf0_bar1_type {Memory} \
     CONFIG.pf0_bar1_scale {Megabytes} \
-    CONFIG.pf0_bar1_size {16} \
-    CONFIG.vendor_id {1234} \
+    CONFIG.pf0_bar1_size {1} \
+    CONFIG.vendor_id {1b96} \
     CONFIG.en_msi_per_vec_masking {true} \
 ] [get_ips pcie4_uscale_plus_0]
