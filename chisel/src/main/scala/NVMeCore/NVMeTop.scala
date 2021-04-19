@@ -14,6 +14,7 @@ class NVMeTop extends Module{
   val io = IO(new Bundle{
     val host = Flipped(new AXI4Lite(NVMeTop.addrWidth, NVMeTop.dataWidth))
     val controller = Flipped(new AXI4Lite(NVMeTop.addrWidth, NVMeTop.dataWidth))
+    val irqReq = Output(Bool())
   })
 
 
@@ -33,11 +34,16 @@ class NVMeTop extends Module{
   CSRArbiter.io.inBusA <> controllerCSRAxi.io.bus
   CSRArbiter.io.inBusB <> hostCSRAxi.io.bus
 
+  val Interrupts = Module(new CSRInterrupt(NVMeTop.regCount, NVMeTop.dataWidth))
+
+  io.irqReq := Interrupts.io.irqReq
+  Interrupts.io.csrBus := hostCSRAxi.io.bus
 
   // register file
   val CSRFile = Module(new CSRFile(NVMeTop.regCount, NVMeTop.dataWidth))
 
   CSRFile.io.bus <> CSRArbiter.io.outBus
+  CSRFile.io.csrLog <> Interrupts.io.csrLog
 }
 
 object NVMeTop {

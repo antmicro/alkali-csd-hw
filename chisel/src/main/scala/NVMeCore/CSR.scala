@@ -22,6 +22,17 @@ class HDBL extends RegisterDef {
     val CQH = UInt(16.W)
 }
 
+// Custom registers
+
+class IRQSTA extends RegisterDef {
+    val Reserved_0 = UInt(31.W)
+    val VALID = Bool()
+}
+
+class IRQDAT extends RegisterDef {
+    val DATA = UInt(32.W)
+}
+
 class BaseRegister(regWidth: Int) extends MultiIOModule {
     val io = IO(Flipped(new RegAccessBundle(regWidth)))
 

@@ -59,16 +59,19 @@ class NVMeRegAccessTest(dut: NVMeTop) extends PeekPokeTester(dut){
 	val aq = Queue[BigInt]()
 	val rq = Queue[Boolean]()
 
-	for ((addr, _) <- CSRRegMap.regMap) {
+	for ((addr, _) <- dut.CSRFile.regMap) {
 		val data = Random.nextInt(pow(2, 32).toInt)
 		val bus = Random.nextBoolean
 
 		rq += bus
 
-		if(bus)
+		if(bus) {
+			println(f"host write to 0x${addr}%x")
 			axil_host_master.writePush(addr, data)
-		else
+		} else {
+			println(f"controller write to 0x${addr}%x")
 			axil_controller_master.writePush(addr, data)
+		}
 
 		dq += data
 		aq += addr

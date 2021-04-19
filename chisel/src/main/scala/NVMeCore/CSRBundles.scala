@@ -20,5 +20,9 @@ class RegBusBundle(val regCount: Int, val dataWidth: Int) extends Bundle {
   val ready = Input(Bool())
   val addr = Output(UInt(log2Ceil(regCount).W))
   val reg = new RegAccessBundle(dataWidth)
+
+  def read : Bool = ready && reg.read
+  def readAddr(tgtAddr: UInt) : Bool = (addr === tgtAddr) && read
+  def write : Bool = ready && reg.write
 }
 

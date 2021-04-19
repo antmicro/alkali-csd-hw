@@ -7,11 +7,19 @@
 package NVMeCore
 
 import chisel3._
+import chisel3.util._
 
 class CSRFile(val csrCount: Int, val dataWidth: Int) extends Module {
   val io = IO(new Bundle {
     val bus = Flipped(new RegBusBundle(csrCount, dataWidth))
+    val csrLog = DeqIO(UInt(dataWidth.W))
   })
+
+  def tieOff(b: Bundle) = {
+    for((_, data) <- b.elements) {
+      data := 0.U
+    }
+  }
 
   io.bus.ready := true.B
   io.bus.reg.dataIn := 0.U
@@ -21,9 +29,30 @@ class CSRFile(val csrCount: Int, val dataWidth: Int) extends Module {
   for(i <- 0 to NVMeTop.doorbellCount) {
     val addr = NVMeTop.doorbellBase + 8*i
     println(f"adding doorbell register pair ${i} at 0x${addr}%x")
-    regMap(addr) = Module(new StorageRegister(new TDBL, 32))
-    regMap(addr + 4) = Module(new StorageRegister(new HDBL, 32))
+    regMap(addr) = Module(new StorageRegister(new TDBL, dataWidth))
+    regMap(addr + 4) = Module(new StorageRegister(new HDBL, dataWidth))
   }
+
+  val irqStaBase = NVMeTop.doorbellBase + 8 * (NVMeTop.doorbellCount + 1)
+  val irqDatBase = irqStaBase + 4
+
+  val irqSta = Module(new ReadOnlyRegister(new IRQSTA, dataWidth))
+
+  tieOff(irqSta.fields)
+
+  irqSta.fields.VALID := io.csrLog.valid
+
+  println(f"adding R5 interrupt status register at 0x${irqStaBase}%x")
+  regMap(irqStaBase) = irqSta
+
+  val irqDat = Module(new ReadOnlyRegister(new IRQDAT, dataWidth))
+
+  irqDat.fields.DATA := io.csrLog.bits
+
+  println(f"adding R5 interrupt data register at 0x${irqDatBase}%x")
+  regMap(irqDatBase) = irqDat
+
+  io.csrLog.ready := io.bus.readAddr((irqDatBase/(dataWidth/8)).U)
 
   for((addr, reg) <- regMap) {
     println(f"connecting register 0x${addr}%x")
@@ -33,12 +62,6 @@ class CSRFile(val csrCount: Int, val dataWidth: Int) extends Module {
       reg.io.write := false.B
       reg.io.read := false.B
       reg.io.dataOut := 0.U
-    }
-  }
-
-  def tieOff(b: Bundle) = {
-    for((_, data) <- b.elements) {
-      data := 0.U
     }
   }
 
