@@ -14,9 +14,9 @@ set_property -dict [list \
     CONFIG.PF0_SUBSYSTEM_ID {0001} \
     CONFIG.PF0_SUBSYSTEM_VENDOR_ID {1b96} \
     CONFIG.PF0_Use_Class_Code_Lookup_Assistant {false} \
-    CONFIG.pf0_class_code_sub {00} \
-    CONFIG.pf0_base_class_menu {Network_controller} \
-    CONFIG.pf0_sub_class_interface_menu {Ethernet_controller} \
+    CONFIG.pf0_class_code_base {01} \
+    CONFIG.pf0_class_code_sub {08} \
+    CONFIG.pf0_class_code_interface {02} \
     CONFIG.pf0_bar0_scale {Megabytes} \
     CONFIG.pf0_bar0_size {1} \
     CONFIG.pf0_bar1_enabled {true} \
