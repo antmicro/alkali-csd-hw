@@ -57,8 +57,7 @@ do
   fi
 done
 
-# no block design for now
-# echo "source ./git/src/bd/design_1.tcl"
+echo "source ./git/src/bd/design_1.tcl"
 # smp synthesis
 # echo "set_property synth_checkpoint_mode Hierarchical [get_files ./${PROJECT_NAME}/${PROJECT_NAME}.srcs/sources_1/bd/design_1/design_1.bd]"
 
