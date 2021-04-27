@@ -130,7 +130,7 @@ parameter AXIL_ADDR_WIDTH = 32;
 parameter AXI_DATA_WIDTH = AXIS_PCIE_DATA_WIDTH;
 parameter AXI_STRB_WIDTH = (AXI_DATA_WIDTH/8);
 parameter AXI_ADDR_WIDTH = 32;
-parameter AXI_ID_WIDTH = 8;
+parameter AXI_ID_WIDTH = 6;
 
 parameter DMA_TAG_WIDTH = 8;
 
