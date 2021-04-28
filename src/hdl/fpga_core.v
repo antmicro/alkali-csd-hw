@@ -440,8 +440,28 @@ assign pcie_dma_write_desc_valid = pcie_dma_write_desc_valid_reg;
 assign pcie_dma_write_desc_status_ready = pcie_dma_write_desc_status_ready_reg;
 assign pcie_dma_enable = pcie_dma_enable_reg;
 
-wire dma_irq = pcie_dma_read_desc_status_valid || pcie_dma_write_desc_status_valid;
 assign msi_irq = 0;
+
+reg dma_write_irq = 1'b0, dma_read_irq = 1'b0;
+
+wire dma_irq = dma_write_irq || dma_read_irq;
+
+always @(posedge clk) begin
+	if(rst) begin
+		dma_write_irq <= 1'b0;
+		dma_read_irq <= 1'b0;
+	end else begin
+		if(pcie_dma_write_desc_status_valid)
+			dma_write_irq <= 1'b1;
+		else if(pcie_dma_write_desc_status_ready)
+			dma_write_irq <= 1'b0;
+
+		if(pcie_dma_read_desc_status_valid)
+			dma_read_irq <= 1'b1;
+		else if(pcie_dma_read_desc_status_ready)
+			dma_read_irq <= 1'b0;
+	end
+end
 
 always @* begin
     axil_dma_awready_next = 1'b0;
@@ -508,12 +528,12 @@ always @* begin
         case ({axil_dma_araddr[15:2], 2'b00})
             16'h0000: axil_dma_rdata_next = pcie_dma_enable_reg;
             16'h0118: begin
-                axil_dma_rdata_next = pcie_dma_read_desc_status_tag | (pcie_dma_read_desc_status_valid ? 32'h80000000 : 32'd0);
-                pcie_dma_read_desc_status_ready_next = pcie_dma_read_desc_status_valid;
+                axil_dma_rdata_next = pcie_dma_read_desc_status_tag | (dma_read_irq ? 32'h80000000 : 32'd0);
+                pcie_dma_read_desc_status_ready_next = 1'b1;
             end
             16'h0218: begin
-                axil_dma_rdata_next = pcie_dma_write_desc_status_tag | (pcie_dma_write_desc_status_valid ? 32'h80000000 : 32'd0);
-                pcie_dma_write_desc_status_ready_next = pcie_dma_write_desc_status_valid;
+                axil_dma_rdata_next = pcie_dma_write_desc_status_tag | (dma_write_irq ? 32'h80000000 : 32'd0);
+                pcie_dma_write_desc_status_ready_next = 1'b1;
             end
             16'h0400: axil_dma_rdata_next = pcie_rq_count_reg;
             16'h0404: axil_dma_rdata_next = pcie_rc_count_reg;
