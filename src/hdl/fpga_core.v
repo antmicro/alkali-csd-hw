@@ -440,8 +440,6 @@ assign pcie_dma_write_desc_valid = pcie_dma_write_desc_valid_reg;
 assign pcie_dma_write_desc_status_ready = pcie_dma_write_desc_status_ready_reg;
 assign pcie_dma_enable = pcie_dma_enable_reg;
 
-assign msi_irq = 0;
-
 reg dma_write_irq = 1'b0, dma_read_irq = 1'b0;
 
 wire dma_irq = dma_write_irq || dma_read_irq;
@@ -712,6 +710,7 @@ NVMeTop nvmetop_inst (
     .clock(clk),
     .reset(rst),
     .io_irqReq(nvme_irq),
+    .io_irqHost(msi_irq),
 
     .io_host_aw_awaddr(axil_host_awaddr),
     .io_host_aw_awprot(axil_host_awprot),

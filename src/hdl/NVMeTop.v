@@ -411,13 +411,13 @@ module StorageRegister(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -476,13 +476,13 @@ module StorageRegister_2(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -541,13 +541,13 @@ module StorageRegister_3(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -606,13 +606,13 @@ module StorageRegister_5(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -671,13 +671,13 @@ module StorageRegister_6(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -736,13 +736,13 @@ module StorageRegister_10(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -801,13 +801,13 @@ module StorageRegister_11(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -866,13 +866,13 @@ module StorageRegister_12(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -931,13 +931,13 @@ module StorageRegister_13(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -996,13 +996,13 @@ module StorageRegister_16(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -1061,13 +1061,13 @@ module StorageRegister_18(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -1126,13 +1126,13 @@ module StorageRegister_19(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -1191,13 +1191,13 @@ module StorageRegister_21(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -1256,13 +1256,13 @@ module StorageRegister_22(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -1321,13 +1321,13 @@ module StorageRegister_23(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -1386,13 +1386,13 @@ module StorageRegister_26(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] storage; // @[CSR.scala 44:26]
-  assign io_dataIn = storage; // @[CSR.scala 52:15]
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
   always @(posedge clock) begin
-    if (reset) begin // @[CSR.scala 44:26]
-      storage <= 32'h0; // @[CSR.scala 44:26]
-    end else if (io_write) begin // @[CSR.scala 48:20]
-      storage <= io_dataOut; // @[CSR.scala 49:17]
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 52:20]
+      storage <= io_dataOut; // @[CSR.scala 53:17]
     end
   end
 // Register and memory initialization
@@ -1445,13 +1445,82 @@ module ReadOnlyRegister_3(
   output [31:0] io_dataIn,
   input         fields_VALID
 );
-  assign io_dataIn = {31'h0,fields_VALID}; // @[CSR.scala 58:25]
+  assign io_dataIn = {31'h0,fields_VALID}; // @[CSR.scala 62:25]
 endmodule
 module ReadOnlyRegister_4(
   output [31:0] io_dataIn,
   input  [31:0] fields_DATA
 );
-  assign io_dataIn = fields_DATA; // @[CSR.scala 58:15]
+  assign io_dataIn = fields_DATA; // @[CSR.scala 62:15]
+endmodule
+module AutoClearingRegister(
+  input         clock,
+  input         reset,
+  input         io_write,
+  input  [31:0] io_dataOut,
+  output [31:0] io_dataIn,
+  output [31:0] fields_REQ
+);
+`ifdef RANDOMIZE_REG_INIT
+  reg [31:0] _RAND_0;
+`endif // RANDOMIZE_REG_INIT
+  reg [31:0] storage; // @[CSR.scala 48:26]
+  assign io_dataIn = storage; // @[CSR.scala 56:15]
+  assign fields_REQ = storage; // @[CSR.scala 50:31]
+  always @(posedge clock) begin
+    if (reset) begin // @[CSR.scala 48:26]
+      storage <= 32'h0; // @[CSR.scala 48:26]
+    end else if (io_write) begin // @[CSR.scala 67:20]
+      storage <= io_dataOut; // @[CSR.scala 68:17]
+    end else begin
+      storage <= 32'h0; // @[CSR.scala 70:17]
+    end
+  end
+// Register and memory initialization
+`ifdef RANDOMIZE_GARBAGE_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_INVALID_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_REG_INIT
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+`define RANDOMIZE
+`endif
+`ifndef RANDOM
+`define RANDOM $random
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+  integer initvar;
+`endif
+`ifndef SYNTHESIS
+`ifdef FIRRTL_BEFORE_INITIAL
+`FIRRTL_BEFORE_INITIAL
+`endif
+initial begin
+  `ifdef RANDOMIZE
+    `ifdef INIT_RANDOM
+      `INIT_RANDOM
+    `endif
+    `ifndef VERILATOR
+      `ifdef RANDOMIZE_DELAY
+        #`RANDOMIZE_DELAY begin end
+      `else
+        #0.002 begin end
+      `endif
+    `endif
+`ifdef RANDOMIZE_REG_INIT
+  _RAND_0 = {1{`RANDOM}};
+  storage = _RAND_0[31:0];
+`endif // RANDOMIZE_REG_INIT
+  `endif // RANDOMIZE
+end // initial
+`ifdef FIRRTL_AFTER_INITIAL
+`FIRRTL_AFTER_INITIAL
+`endif
+`endif // SYNTHESIS
 endmodule
 module CSRFile(
   input         clock,
@@ -1464,7 +1533,8 @@ module CSRFile(
   output [31:0] io_bus_reg_dataIn,
   output        io_csrLog_ready,
   input         io_csrLog_valid,
-  input  [31:0] io_csrLog_bits
+  input  [31:0] io_csrLog_bits,
+  output [31:0] io_irqHost
 );
   wire  StorageRegister_clock; // @[CSRRegMap.scala 11:31]
   wire  StorageRegister_reset; // @[CSRRegMap.scala 11:31]
@@ -1596,102 +1666,109 @@ module CSRFile(
   wire  StorageRegister_25_io_write; // @[CSRRegMap.scala 36:33]
   wire [31:0] StorageRegister_25_io_dataOut; // @[CSRRegMap.scala 36:33]
   wire [31:0] StorageRegister_25_io_dataIn; // @[CSRRegMap.scala 36:33]
-  wire  StorageRegister_26_clock; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_26_reset; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_26_io_write; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_26_io_dataOut; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_26_io_dataIn; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_27_clock; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_27_reset; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_27_io_write; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_27_io_dataOut; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_27_io_dataIn; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_28_clock; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_28_reset; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_28_io_write; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_28_io_dataOut; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_28_io_dataIn; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_29_clock; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_29_reset; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_29_io_write; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_29_io_dataOut; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_29_io_dataIn; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_30_clock; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_30_reset; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_30_io_write; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_30_io_dataOut; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_30_io_dataIn; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_31_clock; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_31_reset; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_31_io_write; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_31_io_dataOut; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_31_io_dataIn; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_32_clock; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_32_reset; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_32_io_write; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_32_io_dataOut; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_32_io_dataIn; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_33_clock; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_33_reset; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_33_io_write; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_33_io_dataOut; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_33_io_dataIn; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_34_clock; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_34_reset; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_34_io_write; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_34_io_dataOut; // @[CSRFile.scala 32:26]
-  wire [31:0] StorageRegister_34_io_dataIn; // @[CSRFile.scala 32:26]
-  wire  StorageRegister_35_clock; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_35_reset; // @[CSRFile.scala 33:30]
-  wire  StorageRegister_35_io_write; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_35_io_dataOut; // @[CSRFile.scala 33:30]
-  wire [31:0] StorageRegister_35_io_dataIn; // @[CSRFile.scala 33:30]
-  wire [31:0] irqSta_io_dataIn; // @[CSRFile.scala 39:22]
-  wire  irqSta_fields_VALID; // @[CSRFile.scala 39:22]
-  wire [31:0] irqDat_io_dataIn; // @[CSRFile.scala 48:22]
-  wire [31:0] irqDat_fields_DATA; // @[CSRFile.scala 48:22]
+  wire  StorageRegister_26_clock; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_26_reset; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_26_io_write; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_26_io_dataOut; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_26_io_dataIn; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_27_clock; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_27_reset; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_27_io_write; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_27_io_dataOut; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_27_io_dataIn; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_28_clock; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_28_reset; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_28_io_write; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_28_io_dataOut; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_28_io_dataIn; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_29_clock; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_29_reset; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_29_io_write; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_29_io_dataOut; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_29_io_dataIn; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_30_clock; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_30_reset; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_30_io_write; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_30_io_dataOut; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_30_io_dataIn; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_31_clock; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_31_reset; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_31_io_write; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_31_io_dataOut; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_31_io_dataIn; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_32_clock; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_32_reset; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_32_io_write; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_32_io_dataOut; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_32_io_dataIn; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_33_clock; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_33_reset; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_33_io_write; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_33_io_dataOut; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_33_io_dataIn; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_34_clock; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_34_reset; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_34_io_write; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_34_io_dataOut; // @[CSRFile.scala 33:26]
+  wire [31:0] StorageRegister_34_io_dataIn; // @[CSRFile.scala 33:26]
+  wire  StorageRegister_35_clock; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_35_reset; // @[CSRFile.scala 34:30]
+  wire  StorageRegister_35_io_write; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_35_io_dataOut; // @[CSRFile.scala 34:30]
+  wire [31:0] StorageRegister_35_io_dataIn; // @[CSRFile.scala 34:30]
+  wire [31:0] irqSta_io_dataIn; // @[CSRFile.scala 41:22]
+  wire  irqSta_fields_VALID; // @[CSRFile.scala 41:22]
+  wire [31:0] irqDat_io_dataIn; // @[CSRFile.scala 50:22]
+  wire [31:0] irqDat_fields_DATA; // @[CSRFile.scala 50:22]
+  wire  irqHost_clock; // @[CSRFile.scala 59:23]
+  wire  irqHost_reset; // @[CSRFile.scala 59:23]
+  wire  irqHost_io_write; // @[CSRFile.scala 59:23]
+  wire [31:0] irqHost_io_dataOut; // @[CSRFile.scala 59:23]
+  wire [31:0] irqHost_io_dataIn; // @[CSRFile.scala 59:23]
+  wire [31:0] irqHost_fields_REQ; // @[CSRFile.scala 59:23]
   wire  _T = io_bus_addr == 13'h40b; // @[CSRBundles.scala 25:46]
   wire  _T_1 = io_bus_ready & io_bus_reg_read; // @[CSRBundles.scala 24:27]
-  wire [31:0] _GEN_0 = io_bus_addr == 13'h384 ? StorageRegister_23_io_dataIn : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 25:21]
-  wire [31:0] _GEN_4 = io_bus_addr == 13'h11 ? StorageRegister_13_io_dataIn : _GEN_0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_8 = io_bus_addr == 13'h8 ? StorageRegister_4_io_dataIn : _GEN_4; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_12 = io_bus_addr == 13'h2 ? 32'h10400 : _GEN_8; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_16 = io_bus_addr == 13'hb ? StorageRegister_7_io_dataIn : _GEN_12; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_20 = io_bus_addr == 13'h14 ? StorageRegister_16_io_dataIn : _GEN_16; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_24 = io_bus_addr == 13'h403 ? StorageRegister_29_io_dataIn : _GEN_20; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_28 = io_bus_addr == 13'h381 ? StorageRegister_20_io_dataIn : _GEN_24; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_32 = io_bus_addr == 13'h406 ? StorageRegister_32_io_dataIn : _GEN_28; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_36 = io_bus_addr == 13'he ? StorageRegister_10_io_dataIn : _GEN_32; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_40 = io_bus_addr == 13'h5 ? StorageRegister_2_io_dataIn : _GEN_36; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_44 = io_bus_addr == 13'h409 ? StorageRegister_35_io_dataIn : _GEN_40; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_48 = io_bus_addr == 13'h400 ? StorageRegister_26_io_dataIn : _GEN_44; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_52 = io_bus_addr == 13'h386 ? StorageRegister_25_io_dataIn : _GEN_48; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_56 = io_bus_addr == 13'h10 ? StorageRegister_12_io_dataIn : _GEN_52; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_60 = io_bus_addr == 13'ha ? StorageRegister_6_io_dataIn : _GEN_56; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_64 = io_bus_addr == 13'h1 ? 32'h20 : _GEN_60; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_68 = _T ? irqDat_io_dataIn : _GEN_64; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_72 = io_bus_addr == 13'h380 ? StorageRegister_19_io_dataIn : _GEN_68; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_76 = io_bus_addr == 13'h13 ? StorageRegister_15_io_dataIn : _GEN_72; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_80 = io_bus_addr == 13'h4 ? StorageRegister_1_io_dataIn : _GEN_76; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_84 = io_bus_addr == 13'hd ? StorageRegister_9_io_dataIn : _GEN_80; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_88 = io_bus_addr == 13'h16 ? StorageRegister_18_io_dataIn : _GEN_84; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_92 = io_bus_addr == 13'h405 ? StorageRegister_31_io_dataIn : _GEN_88; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_96 = io_bus_addr == 13'h383 ? StorageRegister_22_io_dataIn : _GEN_92; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_100 = io_bus_addr == 13'h408 ? StorageRegister_34_io_dataIn : _GEN_96; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_104 = io_bus_addr == 13'h7 ? StorageRegister_3_io_dataIn : _GEN_100; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_108 = io_bus_addr == 13'h402 ? StorageRegister_28_io_dataIn : _GEN_104; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_112 = io_bus_addr == 13'hf ? StorageRegister_11_io_dataIn : _GEN_108; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_116 = io_bus_addr == 13'h385 ? StorageRegister_24_io_dataIn : _GEN_112; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_120 = io_bus_addr == 13'h12 ? StorageRegister_14_io_dataIn : _GEN_116; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_124 = io_bus_addr == 13'h9 ? StorageRegister_5_io_dataIn : _GEN_120; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_128 = io_bus_addr == 13'h15 ? StorageRegister_17_io_dataIn : _GEN_124; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_132 = io_bus_addr == 13'h3 ? StorageRegister_io_dataIn : _GEN_128; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_136 = io_bus_addr == 13'hc ? StorageRegister_8_io_dataIn : _GEN_132; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_140 = io_bus_addr == 13'h404 ? StorageRegister_30_io_dataIn : _GEN_136; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_144 = io_bus_addr == 13'h382 ? StorageRegister_21_io_dataIn : _GEN_140; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_148 = io_bus_addr == 13'h407 ? StorageRegister_33_io_dataIn : _GEN_144; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_152 = io_bus_addr == 13'h40a ? irqSta_io_dataIn : _GEN_148; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
-  wire [31:0] _GEN_156 = io_bus_addr == 13'h401 ? StorageRegister_27_io_dataIn : _GEN_152; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
+  wire [31:0] _GEN_0 = io_bus_addr == 13'h384 ? StorageRegister_23_io_dataIn : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 26:21]
+  wire [31:0] _GEN_4 = io_bus_addr == 13'h11 ? StorageRegister_13_io_dataIn : _GEN_0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_8 = io_bus_addr == 13'h8 ? StorageRegister_4_io_dataIn : _GEN_4; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_12 = io_bus_addr == 13'h40c ? irqHost_io_dataIn : _GEN_8; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_16 = io_bus_addr == 13'h2 ? 32'h10400 : _GEN_12; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_20 = io_bus_addr == 13'hb ? StorageRegister_7_io_dataIn : _GEN_16; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_24 = io_bus_addr == 13'h14 ? StorageRegister_16_io_dataIn : _GEN_20; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_28 = io_bus_addr == 13'h403 ? StorageRegister_29_io_dataIn : _GEN_24; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_32 = io_bus_addr == 13'h381 ? StorageRegister_20_io_dataIn : _GEN_28; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_36 = io_bus_addr == 13'h406 ? StorageRegister_32_io_dataIn : _GEN_32; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_40 = io_bus_addr == 13'he ? StorageRegister_10_io_dataIn : _GEN_36; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_44 = io_bus_addr == 13'h5 ? StorageRegister_2_io_dataIn : _GEN_40; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_48 = io_bus_addr == 13'h409 ? StorageRegister_35_io_dataIn : _GEN_44; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_52 = io_bus_addr == 13'h400 ? StorageRegister_26_io_dataIn : _GEN_48; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_56 = io_bus_addr == 13'h386 ? StorageRegister_25_io_dataIn : _GEN_52; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_60 = io_bus_addr == 13'h10 ? StorageRegister_12_io_dataIn : _GEN_56; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_64 = io_bus_addr == 13'ha ? StorageRegister_6_io_dataIn : _GEN_60; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_68 = io_bus_addr == 13'h1 ? 32'h20 : _GEN_64; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_72 = _T ? irqDat_io_dataIn : _GEN_68; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_76 = io_bus_addr == 13'h380 ? StorageRegister_19_io_dataIn : _GEN_72; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_80 = io_bus_addr == 13'h13 ? StorageRegister_15_io_dataIn : _GEN_76; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_84 = io_bus_addr == 13'h4 ? StorageRegister_1_io_dataIn : _GEN_80; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_88 = io_bus_addr == 13'hd ? StorageRegister_9_io_dataIn : _GEN_84; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_92 = io_bus_addr == 13'h16 ? StorageRegister_18_io_dataIn : _GEN_88; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_96 = io_bus_addr == 13'h405 ? StorageRegister_31_io_dataIn : _GEN_92; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_100 = io_bus_addr == 13'h383 ? StorageRegister_22_io_dataIn : _GEN_96; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_104 = io_bus_addr == 13'h408 ? StorageRegister_34_io_dataIn : _GEN_100; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_108 = io_bus_addr == 13'h7 ? StorageRegister_3_io_dataIn : _GEN_104; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_112 = io_bus_addr == 13'h402 ? StorageRegister_28_io_dataIn : _GEN_108; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_116 = io_bus_addr == 13'hf ? StorageRegister_11_io_dataIn : _GEN_112; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_120 = io_bus_addr == 13'h385 ? StorageRegister_24_io_dataIn : _GEN_116; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_124 = io_bus_addr == 13'h12 ? StorageRegister_14_io_dataIn : _GEN_120; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_128 = io_bus_addr == 13'h9 ? StorageRegister_5_io_dataIn : _GEN_124; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_132 = io_bus_addr == 13'h15 ? StorageRegister_17_io_dataIn : _GEN_128; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_136 = io_bus_addr == 13'h3 ? StorageRegister_io_dataIn : _GEN_132; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_140 = io_bus_addr == 13'hc ? StorageRegister_8_io_dataIn : _GEN_136; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_144 = io_bus_addr == 13'h404 ? StorageRegister_30_io_dataIn : _GEN_140; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_148 = io_bus_addr == 13'h382 ? StorageRegister_21_io_dataIn : _GEN_144; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_152 = io_bus_addr == 13'h407 ? StorageRegister_33_io_dataIn : _GEN_148; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_156 = io_bus_addr == 13'h40a ? irqSta_io_dataIn : _GEN_152; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
+  wire [31:0] _GEN_160 = io_bus_addr == 13'h401 ? StorageRegister_27_io_dataIn : _GEN_156; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
   StorageRegister StorageRegister ( // @[CSRRegMap.scala 11:31]
     .clock(StorageRegister_clock),
     .reset(StorageRegister_reset),
@@ -1874,233 +1951,246 @@ module CSRFile(
     .io_dataOut(StorageRegister_25_io_dataOut),
     .io_dataIn(StorageRegister_25_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_26 ( // @[CSRFile.scala 32:26]
+  StorageRegister_26 StorageRegister_26 ( // @[CSRFile.scala 33:26]
     .clock(StorageRegister_26_clock),
     .reset(StorageRegister_26_reset),
     .io_write(StorageRegister_26_io_write),
     .io_dataOut(StorageRegister_26_io_dataOut),
     .io_dataIn(StorageRegister_26_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_27 ( // @[CSRFile.scala 33:30]
+  StorageRegister_26 StorageRegister_27 ( // @[CSRFile.scala 34:30]
     .clock(StorageRegister_27_clock),
     .reset(StorageRegister_27_reset),
     .io_write(StorageRegister_27_io_write),
     .io_dataOut(StorageRegister_27_io_dataOut),
     .io_dataIn(StorageRegister_27_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_28 ( // @[CSRFile.scala 32:26]
+  StorageRegister_26 StorageRegister_28 ( // @[CSRFile.scala 33:26]
     .clock(StorageRegister_28_clock),
     .reset(StorageRegister_28_reset),
     .io_write(StorageRegister_28_io_write),
     .io_dataOut(StorageRegister_28_io_dataOut),
     .io_dataIn(StorageRegister_28_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_29 ( // @[CSRFile.scala 33:30]
+  StorageRegister_26 StorageRegister_29 ( // @[CSRFile.scala 34:30]
     .clock(StorageRegister_29_clock),
     .reset(StorageRegister_29_reset),
     .io_write(StorageRegister_29_io_write),
     .io_dataOut(StorageRegister_29_io_dataOut),
     .io_dataIn(StorageRegister_29_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_30 ( // @[CSRFile.scala 32:26]
+  StorageRegister_26 StorageRegister_30 ( // @[CSRFile.scala 33:26]
     .clock(StorageRegister_30_clock),
     .reset(StorageRegister_30_reset),
     .io_write(StorageRegister_30_io_write),
     .io_dataOut(StorageRegister_30_io_dataOut),
     .io_dataIn(StorageRegister_30_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_31 ( // @[CSRFile.scala 33:30]
+  StorageRegister_26 StorageRegister_31 ( // @[CSRFile.scala 34:30]
     .clock(StorageRegister_31_clock),
     .reset(StorageRegister_31_reset),
     .io_write(StorageRegister_31_io_write),
     .io_dataOut(StorageRegister_31_io_dataOut),
     .io_dataIn(StorageRegister_31_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_32 ( // @[CSRFile.scala 32:26]
+  StorageRegister_26 StorageRegister_32 ( // @[CSRFile.scala 33:26]
     .clock(StorageRegister_32_clock),
     .reset(StorageRegister_32_reset),
     .io_write(StorageRegister_32_io_write),
     .io_dataOut(StorageRegister_32_io_dataOut),
     .io_dataIn(StorageRegister_32_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_33 ( // @[CSRFile.scala 33:30]
+  StorageRegister_26 StorageRegister_33 ( // @[CSRFile.scala 34:30]
     .clock(StorageRegister_33_clock),
     .reset(StorageRegister_33_reset),
     .io_write(StorageRegister_33_io_write),
     .io_dataOut(StorageRegister_33_io_dataOut),
     .io_dataIn(StorageRegister_33_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_34 ( // @[CSRFile.scala 32:26]
+  StorageRegister_26 StorageRegister_34 ( // @[CSRFile.scala 33:26]
     .clock(StorageRegister_34_clock),
     .reset(StorageRegister_34_reset),
     .io_write(StorageRegister_34_io_write),
     .io_dataOut(StorageRegister_34_io_dataOut),
     .io_dataIn(StorageRegister_34_io_dataIn)
   );
-  StorageRegister_26 StorageRegister_35 ( // @[CSRFile.scala 33:30]
+  StorageRegister_26 StorageRegister_35 ( // @[CSRFile.scala 34:30]
     .clock(StorageRegister_35_clock),
     .reset(StorageRegister_35_reset),
     .io_write(StorageRegister_35_io_write),
     .io_dataOut(StorageRegister_35_io_dataOut),
     .io_dataIn(StorageRegister_35_io_dataIn)
   );
-  ReadOnlyRegister_3 irqSta ( // @[CSRFile.scala 39:22]
+  ReadOnlyRegister_3 irqSta ( // @[CSRFile.scala 41:22]
     .io_dataIn(irqSta_io_dataIn),
     .fields_VALID(irqSta_fields_VALID)
   );
-  ReadOnlyRegister_4 irqDat ( // @[CSRFile.scala 48:22]
+  ReadOnlyRegister_4 irqDat ( // @[CSRFile.scala 50:22]
     .io_dataIn(irqDat_io_dataIn),
     .fields_DATA(irqDat_fields_DATA)
   );
-  assign io_bus_ready = 1'h1; // @[CSRFile.scala 24:16]
-  assign io_bus_reg_dataIn = io_bus_addr == 13'h0 ? 32'h8010fff : _GEN_156; // @[CSRFile.scala 59:50 CSRFile.scala 60:14]
+  AutoClearingRegister irqHost ( // @[CSRFile.scala 59:23]
+    .clock(irqHost_clock),
+    .reset(irqHost_reset),
+    .io_write(irqHost_io_write),
+    .io_dataOut(irqHost_io_dataOut),
+    .io_dataIn(irqHost_io_dataIn),
+    .fields_REQ(irqHost_fields_REQ)
+  );
+  assign io_bus_ready = 1'h1; // @[CSRFile.scala 25:16]
+  assign io_bus_reg_dataIn = io_bus_addr == 13'h0 ? 32'h8010fff : _GEN_160; // @[CSRFile.scala 68:50 CSRFile.scala 69:14]
   assign io_csrLog_ready = io_bus_addr == 13'h40b & _T_1; // @[CSRBundles.scala 25:59]
+  assign io_irqHost = irqHost_fields_REQ; // @[CSRFile.scala 64:14]
   assign StorageRegister_clock = clock;
   assign StorageRegister_reset = reset;
-  assign StorageRegister_io_write = io_bus_addr == 13'h3 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_io_dataOut = io_bus_addr == 13'h3 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_io_write = io_bus_addr == 13'h3 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_io_dataOut = io_bus_addr == 13'h3 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_1_clock = clock;
   assign StorageRegister_1_reset = reset;
-  assign StorageRegister_1_io_write = io_bus_addr == 13'h4 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_1_io_dataOut = io_bus_addr == 13'h4 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_1_io_write = io_bus_addr == 13'h4 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_1_io_dataOut = io_bus_addr == 13'h4 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_2_clock = clock;
   assign StorageRegister_2_reset = reset;
-  assign StorageRegister_2_io_write = io_bus_addr == 13'h5 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_2_io_dataOut = io_bus_addr == 13'h5 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_2_io_write = io_bus_addr == 13'h5 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_2_io_dataOut = io_bus_addr == 13'h5 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_3_clock = clock;
   assign StorageRegister_3_reset = reset;
-  assign StorageRegister_3_io_write = io_bus_addr == 13'h7 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_3_io_dataOut = io_bus_addr == 13'h7 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_3_io_write = io_bus_addr == 13'h7 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_3_io_dataOut = io_bus_addr == 13'h7 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_4_clock = clock;
   assign StorageRegister_4_reset = reset;
-  assign StorageRegister_4_io_write = io_bus_addr == 13'h8 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_4_io_dataOut = io_bus_addr == 13'h8 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_4_io_write = io_bus_addr == 13'h8 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_4_io_dataOut = io_bus_addr == 13'h8 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_5_clock = clock;
   assign StorageRegister_5_reset = reset;
-  assign StorageRegister_5_io_write = io_bus_addr == 13'h9 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_5_io_dataOut = io_bus_addr == 13'h9 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_5_io_write = io_bus_addr == 13'h9 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_5_io_dataOut = io_bus_addr == 13'h9 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_6_clock = clock;
   assign StorageRegister_6_reset = reset;
-  assign StorageRegister_6_io_write = io_bus_addr == 13'ha & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_6_io_dataOut = io_bus_addr == 13'ha ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_6_io_write = io_bus_addr == 13'ha & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_6_io_dataOut = io_bus_addr == 13'ha ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_7_clock = clock;
   assign StorageRegister_7_reset = reset;
-  assign StorageRegister_7_io_write = io_bus_addr == 13'hb & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_7_io_dataOut = io_bus_addr == 13'hb ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_7_io_write = io_bus_addr == 13'hb & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_7_io_dataOut = io_bus_addr == 13'hb ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_8_clock = clock;
   assign StorageRegister_8_reset = reset;
-  assign StorageRegister_8_io_write = io_bus_addr == 13'hc & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_8_io_dataOut = io_bus_addr == 13'hc ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_8_io_write = io_bus_addr == 13'hc & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_8_io_dataOut = io_bus_addr == 13'hc ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_9_clock = clock;
   assign StorageRegister_9_reset = reset;
-  assign StorageRegister_9_io_write = io_bus_addr == 13'hd & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_9_io_dataOut = io_bus_addr == 13'hd ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_9_io_write = io_bus_addr == 13'hd & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_9_io_dataOut = io_bus_addr == 13'hd ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_10_clock = clock;
   assign StorageRegister_10_reset = reset;
-  assign StorageRegister_10_io_write = io_bus_addr == 13'he & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_10_io_dataOut = io_bus_addr == 13'he ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_10_io_write = io_bus_addr == 13'he & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_10_io_dataOut = io_bus_addr == 13'he ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_11_clock = clock;
   assign StorageRegister_11_reset = reset;
-  assign StorageRegister_11_io_write = io_bus_addr == 13'hf & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_11_io_dataOut = io_bus_addr == 13'hf ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_11_io_write = io_bus_addr == 13'hf & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_11_io_dataOut = io_bus_addr == 13'hf ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_12_clock = clock;
   assign StorageRegister_12_reset = reset;
-  assign StorageRegister_12_io_write = io_bus_addr == 13'h10 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_12_io_dataOut = io_bus_addr == 13'h10 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_12_io_write = io_bus_addr == 13'h10 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_12_io_dataOut = io_bus_addr == 13'h10 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_13_clock = clock;
   assign StorageRegister_13_reset = reset;
-  assign StorageRegister_13_io_write = io_bus_addr == 13'h11 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_13_io_dataOut = io_bus_addr == 13'h11 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_13_io_write = io_bus_addr == 13'h11 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_13_io_dataOut = io_bus_addr == 13'h11 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_14_clock = clock;
   assign StorageRegister_14_reset = reset;
-  assign StorageRegister_14_io_write = io_bus_addr == 13'h12 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_14_io_dataOut = io_bus_addr == 13'h12 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_14_io_write = io_bus_addr == 13'h12 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_14_io_dataOut = io_bus_addr == 13'h12 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_15_clock = clock;
   assign StorageRegister_15_reset = reset;
-  assign StorageRegister_15_io_write = io_bus_addr == 13'h13 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_15_io_dataOut = io_bus_addr == 13'h13 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_15_io_write = io_bus_addr == 13'h13 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_15_io_dataOut = io_bus_addr == 13'h13 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_16_clock = clock;
   assign StorageRegister_16_reset = reset;
-  assign StorageRegister_16_io_write = io_bus_addr == 13'h14 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_16_io_dataOut = io_bus_addr == 13'h14 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_16_io_write = io_bus_addr == 13'h14 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_16_io_dataOut = io_bus_addr == 13'h14 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_17_clock = clock;
   assign StorageRegister_17_reset = reset;
-  assign StorageRegister_17_io_write = io_bus_addr == 13'h15 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_17_io_dataOut = io_bus_addr == 13'h15 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_17_io_write = io_bus_addr == 13'h15 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_17_io_dataOut = io_bus_addr == 13'h15 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_18_clock = clock;
   assign StorageRegister_18_reset = reset;
-  assign StorageRegister_18_io_write = io_bus_addr == 13'h16 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_18_io_dataOut = io_bus_addr == 13'h16 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_18_io_write = io_bus_addr == 13'h16 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_18_io_dataOut = io_bus_addr == 13'h16 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_19_clock = clock;
   assign StorageRegister_19_reset = reset;
-  assign StorageRegister_19_io_write = io_bus_addr == 13'h380 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_19_io_dataOut = io_bus_addr == 13'h380 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_19_io_write = io_bus_addr == 13'h380 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_19_io_dataOut = io_bus_addr == 13'h380 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_20_clock = clock;
   assign StorageRegister_20_reset = reset;
-  assign StorageRegister_20_io_write = io_bus_addr == 13'h381 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_20_io_dataOut = io_bus_addr == 13'h381 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_20_io_write = io_bus_addr == 13'h381 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_20_io_dataOut = io_bus_addr == 13'h381 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_21_clock = clock;
   assign StorageRegister_21_reset = reset;
-  assign StorageRegister_21_io_write = io_bus_addr == 13'h382 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_21_io_dataOut = io_bus_addr == 13'h382 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_21_io_write = io_bus_addr == 13'h382 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_21_io_dataOut = io_bus_addr == 13'h382 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_22_clock = clock;
   assign StorageRegister_22_reset = reset;
-  assign StorageRegister_22_io_write = io_bus_addr == 13'h383 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_22_io_dataOut = io_bus_addr == 13'h383 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_22_io_write = io_bus_addr == 13'h383 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_22_io_dataOut = io_bus_addr == 13'h383 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_23_clock = clock;
   assign StorageRegister_23_reset = reset;
-  assign StorageRegister_23_io_write = io_bus_addr == 13'h384 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_23_io_dataOut = io_bus_addr == 13'h384 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_23_io_write = io_bus_addr == 13'h384 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_23_io_dataOut = io_bus_addr == 13'h384 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_24_clock = clock;
   assign StorageRegister_24_reset = reset;
-  assign StorageRegister_24_io_write = io_bus_addr == 13'h385 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_24_io_dataOut = io_bus_addr == 13'h385 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_24_io_write = io_bus_addr == 13'h385 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_24_io_dataOut = io_bus_addr == 13'h385 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_25_clock = clock;
   assign StorageRegister_25_reset = reset;
-  assign StorageRegister_25_io_write = io_bus_addr == 13'h386 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_25_io_dataOut = io_bus_addr == 13'h386 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_25_io_write = io_bus_addr == 13'h386 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_25_io_dataOut = io_bus_addr == 13'h386 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_26_clock = clock;
   assign StorageRegister_26_reset = reset;
-  assign StorageRegister_26_io_write = io_bus_addr == 13'h400 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_26_io_dataOut = io_bus_addr == 13'h400 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_26_io_write = io_bus_addr == 13'h400 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_26_io_dataOut = io_bus_addr == 13'h400 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_27_clock = clock;
   assign StorageRegister_27_reset = reset;
-  assign StorageRegister_27_io_write = io_bus_addr == 13'h401 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_27_io_dataOut = io_bus_addr == 13'h401 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_27_io_write = io_bus_addr == 13'h401 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_27_io_dataOut = io_bus_addr == 13'h401 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_28_clock = clock;
   assign StorageRegister_28_reset = reset;
-  assign StorageRegister_28_io_write = io_bus_addr == 13'h402 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_28_io_dataOut = io_bus_addr == 13'h402 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_28_io_write = io_bus_addr == 13'h402 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_28_io_dataOut = io_bus_addr == 13'h402 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_29_clock = clock;
   assign StorageRegister_29_reset = reset;
-  assign StorageRegister_29_io_write = io_bus_addr == 13'h403 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_29_io_dataOut = io_bus_addr == 13'h403 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_29_io_write = io_bus_addr == 13'h403 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_29_io_dataOut = io_bus_addr == 13'h403 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_30_clock = clock;
   assign StorageRegister_30_reset = reset;
-  assign StorageRegister_30_io_write = io_bus_addr == 13'h404 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_30_io_dataOut = io_bus_addr == 13'h404 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_30_io_write = io_bus_addr == 13'h404 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_30_io_dataOut = io_bus_addr == 13'h404 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_31_clock = clock;
   assign StorageRegister_31_reset = reset;
-  assign StorageRegister_31_io_write = io_bus_addr == 13'h405 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_31_io_dataOut = io_bus_addr == 13'h405 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_31_io_write = io_bus_addr == 13'h405 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_31_io_dataOut = io_bus_addr == 13'h405 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_32_clock = clock;
   assign StorageRegister_32_reset = reset;
-  assign StorageRegister_32_io_write = io_bus_addr == 13'h406 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_32_io_dataOut = io_bus_addr == 13'h406 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_32_io_write = io_bus_addr == 13'h406 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_32_io_dataOut = io_bus_addr == 13'h406 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_33_clock = clock;
   assign StorageRegister_33_reset = reset;
-  assign StorageRegister_33_io_write = io_bus_addr == 13'h407 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_33_io_dataOut = io_bus_addr == 13'h407 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_33_io_write = io_bus_addr == 13'h407 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_33_io_dataOut = io_bus_addr == 13'h407 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_34_clock = clock;
   assign StorageRegister_34_reset = reset;
-  assign StorageRegister_34_io_write = io_bus_addr == 13'h408 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_34_io_dataOut = io_bus_addr == 13'h408 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
+  assign StorageRegister_34_io_write = io_bus_addr == 13'h408 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_34_io_dataOut = io_bus_addr == 13'h408 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
   assign StorageRegister_35_clock = clock;
   assign StorageRegister_35_reset = reset;
-  assign StorageRegister_35_io_write = io_bus_addr == 13'h409 & io_bus_reg_write; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 62:20]
-  assign StorageRegister_35_io_dataOut = io_bus_addr == 13'h409 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 59:50 CSRFile.scala 60:14 CSRFile.scala 64:22]
-  assign irqSta_fields_VALID = io_csrLog_valid; // @[CSRFile.scala 43:23]
-  assign irqDat_fields_DATA = io_csrLog_bits; // @[CSRFile.scala 50:22]
+  assign StorageRegister_35_io_write = io_bus_addr == 13'h409 & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign StorageRegister_35_io_dataOut = io_bus_addr == 13'h409 ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
+  assign irqSta_fields_VALID = io_csrLog_valid; // @[CSRFile.scala 45:23]
+  assign irqDat_fields_DATA = io_csrLog_bits; // @[CSRFile.scala 52:22]
+  assign irqHost_clock = clock;
+  assign irqHost_reset = reset;
+  assign irqHost_io_write = io_bus_addr == 13'h40c & io_bus_reg_write; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 71:20]
+  assign irqHost_io_dataOut = io_bus_addr == 13'h40c ? io_bus_reg_dataOut : 32'h0; // @[CSRFile.scala 68:50 CSRFile.scala 69:14 CSRFile.scala 73:22]
 endmodule
 module NVMeTop(
   input         clock,
@@ -2143,90 +2233,92 @@ module NVMeTop(
   output [1:0]  io_controller_r_rresp,
   output        io_controller_r_rvalid,
   input         io_controller_r_rready,
-  output        io_irqReq
+  output        io_irqReq,
+  output [31:0] io_irqHost
 );
-  wire  hostCSRAxi_clock; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_reset; // @[NVMeTop.scala 22:26]
-  wire [14:0] hostCSRAxi_io_ctl_aw_awaddr; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_aw_awvalid; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 22:26]
-  wire [31:0] hostCSRAxi_io_ctl_w_wdata; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_w_wvalid; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_b_bready; // @[NVMeTop.scala 22:26]
-  wire [14:0] hostCSRAxi_io_ctl_ar_araddr; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_ar_arvalid; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 22:26]
-  wire [31:0] hostCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_ctl_r_rready; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_bus_ready; // @[NVMeTop.scala 22:26]
-  wire [12:0] hostCSRAxi_io_bus_addr; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 22:26]
-  wire [31:0] hostCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 22:26]
-  wire  hostCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 22:26]
-  wire [31:0] hostCSRAxi_io_bus_reg_dataIn; // @[NVMeTop.scala 22:26]
-  wire  controllerCSRAxi_clock; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_reset; // @[NVMeTop.scala 27:32]
-  wire [14:0] controllerCSRAxi_io_ctl_aw_awaddr; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_aw_awvalid; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 27:32]
-  wire [31:0] controllerCSRAxi_io_ctl_w_wdata; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_w_wvalid; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_b_bready; // @[NVMeTop.scala 27:32]
-  wire [14:0] controllerCSRAxi_io_ctl_ar_araddr; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_ar_arvalid; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 27:32]
-  wire [31:0] controllerCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_ctl_r_rready; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_bus_ready; // @[NVMeTop.scala 27:32]
-  wire [12:0] controllerCSRAxi_io_bus_addr; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 27:32]
-  wire [31:0] controllerCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 27:32]
-  wire  controllerCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 27:32]
-  wire [31:0] controllerCSRAxi_io_bus_reg_dataIn; // @[NVMeTop.scala 27:32]
-  wire  CSRArbiter_io_inBusA_ready; // @[NVMeTop.scala 32:26]
-  wire [12:0] CSRArbiter_io_inBusA_addr; // @[NVMeTop.scala 32:26]
-  wire  CSRArbiter_io_inBusA_reg_write; // @[NVMeTop.scala 32:26]
-  wire [31:0] CSRArbiter_io_inBusA_reg_dataOut; // @[NVMeTop.scala 32:26]
-  wire  CSRArbiter_io_inBusA_reg_read; // @[NVMeTop.scala 32:26]
-  wire [31:0] CSRArbiter_io_inBusA_reg_dataIn; // @[NVMeTop.scala 32:26]
-  wire  CSRArbiter_io_inBusB_ready; // @[NVMeTop.scala 32:26]
-  wire [12:0] CSRArbiter_io_inBusB_addr; // @[NVMeTop.scala 32:26]
-  wire  CSRArbiter_io_inBusB_reg_write; // @[NVMeTop.scala 32:26]
-  wire [31:0] CSRArbiter_io_inBusB_reg_dataOut; // @[NVMeTop.scala 32:26]
-  wire  CSRArbiter_io_inBusB_reg_read; // @[NVMeTop.scala 32:26]
-  wire [31:0] CSRArbiter_io_inBusB_reg_dataIn; // @[NVMeTop.scala 32:26]
-  wire [12:0] CSRArbiter_io_outBus_addr; // @[NVMeTop.scala 32:26]
-  wire  CSRArbiter_io_outBus_reg_write; // @[NVMeTop.scala 32:26]
-  wire [31:0] CSRArbiter_io_outBus_reg_dataOut; // @[NVMeTop.scala 32:26]
-  wire  CSRArbiter_io_outBus_reg_read; // @[NVMeTop.scala 32:26]
-  wire [31:0] CSRArbiter_io_outBus_reg_dataIn; // @[NVMeTop.scala 32:26]
-  wire  Interrupts_clock; // @[NVMeTop.scala 37:26]
-  wire  Interrupts_reset; // @[NVMeTop.scala 37:26]
-  wire  Interrupts_io_irqReq; // @[NVMeTop.scala 37:26]
-  wire  Interrupts_io_csrBus_ready; // @[NVMeTop.scala 37:26]
-  wire [12:0] Interrupts_io_csrBus_addr; // @[NVMeTop.scala 37:26]
-  wire  Interrupts_io_csrBus_reg_write; // @[NVMeTop.scala 37:26]
-  wire  Interrupts_io_csrLog_ready; // @[NVMeTop.scala 37:26]
-  wire  Interrupts_io_csrLog_valid; // @[NVMeTop.scala 37:26]
-  wire [31:0] Interrupts_io_csrLog_bits; // @[NVMeTop.scala 37:26]
-  wire  CSRFile_clock; // @[NVMeTop.scala 43:23]
-  wire  CSRFile_reset; // @[NVMeTop.scala 43:23]
-  wire  CSRFile_io_bus_ready; // @[NVMeTop.scala 43:23]
-  wire [12:0] CSRFile_io_bus_addr; // @[NVMeTop.scala 43:23]
-  wire  CSRFile_io_bus_reg_write; // @[NVMeTop.scala 43:23]
-  wire [31:0] CSRFile_io_bus_reg_dataOut; // @[NVMeTop.scala 43:23]
-  wire  CSRFile_io_bus_reg_read; // @[NVMeTop.scala 43:23]
-  wire [31:0] CSRFile_io_bus_reg_dataIn; // @[NVMeTop.scala 43:23]
-  wire  CSRFile_io_csrLog_ready; // @[NVMeTop.scala 43:23]
-  wire  CSRFile_io_csrLog_valid; // @[NVMeTop.scala 43:23]
-  wire [31:0] CSRFile_io_csrLog_bits; // @[NVMeTop.scala 43:23]
-  AXI4LiteCSR hostCSRAxi ( // @[NVMeTop.scala 22:26]
+  wire  hostCSRAxi_clock; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_reset; // @[NVMeTop.scala 23:26]
+  wire [14:0] hostCSRAxi_io_ctl_aw_awaddr; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_aw_awvalid; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 23:26]
+  wire [31:0] hostCSRAxi_io_ctl_w_wdata; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_w_wvalid; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_b_bready; // @[NVMeTop.scala 23:26]
+  wire [14:0] hostCSRAxi_io_ctl_ar_araddr; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_ar_arvalid; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 23:26]
+  wire [31:0] hostCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_ctl_r_rready; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_bus_ready; // @[NVMeTop.scala 23:26]
+  wire [12:0] hostCSRAxi_io_bus_addr; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 23:26]
+  wire [31:0] hostCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 23:26]
+  wire  hostCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 23:26]
+  wire [31:0] hostCSRAxi_io_bus_reg_dataIn; // @[NVMeTop.scala 23:26]
+  wire  controllerCSRAxi_clock; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_reset; // @[NVMeTop.scala 28:32]
+  wire [14:0] controllerCSRAxi_io_ctl_aw_awaddr; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_aw_awvalid; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 28:32]
+  wire [31:0] controllerCSRAxi_io_ctl_w_wdata; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_w_wvalid; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_b_bready; // @[NVMeTop.scala 28:32]
+  wire [14:0] controllerCSRAxi_io_ctl_ar_araddr; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_ar_arvalid; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 28:32]
+  wire [31:0] controllerCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_ctl_r_rready; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_bus_ready; // @[NVMeTop.scala 28:32]
+  wire [12:0] controllerCSRAxi_io_bus_addr; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 28:32]
+  wire [31:0] controllerCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 28:32]
+  wire  controllerCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 28:32]
+  wire [31:0] controllerCSRAxi_io_bus_reg_dataIn; // @[NVMeTop.scala 28:32]
+  wire  CSRArbiter_io_inBusA_ready; // @[NVMeTop.scala 33:26]
+  wire [12:0] CSRArbiter_io_inBusA_addr; // @[NVMeTop.scala 33:26]
+  wire  CSRArbiter_io_inBusA_reg_write; // @[NVMeTop.scala 33:26]
+  wire [31:0] CSRArbiter_io_inBusA_reg_dataOut; // @[NVMeTop.scala 33:26]
+  wire  CSRArbiter_io_inBusA_reg_read; // @[NVMeTop.scala 33:26]
+  wire [31:0] CSRArbiter_io_inBusA_reg_dataIn; // @[NVMeTop.scala 33:26]
+  wire  CSRArbiter_io_inBusB_ready; // @[NVMeTop.scala 33:26]
+  wire [12:0] CSRArbiter_io_inBusB_addr; // @[NVMeTop.scala 33:26]
+  wire  CSRArbiter_io_inBusB_reg_write; // @[NVMeTop.scala 33:26]
+  wire [31:0] CSRArbiter_io_inBusB_reg_dataOut; // @[NVMeTop.scala 33:26]
+  wire  CSRArbiter_io_inBusB_reg_read; // @[NVMeTop.scala 33:26]
+  wire [31:0] CSRArbiter_io_inBusB_reg_dataIn; // @[NVMeTop.scala 33:26]
+  wire [12:0] CSRArbiter_io_outBus_addr; // @[NVMeTop.scala 33:26]
+  wire  CSRArbiter_io_outBus_reg_write; // @[NVMeTop.scala 33:26]
+  wire [31:0] CSRArbiter_io_outBus_reg_dataOut; // @[NVMeTop.scala 33:26]
+  wire  CSRArbiter_io_outBus_reg_read; // @[NVMeTop.scala 33:26]
+  wire [31:0] CSRArbiter_io_outBus_reg_dataIn; // @[NVMeTop.scala 33:26]
+  wire  Interrupts_clock; // @[NVMeTop.scala 38:26]
+  wire  Interrupts_reset; // @[NVMeTop.scala 38:26]
+  wire  Interrupts_io_irqReq; // @[NVMeTop.scala 38:26]
+  wire  Interrupts_io_csrBus_ready; // @[NVMeTop.scala 38:26]
+  wire [12:0] Interrupts_io_csrBus_addr; // @[NVMeTop.scala 38:26]
+  wire  Interrupts_io_csrBus_reg_write; // @[NVMeTop.scala 38:26]
+  wire  Interrupts_io_csrLog_ready; // @[NVMeTop.scala 38:26]
+  wire  Interrupts_io_csrLog_valid; // @[NVMeTop.scala 38:26]
+  wire [31:0] Interrupts_io_csrLog_bits; // @[NVMeTop.scala 38:26]
+  wire  CSRFile_clock; // @[NVMeTop.scala 44:23]
+  wire  CSRFile_reset; // @[NVMeTop.scala 44:23]
+  wire  CSRFile_io_bus_ready; // @[NVMeTop.scala 44:23]
+  wire [12:0] CSRFile_io_bus_addr; // @[NVMeTop.scala 44:23]
+  wire  CSRFile_io_bus_reg_write; // @[NVMeTop.scala 44:23]
+  wire [31:0] CSRFile_io_bus_reg_dataOut; // @[NVMeTop.scala 44:23]
+  wire  CSRFile_io_bus_reg_read; // @[NVMeTop.scala 44:23]
+  wire [31:0] CSRFile_io_bus_reg_dataIn; // @[NVMeTop.scala 44:23]
+  wire  CSRFile_io_csrLog_ready; // @[NVMeTop.scala 44:23]
+  wire  CSRFile_io_csrLog_valid; // @[NVMeTop.scala 44:23]
+  wire [31:0] CSRFile_io_csrLog_bits; // @[NVMeTop.scala 44:23]
+  wire [31:0] CSRFile_io_irqHost; // @[NVMeTop.scala 44:23]
+  AXI4LiteCSR hostCSRAxi ( // @[NVMeTop.scala 23:26]
     .clock(hostCSRAxi_clock),
     .reset(hostCSRAxi_reset),
     .io_ctl_aw_awaddr(hostCSRAxi_io_ctl_aw_awaddr),
@@ -2250,7 +2342,7 @@ module NVMeTop(
     .io_bus_reg_read(hostCSRAxi_io_bus_reg_read),
     .io_bus_reg_dataIn(hostCSRAxi_io_bus_reg_dataIn)
   );
-  AXI4LiteCSR controllerCSRAxi ( // @[NVMeTop.scala 27:32]
+  AXI4LiteCSR controllerCSRAxi ( // @[NVMeTop.scala 28:32]
     .clock(controllerCSRAxi_clock),
     .reset(controllerCSRAxi_reset),
     .io_ctl_aw_awaddr(controllerCSRAxi_io_ctl_aw_awaddr),
@@ -2274,7 +2366,7 @@ module NVMeTop(
     .io_bus_reg_read(controllerCSRAxi_io_bus_reg_read),
     .io_bus_reg_dataIn(controllerCSRAxi_io_bus_reg_dataIn)
   );
-  RegBusArbiter CSRArbiter ( // @[NVMeTop.scala 32:26]
+  RegBusArbiter CSRArbiter ( // @[NVMeTop.scala 33:26]
     .io_inBusA_ready(CSRArbiter_io_inBusA_ready),
     .io_inBusA_addr(CSRArbiter_io_inBusA_addr),
     .io_inBusA_reg_write(CSRArbiter_io_inBusA_reg_write),
@@ -2293,7 +2385,7 @@ module NVMeTop(
     .io_outBus_reg_read(CSRArbiter_io_outBus_reg_read),
     .io_outBus_reg_dataIn(CSRArbiter_io_outBus_reg_dataIn)
   );
-  CSRInterrupt Interrupts ( // @[NVMeTop.scala 37:26]
+  CSRInterrupt Interrupts ( // @[NVMeTop.scala 38:26]
     .clock(Interrupts_clock),
     .reset(Interrupts_reset),
     .io_irqReq(Interrupts_io_irqReq),
@@ -2304,7 +2396,7 @@ module NVMeTop(
     .io_csrLog_valid(Interrupts_io_csrLog_valid),
     .io_csrLog_bits(Interrupts_io_csrLog_bits)
   );
-  CSRFile CSRFile ( // @[NVMeTop.scala 43:23]
+  CSRFile CSRFile ( // @[NVMeTop.scala 44:23]
     .clock(CSRFile_clock),
     .reset(CSRFile_reset),
     .io_bus_ready(CSRFile_io_bus_ready),
@@ -2315,70 +2407,72 @@ module NVMeTop(
     .io_bus_reg_dataIn(CSRFile_io_bus_reg_dataIn),
     .io_csrLog_ready(CSRFile_io_csrLog_ready),
     .io_csrLog_valid(CSRFile_io_csrLog_valid),
-    .io_csrLog_bits(CSRFile_io_csrLog_bits)
+    .io_csrLog_bits(CSRFile_io_csrLog_bits),
+    .io_irqHost(CSRFile_io_irqHost)
   );
-  assign io_host_aw_awready = hostCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 24:21]
-  assign io_host_w_wready = hostCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 24:21]
-  assign io_host_b_bresp = 2'h0; // @[NVMeTop.scala 24:21]
-  assign io_host_b_bvalid = hostCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 24:21]
-  assign io_host_ar_arready = hostCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 24:21]
-  assign io_host_r_rdata = hostCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 24:21]
-  assign io_host_r_rresp = 2'h0; // @[NVMeTop.scala 24:21]
-  assign io_host_r_rvalid = hostCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 24:21]
-  assign io_controller_aw_awready = controllerCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 29:27]
-  assign io_controller_w_wready = controllerCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 29:27]
-  assign io_controller_b_bresp = 2'h0; // @[NVMeTop.scala 29:27]
-  assign io_controller_b_bvalid = controllerCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 29:27]
-  assign io_controller_ar_arready = controllerCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 29:27]
-  assign io_controller_r_rdata = controllerCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 29:27]
-  assign io_controller_r_rresp = 2'h0; // @[NVMeTop.scala 29:27]
-  assign io_controller_r_rvalid = controllerCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 29:27]
-  assign io_irqReq = Interrupts_io_irqReq; // @[NVMeTop.scala 39:13]
+  assign io_host_aw_awready = hostCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 25:21]
+  assign io_host_w_wready = hostCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 25:21]
+  assign io_host_b_bresp = 2'h0; // @[NVMeTop.scala 25:21]
+  assign io_host_b_bvalid = hostCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 25:21]
+  assign io_host_ar_arready = hostCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 25:21]
+  assign io_host_r_rdata = hostCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 25:21]
+  assign io_host_r_rresp = 2'h0; // @[NVMeTop.scala 25:21]
+  assign io_host_r_rvalid = hostCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 25:21]
+  assign io_controller_aw_awready = controllerCSRAxi_io_ctl_aw_awready; // @[NVMeTop.scala 30:27]
+  assign io_controller_w_wready = controllerCSRAxi_io_ctl_w_wready; // @[NVMeTop.scala 30:27]
+  assign io_controller_b_bresp = 2'h0; // @[NVMeTop.scala 30:27]
+  assign io_controller_b_bvalid = controllerCSRAxi_io_ctl_b_bvalid; // @[NVMeTop.scala 30:27]
+  assign io_controller_ar_arready = controllerCSRAxi_io_ctl_ar_arready; // @[NVMeTop.scala 30:27]
+  assign io_controller_r_rdata = controllerCSRAxi_io_ctl_r_rdata; // @[NVMeTop.scala 30:27]
+  assign io_controller_r_rresp = 2'h0; // @[NVMeTop.scala 30:27]
+  assign io_controller_r_rvalid = controllerCSRAxi_io_ctl_r_rvalid; // @[NVMeTop.scala 30:27]
+  assign io_irqReq = Interrupts_io_irqReq; // @[NVMeTop.scala 40:13]
+  assign io_irqHost = CSRFile_io_irqHost; // @[NVMeTop.scala 46:14]
   assign hostCSRAxi_clock = clock;
   assign hostCSRAxi_reset = reset;
-  assign hostCSRAxi_io_ctl_aw_awaddr = io_host_aw_awaddr[14:0]; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_ctl_aw_awvalid = io_host_aw_awvalid; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_ctl_w_wdata = io_host_w_wdata; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_ctl_w_wvalid = io_host_w_wvalid; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_ctl_b_bready = io_host_b_bready; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_ctl_ar_araddr = io_host_ar_araddr[14:0]; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_ctl_ar_arvalid = io_host_ar_arvalid; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_ctl_r_rready = io_host_r_rready; // @[NVMeTop.scala 24:21]
-  assign hostCSRAxi_io_bus_ready = CSRArbiter_io_inBusB_ready; // @[NVMeTop.scala 35:24]
-  assign hostCSRAxi_io_bus_reg_dataIn = CSRArbiter_io_inBusB_reg_dataIn; // @[NVMeTop.scala 35:24]
+  assign hostCSRAxi_io_ctl_aw_awaddr = io_host_aw_awaddr[14:0]; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_ctl_aw_awvalid = io_host_aw_awvalid; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_ctl_w_wdata = io_host_w_wdata; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_ctl_w_wvalid = io_host_w_wvalid; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_ctl_b_bready = io_host_b_bready; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_ctl_ar_araddr = io_host_ar_araddr[14:0]; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_ctl_ar_arvalid = io_host_ar_arvalid; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_ctl_r_rready = io_host_r_rready; // @[NVMeTop.scala 25:21]
+  assign hostCSRAxi_io_bus_ready = CSRArbiter_io_inBusB_ready; // @[NVMeTop.scala 36:24]
+  assign hostCSRAxi_io_bus_reg_dataIn = CSRArbiter_io_inBusB_reg_dataIn; // @[NVMeTop.scala 36:24]
   assign controllerCSRAxi_clock = clock;
   assign controllerCSRAxi_reset = reset;
-  assign controllerCSRAxi_io_ctl_aw_awaddr = io_controller_aw_awaddr[14:0]; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_ctl_aw_awvalid = io_controller_aw_awvalid; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_ctl_w_wdata = io_controller_w_wdata; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_ctl_w_wvalid = io_controller_w_wvalid; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_ctl_b_bready = io_controller_b_bready; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_ctl_ar_araddr = io_controller_ar_araddr[14:0]; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_ctl_ar_arvalid = io_controller_ar_arvalid; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_ctl_r_rready = io_controller_r_rready; // @[NVMeTop.scala 29:27]
-  assign controllerCSRAxi_io_bus_ready = CSRArbiter_io_inBusA_ready; // @[NVMeTop.scala 34:24]
-  assign controllerCSRAxi_io_bus_reg_dataIn = CSRArbiter_io_inBusA_reg_dataIn; // @[NVMeTop.scala 34:24]
-  assign CSRArbiter_io_inBusA_addr = controllerCSRAxi_io_bus_addr; // @[NVMeTop.scala 34:24]
-  assign CSRArbiter_io_inBusA_reg_write = controllerCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 34:24]
-  assign CSRArbiter_io_inBusA_reg_dataOut = controllerCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 34:24]
-  assign CSRArbiter_io_inBusA_reg_read = controllerCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 34:24]
-  assign CSRArbiter_io_inBusB_addr = hostCSRAxi_io_bus_addr; // @[NVMeTop.scala 35:24]
-  assign CSRArbiter_io_inBusB_reg_write = hostCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 35:24]
-  assign CSRArbiter_io_inBusB_reg_dataOut = hostCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 35:24]
-  assign CSRArbiter_io_inBusB_reg_read = hostCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 35:24]
-  assign CSRArbiter_io_outBus_reg_dataIn = CSRFile_io_bus_reg_dataIn; // @[NVMeTop.scala 45:18]
+  assign controllerCSRAxi_io_ctl_aw_awaddr = io_controller_aw_awaddr[14:0]; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_ctl_aw_awvalid = io_controller_aw_awvalid; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_ctl_w_wdata = io_controller_w_wdata; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_ctl_w_wvalid = io_controller_w_wvalid; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_ctl_b_bready = io_controller_b_bready; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_ctl_ar_araddr = io_controller_ar_araddr[14:0]; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_ctl_ar_arvalid = io_controller_ar_arvalid; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_ctl_r_rready = io_controller_r_rready; // @[NVMeTop.scala 30:27]
+  assign controllerCSRAxi_io_bus_ready = CSRArbiter_io_inBusA_ready; // @[NVMeTop.scala 35:24]
+  assign controllerCSRAxi_io_bus_reg_dataIn = CSRArbiter_io_inBusA_reg_dataIn; // @[NVMeTop.scala 35:24]
+  assign CSRArbiter_io_inBusA_addr = controllerCSRAxi_io_bus_addr; // @[NVMeTop.scala 35:24]
+  assign CSRArbiter_io_inBusA_reg_write = controllerCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 35:24]
+  assign CSRArbiter_io_inBusA_reg_dataOut = controllerCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 35:24]
+  assign CSRArbiter_io_inBusA_reg_read = controllerCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 35:24]
+  assign CSRArbiter_io_inBusB_addr = hostCSRAxi_io_bus_addr; // @[NVMeTop.scala 36:24]
+  assign CSRArbiter_io_inBusB_reg_write = hostCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 36:24]
+  assign CSRArbiter_io_inBusB_reg_dataOut = hostCSRAxi_io_bus_reg_dataOut; // @[NVMeTop.scala 36:24]
+  assign CSRArbiter_io_inBusB_reg_read = hostCSRAxi_io_bus_reg_read; // @[NVMeTop.scala 36:24]
+  assign CSRArbiter_io_outBus_reg_dataIn = CSRFile_io_bus_reg_dataIn; // @[NVMeTop.scala 48:18]
   assign Interrupts_clock = clock;
   assign Interrupts_reset = reset;
-  assign Interrupts_io_csrBus_ready = hostCSRAxi_io_bus_ready; // @[NVMeTop.scala 40:24]
-  assign Interrupts_io_csrBus_addr = hostCSRAxi_io_bus_addr; // @[NVMeTop.scala 40:24]
-  assign Interrupts_io_csrBus_reg_write = hostCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 40:24]
-  assign Interrupts_io_csrLog_ready = CSRFile_io_csrLog_ready; // @[NVMeTop.scala 46:21]
+  assign Interrupts_io_csrBus_ready = hostCSRAxi_io_bus_ready; // @[NVMeTop.scala 41:24]
+  assign Interrupts_io_csrBus_addr = hostCSRAxi_io_bus_addr; // @[NVMeTop.scala 41:24]
+  assign Interrupts_io_csrBus_reg_write = hostCSRAxi_io_bus_reg_write; // @[NVMeTop.scala 41:24]
+  assign Interrupts_io_csrLog_ready = CSRFile_io_csrLog_ready; // @[NVMeTop.scala 49:21]
   assign CSRFile_clock = clock;
   assign CSRFile_reset = reset;
-  assign CSRFile_io_bus_addr = CSRArbiter_io_outBus_addr; // @[NVMeTop.scala 45:18]
-  assign CSRFile_io_bus_reg_write = CSRArbiter_io_outBus_reg_write; // @[NVMeTop.scala 45:18]
-  assign CSRFile_io_bus_reg_dataOut = CSRArbiter_io_outBus_reg_dataOut; // @[NVMeTop.scala 45:18]
-  assign CSRFile_io_bus_reg_read = CSRArbiter_io_outBus_reg_read; // @[NVMeTop.scala 45:18]
-  assign CSRFile_io_csrLog_valid = Interrupts_io_csrLog_valid; // @[NVMeTop.scala 46:21]
-  assign CSRFile_io_csrLog_bits = Interrupts_io_csrLog_bits; // @[NVMeTop.scala 46:21]
+  assign CSRFile_io_bus_addr = CSRArbiter_io_outBus_addr; // @[NVMeTop.scala 48:18]
+  assign CSRFile_io_bus_reg_write = CSRArbiter_io_outBus_reg_write; // @[NVMeTop.scala 48:18]
+  assign CSRFile_io_bus_reg_dataOut = CSRArbiter_io_outBus_reg_dataOut; // @[NVMeTop.scala 48:18]
+  assign CSRFile_io_bus_reg_read = CSRArbiter_io_outBus_reg_read; // @[NVMeTop.scala 48:18]
+  assign CSRFile_io_csrLog_valid = Interrupts_io_csrLog_valid; // @[NVMeTop.scala 49:21]
+  assign CSRFile_io_csrLog_bits = Interrupts_io_csrLog_bits; // @[NVMeTop.scala 49:21]
 endmodule
