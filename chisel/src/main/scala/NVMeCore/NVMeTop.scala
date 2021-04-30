@@ -15,6 +15,7 @@ class NVMeTop extends Module{
     val host = Flipped(new AXI4Lite(NVMeTop.addrWidth, NVMeTop.dataWidth))
     val controller = Flipped(new AXI4Lite(NVMeTop.addrWidth, NVMeTop.dataWidth))
     val irqReq = Output(Bool())
+    val irqHost = Output(UInt(NVMeTop.hostIrqCount.W))
   })
 
 
@@ -40,7 +41,9 @@ class NVMeTop extends Module{
   Interrupts.io.csrBus := hostCSRAxi.io.bus
 
   // register file
-  val CSRFile = Module(new CSRFile(NVMeTop.regCount, NVMeTop.dataWidth))
+  val CSRFile = Module(new CSRFile(NVMeTop.regCount, NVMeTop.dataWidth, NVMeTop.hostIrqCount))
+
+  io.irqHost := CSRFile.io.irqHost
 
   CSRFile.io.bus <> CSRArbiter.io.outBus
   CSRFile.io.csrLog <> Interrupts.io.csrLog
@@ -52,4 +55,5 @@ object NVMeTop {
   val dataWidth = 32
   val doorbellCount = 4
   val doorbellBase = 0x1000
+  val hostIrqCount = 32
 }

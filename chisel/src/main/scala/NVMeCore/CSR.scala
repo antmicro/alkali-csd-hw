@@ -33,6 +33,10 @@ class IRQDAT extends RegisterDef {
     val DATA = UInt(32.W)
 }
 
+class IRQHOST extends RegisterDef {
+    val REQ = UInt(32.W)
+}
+
 class BaseRegister(regWidth: Int) extends MultiIOModule {
     val io = IO(Flipped(new RegAccessBundle(regWidth)))
 
@@ -56,4 +60,14 @@ class ReadOnlyRegister[T <: RegisterDef](gen: T, regWidth: Int) extends BaseRegi
     val fields = IO(Input(gen))
 
     io.dataIn := fields.asUInt
+}
+
+class AutoClearingRegister[T <: RegisterDef](gen: T, regWidth: Int) extends StorageRegister(gen, regWidth) {
+
+    when(io.write) {
+        storage := io.dataOut
+    }.otherwise{
+        storage := 0.U(regWidth.W)
+    }
+
 }

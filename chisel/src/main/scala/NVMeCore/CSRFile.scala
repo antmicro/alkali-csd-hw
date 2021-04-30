@@ -9,10 +9,11 @@ package NVMeCore
 import chisel3._
 import chisel3.util._
 
-class CSRFile(val csrCount: Int, val dataWidth: Int) extends Module {
+class CSRFile(val csrCount: Int, val dataWidth: Int, val irqCount: Int) extends Module {
   val io = IO(new Bundle {
     val bus = Flipped(new RegBusBundle(csrCount, dataWidth))
     val csrLog = DeqIO(UInt(dataWidth.W))
+    val irqHost = Output(UInt(irqCount.W))
   })
 
   def tieOff(b: Bundle) = {
@@ -35,6 +36,7 @@ class CSRFile(val csrCount: Int, val dataWidth: Int) extends Module {
 
   val irqStaBase = NVMeTop.doorbellBase + 8 * (NVMeTop.doorbellCount + 1)
   val irqDatBase = irqStaBase + 4
+  val irqHostBase = irqStaBase + 8
 
   val irqSta = Module(new ReadOnlyRegister(new IRQSTA, dataWidth))
 
@@ -53,6 +55,13 @@ class CSRFile(val csrCount: Int, val dataWidth: Int) extends Module {
   regMap(irqDatBase) = irqDat
 
   io.csrLog.ready := io.bus.readAddr((irqDatBase/(dataWidth/8)).U)
+
+  val irqHost = Module(new AutoClearingRegister(new IRQHOST, dataWidth))
+
+  println(f"adding Host interrupt register at 0x${irqHostBase}%x")
+  regMap(irqHostBase) = irqHost
+
+  io.irqHost := irqHost.fields.REQ
 
   for((addr, reg) <- regMap) {
     println(f"connecting register 0x${addr}%x")
