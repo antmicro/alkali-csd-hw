@@ -33,24 +33,18 @@ module fpga (
     /*
      * GPIO
      */
-    input  wire       btnu,
-    input  wire       btnl,
-    input  wire       btnd,
-    input  wire       btnr,
-    input  wire       btnc,
-    input  wire [7:0] sw,
-    output wire [7:0] led,
+    input  wire [2:0] BOARD_ID,
 
     /*
      * PCI express
      */
-    input  wire [3:0] pcie_rx_p,
-    input  wire [3:0] pcie_rx_n,
-    output wire [3:0] pcie_tx_p,
-    output wire [3:0] pcie_tx_n,
-    input  wire       pcie_mgt_refclk_p,
-    input  wire       pcie_mgt_refclk_n,
-    input  wire       pcie_reset_n
+    input  wire [3:0] pcie_rxp,
+    input  wire [3:0] pcie_rxn,
+    output wire [3:0] pcie_txp,
+    output wire [3:0] pcie_txn,
+    input  wire       pcie_ref_clk_p,
+    input  wire       pcie_ref_clk_n,
+    input  wire       perstn
 );
 
 parameter AXIS_PCIE_DATA_WIDTH = 128;
@@ -64,36 +58,6 @@ parameter AXIS_PCIE_CC_USER_WIDTH = 33;
 wire pcie_user_clk;
 wire pcie_user_reset;
 
-// GPIO
-wire btnu_int;
-wire btnl_int;
-wire btnd_int;
-wire btnr_int;
-wire btnc_int;
-wire [7:0] sw_int;
-
-debounce_switch #(
-    .WIDTH(13),
-    .N(4),
-    .RATE(250000)
-)
-debounce_switch_inst (
-    .clk(pcie_user_clk),
-    .rst(pcie_user_reset),
-    .in({btnu,
-        btnl,
-        btnd,
-        btnr,
-        btnc,
-        sw}),
-    .out({btnu_int,
-        btnl_int,
-        btnd_int,
-        btnr_int,
-        btnc_int,
-        sw_int})
-);
-
 // PCIe
 wire pcie_sys_clk;
 wire pcie_sys_clk_gt;
@@ -102,8 +66,8 @@ IBUFDS_GTE4 #(
     .REFCLK_HROW_CK_SEL(2'b00)
 )
 ibufds_gte4_pcie_mgt_refclk_inst (
-    .I             (pcie_mgt_refclk_p),
-    .IB            (pcie_mgt_refclk_n),
+    .I             (pcie_ref_clk_p),
+    .IB            (pcie_ref_clk_n),
     .CEB           (1'b0),
     .O             (pcie_sys_clk_gt),
     .ODIV2         (pcie_sys_clk)
@@ -191,10 +155,10 @@ wire status_error_uncor;
 
 pcie4_uscale_plus_0
 pcie4_uscale_plus_inst (
-    .pci_exp_txn(pcie_tx_n),
-    .pci_exp_txp(pcie_tx_p),
-    .pci_exp_rxn(pcie_rx_n),
-    .pci_exp_rxp(pcie_rx_p),
+    .pci_exp_txn(pcie_txn),
+    .pci_exp_txp(pcie_txp),
+    .pci_exp_rxn(pcie_rxn),
+    .pci_exp_rxp(pcie_rxp),
     .user_clk(pcie_user_clk),
     .user_reset(pcie_user_reset),
     .user_lnk_up(),
@@ -349,7 +313,7 @@ pcie4_uscale_plus_inst (
 
     .sys_clk(pcie_sys_clk),
     .sys_clk_gt(pcie_sys_clk_gt),
-    .sys_reset(pcie_reset_n),
+    .sys_reset(perstn),
 
     .phy_rdy_out()
 );
@@ -369,16 +333,6 @@ core_inst (
      */
     .clk(pcie_user_clk),
     .rst(pcie_user_reset),
-    /*
-     * GPIO
-     */
-    .btnu(btnu_int),
-    .btnl(btnl_int),
-    .btnd(btnd_int),
-    .btnr(btnr_int),
-    .btnc(btnc_int),
-    .sw(sw_int),
-    .led(led),
     /*
      * PCIe
      */

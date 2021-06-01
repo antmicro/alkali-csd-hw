@@ -33,6 +33,11 @@ Restoring the Vivado project
    vivado -mode batch -source project.tcl
    ```
 
+7. When building the project, you need to first run synthesis only and then patch the generated files:
+   ```bash
+   ./git/tools/patch.sh
+   ```
+
    The project will be restored in the `project_1` folder.
    In order to synthesize the project automatically uncomment the last four lines in the `project.tcl` file.
    After building and uploading the bitstream to the device make sure you have the NVMe target controller software loaded on the RPU which is necessary for the standard NVMe Linux driver to detect the board as a NVMe device.

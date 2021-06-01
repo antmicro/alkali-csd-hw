@@ -47,17 +47,6 @@ module fpga_core #
     input  wire                               rst,
 
     /*
-     * GPIO
-     */
-    input  wire                               btnu,
-    input  wire                               btnl,
-    input  wire                               btnd,
-    input  wire                               btnr,
-    input  wire                               btnc,
-    input  wire [7:0]                         sw,
-    output wire [7:0]                         led,
-
-    /*
      * PCIe
      */
     output wire [AXIS_PCIE_DATA_WIDTH-1:0]    m_axis_rq_tdata,
@@ -602,8 +591,6 @@ always @(posedge clk) begin
     pcie_dma_write_desc_len_reg <= pcie_dma_write_desc_len_next;
     pcie_dma_write_desc_tag_reg <= pcie_dma_write_desc_tag_next;
 end
-
-assign led = 8'd0;
 
 pcie_us_cfg #(
     .PF_COUNT(1),
