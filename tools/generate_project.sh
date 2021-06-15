@@ -6,7 +6,7 @@
 #
 
 PROJECT_NAME="project_1"
-PART_NAME="xczu7ev-ffvc1156-2-e"
+PART_NAME="xczu7ev-ffvc1156-1-e"
 DEFAULT_LANG="Verilog"
 TOP_MODULE="fpga"
 
