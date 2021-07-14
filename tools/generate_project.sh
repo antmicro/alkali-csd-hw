@@ -64,6 +64,14 @@ echo "source ./git/src/bd/design_1.tcl"
 echo "set_property top ${TOP_MODULE} [current_fileset]"
 echo "update_compile_order -fileset sources_1"
 
+echo "set_property STEPS.SYNTH_DESIGN.ARGS.DIRECTIVE RuntimeOptimized [get_runs synth_1]"
+
+echo "set_property STEPS.PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
+echo "set_property STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE AddRetime [get_runs impl_1]"
+echo "set_property STEPS.ROUTE_DESIGN.ARGS.DIRECTIVE AdvancedSkewModeling [get_runs impl_1]"
+echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
+echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE AddRetime [get_runs impl_1]"
+
 echo
 echo "#uncomment this to automatically run synthesis and implementation"
 echo "#launch_runs synth_1 -jobs 6"
