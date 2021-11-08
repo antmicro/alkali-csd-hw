@@ -18,6 +18,8 @@ echo "#"
 echo
 
 echo "create_project ${PROJECT_NAME} ./${PROJECT_NAME} -part ${PART_NAME} -force"
+echo "set_property \"ip_repo_paths\" \"./git/ip_repo/\" [get_filesets sources_1]"
+echo "update_ip_catalog -rebuild"
 echo "set_property target_language ${DEFAULT_LANG} [current_project]"
 
 # vhdl/verilog
