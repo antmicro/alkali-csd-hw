@@ -4,7 +4,9 @@ For Run Script, We need to use below Command.
 
 1. We need u-boot (zynqmp) console for boot linux for this use below command. 
    
-   ```bash 
+   ```bash
+   cd testing_uart
+   make 
    ./alkl_shell.py zynqmp 
    ```
 
