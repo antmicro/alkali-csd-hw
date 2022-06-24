@@ -23,7 +23,7 @@ Restoring the Vivado project
    popd
    ```
 
-5. This file will help you to generate vivado project for alkali design with vta.
+5. This will help you to generate vivado project for alkali design with vta.
    ```bash
    Run below command to generate vivado project.
    ./build_project.sh arg1 arg2
@@ -32,7 +32,7 @@ Restoring the Vivado project
    If you are not giving arg2 then it will consider 16MB bar size.
    ```
 
-6. For Debug Prints and Testing UART part please follow "ReadMe_For_Run_Shell.md" file.
+6. For Debug Prints and Testing UART part please follow **"ReadMe_For_Run_Shell.md"** file.
 
 
    The project will be restored in the `project_vta` folder.
