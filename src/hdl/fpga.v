@@ -397,4 +397,24 @@ core_inst (
     .status_error_uncor(status_error_uncor)
 );
 
+//ila_0 ila_0_inst(
+//.clk(pcie_user_clk),
+//.probe0(axis_cq_tdata),
+//.probe1(axis_cq_tkeep),
+//.probe2(axis_cq_tuser),
+//.probe3(axis_cq_tlast),
+//.probe4(axis_cq_tready),
+//.probe5(axis_cq_tvalid)
+//);
+
+//ila_1 ila_1_inst (
+//.clk(pcie_user_clk),
+//.probe0(axis_cc_tdata),
+//.probe1(axis_cc_tkeep),
+//.probe2(axis_cc_tuser),
+//.probe3(axis_cc_tlast),
+//.probe4(axis_cc_tready),
+//.probe5(axis_cc_tvalid)
+//);
 endmodule
+

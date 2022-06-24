@@ -23,23 +23,19 @@ Restoring the Vivado project
    popd
    ```
 
-5. Create project tcl file:
+5. This file will help you to generate vivado project for alkali design with vta.
    ```bash
-   git/tools/generate_project.sh > project.tcl
+   Run below command to generate vivado project.
+   ./build_project.sh arg1 arg2
+   where arg1 - vta 
+         arg2 - BAR size with unit(e.g. 64MB)
+   If you are not giving arg2 then it will consider 16MB bar size.
    ```
 
-6. Restore the project:
-   ```bash
-   vivado -mode batch -source project.tcl
-   ```
+6. For Debug Prints and Testing UART part please follow "ReadMe_For_Run_Shell.md" file.
 
-7. When building the project, you need to first run synthesis only and then patch the generated files:
-   ```bash
-   ./git/tools/patch.sh
-   ```
 
-   The project will be restored in the `project_1` folder.
-   In order to synthesize the project automatically uncomment the last four lines in the `project.tcl` file.
+   The project will be restored in the `project_vta` folder.
    After building and uploading the bitstream to the device make sure you have the NVMe target controller software loaded on the RPU which is necessary for the standard NVMe Linux driver to detect the board as a NVMe device.
    Refer to the [NVMe test platform documentation](https://github.com/antmicro/wd-nvme-tc-sw/releases) for instructions how to build and setup the board. 
 
