@@ -13,7 +13,7 @@ Restoring the Vivado project
    ```
 3. Clone this repository into `git` folder:
    ```bash
-   git clone <repo url> git
+   git clone <repo url> git -b basalt-vta-hls-uart
    ```
 
 4. Clone submodules:
