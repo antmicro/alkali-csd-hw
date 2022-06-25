@@ -20,13 +20,14 @@ Restoring the Vivado project
    ```bash
    pushd git
    git submodule update --init --recursive
+   cp pcie_us_axis_cq_demux.v verilog-pcie/rtl/.
    popd
    ```
 
 5. This will help you to generate vivado project for alkali design with vta.
    ```bash
    Run below command to generate vivado project.
-   ./build_project.sh arg1 arg2
+   ./git/build_project.sh arg1 arg2
    where arg1 - vta 
          arg2 - BAR size with unit(e.g. 64MB)
    If you are not giving arg2 then it will consider 16MB bar size.
