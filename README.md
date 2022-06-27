@@ -20,7 +20,6 @@ Restoring the Vivado project
    ```bash
    pushd git
    git submodule update --init --recursive
-   cp pcie_us_axis_cq_demux.v verilog-pcie/rtl/.
    popd
    ```
 
