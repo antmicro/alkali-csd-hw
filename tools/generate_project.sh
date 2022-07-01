@@ -48,6 +48,23 @@ do
   fi
 done
 
+# other verilog-pcie files used in nvme
+additional_verilog_pcie_files=(
+  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/axis_register.v"
+  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_reset.v"
+  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/axi_ram.v"
+  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/debounce_switch.v"
+  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_signal.v"
+)
+
+echo "# Additional Verilog PCIE files"
+for f in ${additional_verilog_pcie_files[@]}; do
+  if [ -f $f ];
+  then
+    echo "import_files -fileset sources_1 \".${f:1}\""
+  fi
+done
+
 # constr
 for f in ./git/src/constrs/*.xdc
 do
