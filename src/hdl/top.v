@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 `include "defines.v"
 
-module fpga (
+module top (
     // GPIO
     input  wire [2:0] BOARD_ID,
     // PCIe

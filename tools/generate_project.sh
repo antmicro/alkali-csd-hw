@@ -16,7 +16,7 @@ if [ $run == "gen_synth" ];then
 	fi
 PART_NAME="xczu7ev-ffvc1156-1-e"
 DEFAULT_LANG="Verilog"
-TOP_MODULE="fpga"
+TOP_MODULE="top"
 
 echo
 echo "#"
