@@ -94,11 +94,11 @@ do
 done
 
 if [ $switch == "vta" ];then
-echo "source ./git/src/bd/design_1.tcl"
+echo "source ./git/src/bd/vivado_block_design.tcl"
 fi
 
 # smp synthesis
-# echo "set_property synth_checkpoint_mode Hierarchical [get_files ./${PROJECT_NAME}/${PROJECT_NAME}.srcs/sources_1/bd/design_1/design_1.bd]"
+# echo "set_property synth_checkpoint_mode Hierarchical [get_files ./${PROJECT_NAME}/${PROJECT_NAME}.srcs/sources_1/bd/vivado_block_design/vivado_block_design.bd]"
 
 echo "set_property top ${TOP_MODULE} [current_fileset]"
 echo "update_compile_order -fileset sources_1"
@@ -127,26 +127,26 @@ echo "update_compile_order -fileset sources_1"
 echo "open_run synth_1 -name synth_1"
 if [ $switch == "vta" ];then
 echo "startgroup"
-echo "create_pblock pblock_VTA_HLS" 
+echo "create_pblock pblock_VTA_HLS"
 echo "resize_pblock pblock_VTA_HLS -add {SLICE_X58Y0:SLICE_X104Y134 DSP48E2_X6Y0:DSP48E2_X12Y53 RAMB18_X2Y0:RAMB18_X4Y53 RAMB36_X2Y0:RAMB36_X4Y26 URAM288_X0Y0:URAM288_X0Y35}"
-echo "add_cells_to_pblock pblock_VTA_HLS [get_cells [list core_inst/design_1_i/VTA_HLS]] -clear_locs"
+echo "add_cells_to_pblock pblock_VTA_HLS [get_cells [list vivado_block_design_inst/VTA_HLS]] -clear_locs"
 echo "endgroup"
 fi
 echo "startgroup "
-echo "create_pblock pblock_1" 
+echo "create_pblock pblock_1"
 echo "resize_pblock pblock_1 -add {SLICE_X48Y150:SLICE_X109Y209 DSP48E2_X3Y60:DSP48E2_X13Y83 RAMB18_X1Y60:RAMB18_X4Y83 RAMB36_X1Y30:RAMB36_X4Y41 URAM288_X0Y40:URAM288_X0Y55}"
 echo "endgroup"
 echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list core_inst/design_1_i/xlconcat_0 core_inst/design_1_i/zynq_ultra_ps_e_0 core_inst/nolabel_line875 core_inst/nvmetop_inst core_inst/pcie_us_axi_dma_inst core_inst/pcie_us_axi_master_inst core_inst/pcie_us_axil_master_inst core_inst/pcie_us_axil_master_inst_0 core_inst/pcie_us_cfg_inst core_inst/pcie_us_msi_inst core_inst/rc_reg core_inst/status_error_cor_pm_inst core_inst/status_error_uncor_pm_inst dbg_hub pcie4_uscale_plus_inst]] -clear_locs"
+echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/xlconcat_0 vivado_block_design_inst/zynq_ultra_ps_e_0 nolabel_line875 nvmetop_inst pcie_us_axi_dma_inst pcie_us_axi_master_inst pcie_us_axil_master_inst pcie_us_axil_master_inst_0 pcie_us_cfg_inst pcie_us_msi_inst rc_reg status_error_cor_pm_inst status_error_uncor_pm_inst dbg_hub pcie4_uscale_plus_inst]] -clear_locs"
 echo "endgroup"
 echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list core_inst/design_1_i/*]] -add_primitives -clear_locs"
+echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/*]] -add_primitives -clear_locs"
 echo "endgroup"
 echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list core_inst/cc_mux_inst core_inst/cq_demux_inst]] -clear_locs"
+echo "add_cells_to_pblock pblock_1 [get_cells [list cc_mux_inst cq_demux_inst]] -clear_locs"
 echo "endgroup"
 echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list core_inst/design_1_i/axi_gpio_0 core_inst/design_1_i/axi_gpio_1 core_inst/design_1_i/axi_gpio_2 core_inst/design_1_i/axi_interconnect_4 core_inst/design_1_i/axi_interconnect_0 core_inst/design_1_i/axi_interconnect_1 core_inst/design_1_i/axi_interconnect_2 core_inst/design_1_i/axi_interconnect_3 core_inst/design_1_i/axi_protocol_convert_0 core_inst/design_1_i/axi_protocol_convert_1 core_inst/design_1_i/axi_protocol_convert_2 core_inst/design_1_i/axi_uartlite_0 core_inst/design_1_i/axi_uartlite_1 core_inst/design_1_i/xlconstant_0 core_inst/design_1_i/ila_0 core_inst/design_1_i/ila_1 core_inst/axi_ram_inst core_inst/design_1_i/proc_sys_reset_0 core_inst/design_1_i/proc_sys_reset_1 core_inst/design_1_i/system_management_wiz_0]] -clear_locs"
+echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/axi_gpio_0 vivado_block_design_inst/axi_gpio_1 vivado_block_design_inst/axi_gpio_2 vivado_block_design_inst/axi_interconnect_4 vivado_block_design_inst/axi_interconnect_0 vivado_block_design_inst/axi_interconnect_1 vivado_block_design_inst/axi_interconnect_2 vivado_block_design_inst/axi_interconnect_3 vivado_block_design_inst/axi_protocol_convert_0 vivado_block_design_inst/axi_protocol_convert_1 vivado_block_design_inst/axi_protocol_convert_2 vivado_block_design_inst/axi_uartlite_0 vivado_block_design_inst/axi_uartlite_1 vivado_block_design_inst/xlconstant_0 vivado_block_design_inst/ila_0 vivado_block_design_inst/ila_1 axi_ram_inst vivado_block_design_inst/proc_sys_reset_0 vivado_block_design_inst/proc_sys_reset_1 vivado_block_design_inst/system_management_wiz_0]] -clear_locs"
 echo "endgroup"
 echo "file mkdir project_1/project_1.srcs/constrs_1/new"
 echo "close [ open project_1/project_1.srcs/constrs_1/new/pblock.xdc w ]"

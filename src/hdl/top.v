@@ -1371,7 +1371,7 @@ NVMeTop nvmetop_inst (
     .io_controller_r_rready   (axil_ctrl_rready)
 );
 
-design_1 design_1_i (
+vivado_block_design vivado_block_design_inst (
     .dma_irq  (dma_irq),
     .nvme_irq (nvme_irq),
 
