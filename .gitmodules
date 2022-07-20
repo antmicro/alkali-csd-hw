@@ -1,3 +1,6 @@
 [submodule "verilog-pcie"]
 	path = third-party/verilog-pcie
 	url = ../wd-nvme-verilog-pcie.git
+[submodule "third-party/registers-generator"]
+	path = third-party/registers-generator
+	url = ../wd-nvme-registers-generator.git
