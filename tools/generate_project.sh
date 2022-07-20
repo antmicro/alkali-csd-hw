@@ -40,7 +40,7 @@ do
 done
 
 # vhdl/verilog (pcie core)
-for f in $(find ./git/verilog-pcie/rtl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
+for f in $(find ./git/third-party/verilog-pcie/rtl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
 do
   if [ -f $f ];
   then
@@ -48,13 +48,13 @@ do
   fi
 done
 
-# other verilog-pcie files used in nvme
+# other third-party/verilog-pcie files used in nvme
 additional_verilog_pcie_files=(
-  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/axis_register.v"
-  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_reset.v"
-  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/axi_ram.v"
-  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/debounce_switch.v"
-  "./git/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_signal.v"
+  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axis_register.v"
+  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_reset.v"
+  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axi_ram.v"
+  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/debounce_switch.v"
+  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_signal.v"
 )
 
 echo "# Additional Verilog PCIE files"
