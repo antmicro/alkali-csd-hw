@@ -1,3 +1,5 @@
+#!/bin/bash
+
 switch=$1
 if [ $# -lt 1 ];then
 	echo ""
@@ -44,13 +46,13 @@ done
 source /tools/Xilinx/Vivado/2019.2/settings64.sh
 
 # Generate vivado project and run synthesis
-git/tools/generate_project.sh gen_synth $switch $size $bar_unit > project_$switch.tcl
+./vivado/tools/generate_project.sh gen_synth $switch $size $bar_unit > project_$switch.tcl
 vivado -mode batch -source project_$switch.tcl
 
 #patch command for basalt projcet
-git/tools/patch.sh $switch
+./vivado/tools/patch.sh $switch
 
 # Run implementation and generate bitstream
-git/tools/generate_project.sh impl $switch $size $bar_unit > project_impl_$switch.tcl
+./vivado/tools/generate_project.sh impl $switch $size $bar_unit > project_impl_$switch.tcl
 vivado -mode batch -source project_impl_$switch.tcl
 

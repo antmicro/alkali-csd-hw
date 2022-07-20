@@ -26,12 +26,12 @@ echo "#"
 echo
 
 echo "create_project ${PROJECT_NAME} ./${PROJECT_NAME} -part ${PART_NAME} -force"
-#echo "set_property \"ip_repo_paths\" \"./git/ip_repo/\" [get_filesets sources_1]"
+#echo "set_property \"ip_repo_paths\" \"./vivado/ip_repo/\" [get_filesets sources_1]"
 #echo "update_ip_catalog -rebuild"
 echo "set_property target_language ${DEFAULT_LANG} [current_project]"
 
 # vhdl/verilog
-for f in $(find ./git/src/hdl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
+for f in $(find ./vivado/src/hdl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
 do
   if [ -f $f ];
   then
@@ -40,7 +40,7 @@ do
 done
 
 # vhdl/verilog (pcie core)
-for f in $(find ./git/third-party/verilog-pcie/rtl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
+for f in $(find ./third-party/verilog-pcie/rtl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
 do
   if [ -f $f ];
   then
@@ -50,11 +50,11 @@ done
 
 # other third-party/verilog-pcie files used in nvme
 additional_verilog_pcie_files=(
-  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axis_register.v"
-  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_reset.v"
-  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axi_ram.v"
-  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/debounce_switch.v"
-  "./git/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_signal.v"
+  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axis_register.v"
+  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_reset.v"
+  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axi_ram.v"
+  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/debounce_switch.v"
+  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_signal.v"
 )
 
 echo "# Additional Verilog PCIE files"
@@ -66,7 +66,7 @@ for f in ${additional_verilog_pcie_files[@]}; do
 done
 
 # constr
-for f in ./git/src/constrs/*.xdc
+for f in ./vivado/src/constrs/*.xdc
 do
   if [ -f $f ];
   then
@@ -76,7 +76,7 @@ done
 
 #user ip add & create in design
 echo "set obj [get_filesets sources_1]"
-echo 'set_property "ip_repo_paths" "[file normalize "git/ip_repo"] [file normalize "axi_uartlite"]" $obj'
+echo 'set_property "ip_repo_paths" "[file normalize "vivado/ip_repo"] [file normalize "axi_uartlite"]" $obj'
 echo "update_ip_catalog -rebuild"
 #echo "create_ip -name constant_ip -vendor user.org -library user -version 1.0 -module_name constant_ip_0"
 #echo "set_property -dict [list CONFIG.uart_offset_value {2952921088} CONFIG.addon_offset_value {2953117696} CONFIG.sysmon_offset_value {2952986624} CONFIG.vta_offset_value {2952798208} CONFIG.nvme_offset_value {2952855552}] [get_ips constant_ip_0]"
@@ -85,7 +85,7 @@ echo "update_ip_catalog -rebuild"
 echo "set bar_size $bar_size"
 echo "set bar_unit $bar_unit"
 
-for f in ./git/src/ip/*.tcl
+for f in ./vivado/src/ip/*.tcl
 do
   if [ -f $f ];
   then
@@ -94,7 +94,7 @@ do
 done
 
 if [ $switch == "vta" ];then
-echo "source ./git/src/bd/vivado_block_design.tcl"
+echo "source ./vivado/src/bd/vivado_block_design.tcl"
 fi
 
 # smp synthesis
