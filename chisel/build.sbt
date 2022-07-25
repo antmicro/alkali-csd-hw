@@ -36,6 +36,8 @@ scalaVersion := "2.12.10"
 
 crossScalaVersions := Seq("2.12.10", "2.11.12")
 
+unmanagedSourceDirectories in Compile += baseDirectory.value / sys.env.getOrElse("SBT_EXTRA_DIR", "")
+
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-language:reflectiveCalls")
 
 // Provide a managed dependency on X if -DXVersion="" is supplied on the command line.
