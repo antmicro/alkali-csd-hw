@@ -3,160 +3,207 @@
 # vivado tcl generator
 #
 # author: pgielda@antmicro.com
-#
 
-run=$1
-switch=$2
-bar_size=$3
-bar_unit=$4
+set -e
 
-if [ $run == "gen_synth" ];then
-	if [ $switch == "vta" ];then
-	PROJECT_NAME="project_vta"
+function help() {
+	echo >&2 "usage: generate_project.sh run switch bar_size bar_unit"
+	echo >&2 ""
+	echo >&2 "positional arguments"
+	echo >&2 "  run       vivado run type"
+	echo >&2 "  switch    project type"
+	echo >&2 "  bar_size  size of bar"
+	echo >&2 "  bar_unit  unit of bar"
+}
+
+function import_file() {
+	ABS_PATH=$(realpath "$1")
+	FILESET=$2
+	if [ -f "$ABS_PATH" ]; then
+		echo "import_files -fileset $FILESET \"${ABS_PATH}\""
+	else
+		echo >&2 "$ABS_PATH does not exist"
+		exit 1
 	fi
-PART_NAME="xczu7ev-ffvc1156-1-e"
-DEFAULT_LANG="Verilog"
-TOP_MODULE="top"
+}
 
-echo
-echo "#"
-echo -n "# script generated @ "
-date
-echo "#"
-echo
+function source_file() {
+	ABS_PATH=$(realpath "$1")
+	if [ -f "$ABS_PATH" ]; then
+		echo "source \"${ABS_PATH}\""
+	else
+		echo >&2 "$ABS_PATH does not exist"
+	fi
+}
 
-echo "create_project ${PROJECT_NAME} ./${PROJECT_NAME} -part ${PART_NAME} -force"
-#echo "set_property \"ip_repo_paths\" \"./vivado/ip_repo/\" [get_filesets sources_1]"
-#echo "update_ip_catalog -rebuild"
-echo "set_property target_language ${DEFAULT_LANG} [current_project]"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+REPO_ROOT=$(realpath "${SCRIPT_DIR}/../..")
+MAIN_BUILD_DIR=${REPO_ROOT}/build
+# arguments handling
 
-# vhdl/verilog
-for f in $(find ./vivado/src/hdl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
-do
-  if [ -f $f ];
-  then
-    echo "import_files -fileset sources_1 \".${f:1}\""
-  fi
-done
-
-# vhdl/verilog (pcie core)
-for f in $(find ./third-party/verilog-pcie/rtl -name '*.vhd' -or -name '*.v' -or -name '*.sv' -or -name '*.edif');
-do
-  if [ -f $f ];
-  then
-    echo "import_files -fileset sources_1 \".${f:1}\""
-  fi
-done
-
-# other third-party/verilog-pcie files used in nvme
-additional_verilog_pcie_files=(
-  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axis_register.v"
-  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_reset.v"
-  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axi_ram.v"
-  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/debounce_switch.v"
-  "./third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_signal.v"
-)
-
-echo "# Additional Verilog PCIE files"
-for f in ${additional_verilog_pcie_files[@]}; do
-  if [ -f $f ];
-  then
-    echo "import_files -fileset sources_1 \".${f:1}\""
-  fi
-done
-
-# constr
-for f in ./vivado/src/constrs/*.xdc
-do
-  if [ -f $f ];
-  then
-    echo "import_files -fileset constrs_1 \".${f:1}\""
-  fi
-done
-
-#user ip add & create in design
-echo "set obj [get_filesets sources_1]"
-echo 'set_property "ip_repo_paths" "[file normalize "vivado/ip_repo"] [file normalize "axi_uartlite"]" $obj'
-echo "update_ip_catalog -rebuild"
-#echo "create_ip -name constant_ip -vendor user.org -library user -version 1.0 -module_name constant_ip_0"
-#echo "set_property -dict [list CONFIG.uart_offset_value {2952921088} CONFIG.addon_offset_value {2953117696} CONFIG.sysmon_offset_value {2952986624} CONFIG.vta_offset_value {2952798208} CONFIG.nvme_offset_value {2952855552}] [get_ips constant_ip_0]"
-
-# ip tcls
-echo "set bar_size $bar_size"
-echo "set bar_unit $bar_unit"
-
-for f in ./vivado/src/ip/*.tcl
-do
-  if [ -f $f ];
-  then
-    echo "source \".${f:1}\""
-  fi
-done
-
-if [ $switch == "vta" ];then
-echo "source ./vivado/src/bd/vivado_block_design.tcl"
+if [ "$#" -ne 4 ]; then
+	echo >&2 "Invalid script usage"
+	help
+	exit 1
 fi
 
-# smp synthesis
-# echo "set_property synth_checkpoint_mode Hierarchical [get_files ./${PROJECT_NAME}/${PROJECT_NAME}.srcs/sources_1/bd/vivado_block_design/vivado_block_design.bd]"
+ARG_RUN=$1
+ARG_SWITCH=$2
+ARG_BAR_SIZE=$3
+ARG_BAR_UNIT=$4
 
-echo "set_property top ${TOP_MODULE} [current_fileset]"
-echo "update_compile_order -fileset sources_1"
+# main project settings
 
-echo "set_property STEPS.SYNTH_DESIGN.ARGS.DIRECTIVE RuntimeOptimized [get_runs synth_1]"
-echo "set_property STEPS.SYNTH_DESIGN.ARGS.RETIMING true [get_runs synth_1]"
+if [ "$ARG_RUN" == "gen_synth" ]; then
+	if [ "$ARG_SWITCH" == "vta" ]; then
+		PROJECT_NAME="project_vta"
+	fi
 
-echo "set_property STEPS.OPT_DESIGN.ARGS.DIRECTIVE RuntimeOptimized [get_runs impl_1]"
-echo "set_property STEPS.PLACE_DESIGN.ARGS.DIRECTIVE RuntimeOptimized [get_runs impl_1]"
-echo "set_property STEPS.POST_PLACE_POWER_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
-echo "set_property STEPS.POST_PLACE_POWER_OPT_DESIGN.TCL.PRE {} [get_runs impl_1]"
+	PART_NAME="xczu7ev-ffvc1156-1-e"
+	DEFAULT_LANG="Verilog"
+	TOP_MODULE="top"
+	BUILD_DIR="${MAIN_BUILD_DIR}/${PROJECT_NAME}"
 
-echo "set_property STEPS.PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
-echo "set_property STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE AddRetime [get_runs impl_1]"
-echo "set_property STEPS.ROUTE_DESIGN.ARGS.DIRECTIVE AdvancedSkewModeling [get_runs impl_1]"
-echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
-echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE AddRetime [get_runs impl_1]"
+	# vivado script generation
 
-echo
-echo "#uncomment this to automatically run synthesis and implementation"
-echo "launch_runs synth_1 -jobs 6"
-echo "wait_on_run synth_1"
+	echo
+	echo "#"
+	echo -n "# script generated @ "
+	date
+	echo "#"
+	echo
+
+	echo "create_project ${PROJECT_NAME} ${BUILD_DIR} -part ${PART_NAME} -force"
+	echo "set_property target_language ${DEFAULT_LANG} [current_project]"
+
+	# vhdl/verilog
+	VIVADO_SRC_HDL_PATH="${REPO_ROOT}/vivado/src/hdl"
+	VIVADO_SRC_HDL_FILES=$(find "${VIVADO_SRC_HDL_PATH}" \
+		-name '*.vhd' -or \
+		-name '*.v' -or \
+		-name '*.sv' -or \
+		-name '*.edif')
+
+	for f in ${VIVADO_SRC_HDL_FILES}; do
+		import_file "$f" "sources_1"
+	done
+
+	# generated NVMe source
+	import_file "${REPO_ROOT}/build/chisel_project/NVMeTop.v" "sources_1"
+
+	# vhdl/verilog (pcie core)
+	VERILOG_PCIE_RTL_PATH="${REPO_ROOT}/third-party/verilog-pcie/rtl"
+	VERILOG_PCIE_RTL_FILES=$(find "${VERILOG_PCIE_RTL_PATH}" \
+		-name '*.vhd' -or \
+		-name '*.v' -or \
+		-name '*.sv' -or \
+		-name '*.edif')
+
+	for f in ${VERILOG_PCIE_RTL_FILES}; do
+		import_file "$f" "sources_1"
+	done
+
+	# other third-party/verilog-pcie files used in nvme
+	additional_verilog_pcie_files=(
+		"${REPO_ROOT}/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axis_register.v"
+		"${REPO_ROOT}/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_reset.v"
+		"${REPO_ROOT}/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/axi_ram.v"
+		"${REPO_ROOT}/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/debounce_switch.v"
+		"${REPO_ROOT}/third-party/verilog-pcie/example/ZCU106/fpga_axi/rtl/sync_signal.v"
+	)
+	for f in "${additional_verilog_pcie_files[@]}"; do
+		import_file "$f" "sources_1"
+	done
+
+	# constr
+	CONSTRS_PATH="${REPO_ROOT}/vivado/src/constrs/"
+	CONSTR_FILES=$(find "${CONSTRS_PATH}" -name '*.xdc')
+
+	for f in ${CONSTR_FILES}; do
+		import_file "$f" "constrs_1"
+	done
+
+	#user ip add & create in design
+	echo "set obj [get_filesets sources_1]"
+	echo "set_property \"ip_repo_paths\" \"[file normalize \"${REPO_ROOT}/vivado/ip_repo\"] [file normalize \"axi_uartlite\"]\" \$obj"
+	echo "update_ip_catalog -rebuild"
+	#echo "create_ip -name constant_ip -vendor user.org -library user -version 1.0 -module_name constant_ip_0"
+	#echo "set_property -dict [list CONFIG.uart_offset_value {2952921088} CONFIG.addon_offset_value {2953117696} CONFIG.sysmon_offset_value {2952986624} CONFIG.vta_offset_value {2952798208} CONFIG.nvme_offset_value {2952855552}] [get_ips constant_ip_0]"
+
+	# ip tcls
+	echo "set bar_size $ARG_BAR_SIZE"
+	echo "set bar_unit $ARG_BAR_UNIT"
+
+	TCL_PATH="${REPO_ROOT}/vivado/src/ip"
+	TCL_FILES=$(find "${TCL_PATH}" -name '*.tcl')
+	for f in ${TCL_FILES}; do
+		source_file "$f"
+	done
+
+	if [ "$ARG_SWITCH" == "vta" ]; then
+		source_file "${REPO_ROOT}/vivado/src/bd/vivado_block_design.tcl"
+	fi
+
+	# smp synthesis
+	# echo "set_property synth_checkpoint_mode Hierarchical [get_files ./${PROJECT_NAME}/${PROJECT_NAME}.srcs/sources_1/bd/vivado_block_design/vivado_block_design.bd]"
+
+	echo "set_property top ${TOP_MODULE} [current_fileset]"
+	echo "update_compile_order -fileset sources_1"
+
+	echo "set_property STEPS.SYNTH_DESIGN.ARGS.DIRECTIVE RuntimeOptimized [get_runs synth_1]"
+	echo "set_property STEPS.SYNTH_DESIGN.ARGS.RETIMING true [get_runs synth_1]"
+
+	echo "set_property STEPS.OPT_DESIGN.ARGS.DIRECTIVE RuntimeOptimized [get_runs impl_1]"
+	echo "set_property STEPS.PLACE_DESIGN.ARGS.DIRECTIVE RuntimeOptimized [get_runs impl_1]"
+	echo "set_property STEPS.POST_PLACE_POWER_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
+	echo "set_property STEPS.POST_PLACE_POWER_OPT_DESIGN.TCL.PRE {} [get_runs impl_1]"
+
+	echo "set_property STEPS.PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
+	echo "set_property STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE AddRetime [get_runs impl_1]"
+	echo "set_property STEPS.ROUTE_DESIGN.ARGS.DIRECTIVE AdvancedSkewModeling [get_runs impl_1]"
+	echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
+	echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE AddRetime [get_runs impl_1]"
+
+	echo
+	echo "#uncomment this to automatically run synthesis and implementation"
+	echo "launch_runs synth_1 -jobs 6"
+	echo "wait_on_run synth_1"
 else
-echo "open_project project_$switch/project_$switch.xpr"
-echo "update_compile_order -fileset sources_1"
-echo "open_run synth_1 -name synth_1"
-if [ $switch == "vta" ];then
-echo "startgroup"
-echo "create_pblock pblock_VTA_HLS"
-echo "resize_pblock pblock_VTA_HLS -add {SLICE_X58Y0:SLICE_X104Y134 DSP48E2_X6Y0:DSP48E2_X12Y53 RAMB18_X2Y0:RAMB18_X4Y53 RAMB36_X2Y0:RAMB36_X4Y26 URAM288_X0Y0:URAM288_X0Y35}"
-echo "add_cells_to_pblock pblock_VTA_HLS [get_cells [list vivado_block_design_inst/VTA_HLS]] -clear_locs"
-echo "endgroup"
+	BUILD_DIR="${MAIN_BUILD_DIR}/project_${ARG_SWITCH}"
+	echo "open_project ${BUILD_DIR}/project_$ARG_SWITCH.xpr"
+	echo "update_compile_order -fileset sources_1"
+	echo "open_run synth_1 -name synth_1"
+	if [ "$ARG_SWITCH" == "vta" ]; then
+		echo "startgroup"
+		echo "create_pblock pblock_VTA_HLS"
+		echo "resize_pblock pblock_VTA_HLS -add {SLICE_X58Y0:SLICE_X104Y134 DSP48E2_X6Y0:DSP48E2_X12Y53 RAMB18_X2Y0:RAMB18_X4Y53 RAMB36_X2Y0:RAMB36_X4Y26 URAM288_X0Y0:URAM288_X0Y35}"
+		echo "add_cells_to_pblock pblock_VTA_HLS [get_cells [list vivado_block_design_inst/VTA_HLS]] -clear_locs"
+		echo "endgroup"
+	fi
+	echo "startgroup "
+	echo "create_pblock pblock_1"
+	echo "resize_pblock pblock_1 -add {SLICE_X48Y150:SLICE_X109Y209 DSP48E2_X3Y60:DSP48E2_X13Y83 RAMB18_X1Y60:RAMB18_X4Y83 RAMB36_X1Y30:RAMB36_X4Y41 URAM288_X0Y40:URAM288_X0Y55}"
+	echo "endgroup"
+	echo "startgroup"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/xlconcat_0 vivado_block_design_inst/zynq_ultra_ps_e_0 nolabel_line875 nvmetop_inst pcie_us_axi_dma_inst pcie_us_axi_master_inst pcie_us_axil_master_inst pcie_us_axil_master_inst_0 pcie_us_cfg_inst pcie_us_msi_inst rc_reg status_error_cor_pm_inst status_error_uncor_pm_inst dbg_hub pcie4_uscale_plus_inst]] -clear_locs"
+	echo "endgroup"
+	echo "startgroup"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/*]] -add_primitives -clear_locs"
+	echo "endgroup"
+	echo "startgroup"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list cc_mux_inst cq_demux_inst]] -clear_locs"
+	echo "endgroup"
+	echo "startgroup"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/axi_gpio_0 vivado_block_design_inst/axi_gpio_1 vivado_block_design_inst/axi_gpio_2 vivado_block_design_inst/axi_interconnect_4 vivado_block_design_inst/axi_interconnect_0 vivado_block_design_inst/axi_interconnect_1 vivado_block_design_inst/axi_interconnect_2 vivado_block_design_inst/axi_interconnect_3 vivado_block_design_inst/axi_protocol_convert_0 vivado_block_design_inst/axi_protocol_convert_1 vivado_block_design_inst/axi_protocol_convert_2 vivado_block_design_inst/axi_uartlite_0 vivado_block_design_inst/axi_uartlite_1 vivado_block_design_inst/xlconstant_0 vivado_block_design_inst/ila_0 vivado_block_design_inst/ila_1 axi_ram_inst vivado_block_design_inst/proc_sys_reset_0 vivado_block_design_inst/proc_sys_reset_1 vivado_block_design_inst/system_management_wiz_0]] -clear_locs"
+	echo "endgroup"
+	echo "file mkdir project_1/project_1.srcs/constrs_1/new"
+	echo "close [ open project_1/project_1.srcs/constrs_1/new/pblock.xdc w ]"
+	echo "add_files -fileset constrs_1 project_1/project_1.srcs/constrs_1/new/pblock.xdc"
+	echo "set_property target_constrs_file project_1/project_1.srcs/constrs_1/new/pblock.xdc [current_fileset -constrset]"
+	echo "save_constraints -force"
+	echo "close_design"
+	echo "reset_run synth_1"
+	echo "launch_runs synth_1 -jobs 16"
+	echo "launch_runs impl_1 -to_step write_bitstream"
+	echo "wait_on_run impl_1"
 fi
-echo "startgroup "
-echo "create_pblock pblock_1"
-echo "resize_pblock pblock_1 -add {SLICE_X48Y150:SLICE_X109Y209 DSP48E2_X3Y60:DSP48E2_X13Y83 RAMB18_X1Y60:RAMB18_X4Y83 RAMB36_X1Y30:RAMB36_X4Y41 URAM288_X0Y40:URAM288_X0Y55}"
-echo "endgroup"
-echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/xlconcat_0 vivado_block_design_inst/zynq_ultra_ps_e_0 nolabel_line875 nvmetop_inst pcie_us_axi_dma_inst pcie_us_axi_master_inst pcie_us_axil_master_inst pcie_us_axil_master_inst_0 pcie_us_cfg_inst pcie_us_msi_inst rc_reg status_error_cor_pm_inst status_error_uncor_pm_inst dbg_hub pcie4_uscale_plus_inst]] -clear_locs"
-echo "endgroup"
-echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/*]] -add_primitives -clear_locs"
-echo "endgroup"
-echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list cc_mux_inst cq_demux_inst]] -clear_locs"
-echo "endgroup"
-echo "startgroup"
-echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/axi_gpio_0 vivado_block_design_inst/axi_gpio_1 vivado_block_design_inst/axi_gpio_2 vivado_block_design_inst/axi_interconnect_4 vivado_block_design_inst/axi_interconnect_0 vivado_block_design_inst/axi_interconnect_1 vivado_block_design_inst/axi_interconnect_2 vivado_block_design_inst/axi_interconnect_3 vivado_block_design_inst/axi_protocol_convert_0 vivado_block_design_inst/axi_protocol_convert_1 vivado_block_design_inst/axi_protocol_convert_2 vivado_block_design_inst/axi_uartlite_0 vivado_block_design_inst/axi_uartlite_1 vivado_block_design_inst/xlconstant_0 vivado_block_design_inst/ila_0 vivado_block_design_inst/ila_1 axi_ram_inst vivado_block_design_inst/proc_sys_reset_0 vivado_block_design_inst/proc_sys_reset_1 vivado_block_design_inst/system_management_wiz_0]] -clear_locs"
-echo "endgroup"
-echo "file mkdir project_1/project_1.srcs/constrs_1/new"
-echo "close [ open project_1/project_1.srcs/constrs_1/new/pblock.xdc w ]"
-echo "add_files -fileset constrs_1 project_1/project_1.srcs/constrs_1/new/pblock.xdc"
-echo "set_property target_constrs_file project_1/project_1.srcs/constrs_1/new/pblock.xdc [current_fileset -constrset]"
-echo "save_constraints -force"
-echo "close_design"
-echo "reset_run synth_1"
-echo "launch_runs synth_1 -jobs 16"
-echo "launch_runs impl_1 -to_step write_bitstream"
-echo "wait_on_run impl_1"
-fi
-
