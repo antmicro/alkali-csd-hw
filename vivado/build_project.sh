@@ -4,27 +4,31 @@ WHITE="\\033[1;37m"
 
 set -e
 
-BOARD=$3
+BOARD=$4
 BOARD=${BOARD=basalt} # Build for Basalt for default
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 REPO_ROOT=$(realpath "${SCRIPT_DIR}/..")
 
 TOOLS_DIR=${REPO_ROOT}/vivado/tools
-BUILD_DIR=${REPO_ROOT}/build/${BOARD}
+BUILD_DIR=$1
 
-switch=$1
-if [ $# -lt 1 ]; then
+switch=$2
+if [ $# -lt 2 ]; then
 	echo ""
 	echo "Please give arguments as per below:"
-	echo " build_project.sh vta <BAR size> [<board>]"
-	echo ""
-	echo " Provide BAR size with unit (e.g.16MB)"
+	echo " build_project.sh <build dir> <vta> <BAR size> [<board>]"
+	echo "	mandatory:"
+	echo "		arg1 - absolute path to build directory"
+	echo "		arg2 - vta"
+	echo "		arg3 - bar size with unit (e.g. 16MB)"
+	echo "	optional:"
+	echo "		arg4 - board (optional)"
 	echo ""
 	exit
 fi
-bar_size=$2
-if [ $# -lt 2 ]; then
+bar_size=$3
+if [ $# -lt 3 ]; then
 	bar_size="16MB"
 fi
 echo "$bar_size" >barsize_file
@@ -66,7 +70,8 @@ fi
 # Generate vivado project and run synthesis
 echo -e "${WHITE}Generating Vivado project...${NC}"
 mkdir -p "${BUILD_DIR}"
-bash "${TOOLS_DIR}/generate_project.sh" gen_synth "$switch" "$size" "$bar_unit" "$BOARD" >"${BUILD_DIR}/project_$switch.tcl"
+echo "$BUILD_DIR"
+bash "${TOOLS_DIR}/generate_project.sh" gen_synth "$switch" "$size" "$bar_unit" "$BOARD" "$BUILD_DIR" >"${BUILD_DIR}/project_$switch.tcl"
 
 echo -e "${WHITE}Running synthesis...${NC}"
 vivado -mode batch -source "${BUILD_DIR}/project_$switch.tcl" || (echo -e "${WHITE}Vivado exited with $?${NC}" && false)
@@ -79,7 +84,7 @@ fi
 
 # Run implementation and generate bitstream
 echo -e "${WHITE}Running implementation...${NC}"
-bash "${TOOLS_DIR}/generate_project.sh" impl "$switch" "$size" "$bar_unit" "$BOARD" >"${BUILD_DIR}/project_impl_$switch.tcl"
+bash "${TOOLS_DIR}/generate_project.sh" impl "$switch" "$size" "$bar_unit" "$BOARD" "$BUILD_DIR" >"${BUILD_DIR}/project_impl_$switch.tcl"
 vivado -mode batch -source "${BUILD_DIR}/project_impl_$switch.tcl" || (echo -e "${WHITE}Vivado exited with $?${NC}" && false)
 
 # Verify that files exist, copy them

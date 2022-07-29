@@ -7,14 +7,15 @@
 set -e
 
 function help() {
-	echo >&2 "usage: generate_project.sh <run> <switch> <bar_size> <bar_unit> <board>"
+	echo >&2 "usage: generate_project.sh <run> <switch> <bar_size> <bar_unit> <board> <build_dir>"
 	echo >&2 ""
 	echo >&2 "positional arguments"
-	echo >&2 "  run       vivado run type"
-	echo >&2 "  switch    project type"
-	echo >&2 "  bar_size  size of bar"
-	echo >&2 "  bar_unit  unit of bar"
-	echo >&2 "  board     target board"
+	echo >&2 "	arg1 - run       	vivado run type"
+	echo >&2 "	arg2 - switch    	project type"
+	echo >&2 "	arg3 - bar_size  	size of bar"
+	echo >&2 "	arg4 - bar_unit  	unit of bar"
+	echo >&2 "	arg5 - board     	target board"
+	echo >&2 "	arg6 - build_dir 	path to build directory"
 }
 
 function import_file() {
@@ -41,10 +42,10 @@ BOARD=$5
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 REPO_ROOT=$(realpath "${SCRIPT_DIR}/../..")
-MAIN_BUILD_DIR=${REPO_ROOT}/build/${BOARD}
+MAIN_BUILD_DIR=$6/${BOARD}
 # arguments handling
 
-if [ "$#" -ne 5 ]; then
+if [ "$#" -ne 6 ]; then
 	echo >&2 "Invalid script usage"
 	help
 	exit 1
@@ -54,6 +55,7 @@ ARG_RUN=$1
 ARG_SWITCH=$2
 ARG_BAR_SIZE=$3
 ARG_BAR_UNIT=$4
+ARG_BUILD_DIR=$6
 
 # main project settings
 case ${BOARD} in
@@ -80,6 +82,7 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 
 	DEFAULT_LANG="Verilog"
 	TOP_MODULE="top"
+	BUILD_DIR="${ARG_BUILD_DIR}/${PROJECT_NAME}"
 
 	# vivado script generation
 
@@ -117,7 +120,7 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 	done
 
 	# generated NVMe source
-	import_file "${REPO_ROOT}/build/chisel_project/NVMeTop.v" "sources_1"
+	import_file "${ARG_BUILD_DIR}/chisel_project/NVMeTop.v" "sources_1"
 
 	# vhdl/verilog (pcie core)
 	VERILOG_PCIE_RTL_PATH="${REPO_ROOT}/third-party/verilog-pcie/rtl"
@@ -202,7 +205,8 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 	echo "wait_on_run synth_1"
 
 else
-	echo "open_project ${BUILD_DIR}/${PROJECT_NAME}.xpr"
+	BUILD_DIR="${ARG_BUILD_DIR}/project_${ARG_SWITCH}"
+	echo "open_project ${BUILD_DIR}/project_$ARG_SWITCH.xpr"
 	echo "update_compile_order -fileset sources_1"
 	echo "open_run synth_1 -name synth_1"
 	if [ "$ARG_SWITCH" == "vta" ]; then
