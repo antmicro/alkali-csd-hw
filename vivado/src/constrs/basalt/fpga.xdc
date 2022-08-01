@@ -2,8 +2,8 @@
 # Host PCIe X4 Connections 
 # 
 # MGT Bank 226 for Host PCIe Connections 
-set_property PACKAGE_PIN AA20 [get_ports {perstn}]
-set_property IOSTANDARD LVCMOS18 [get_ports perstn]
+set_property PACKAGE_PIN AA20 [get_ports {pcie_rstn}]
+set_property IOSTANDARD LVCMOS18 [get_ports pcie_rstn]
 #set_property PACKAGE_PIN AE22 [get_ports {perstn_11eg}] ## reset for 11EG support
 #set_property PACKAGE_PIN V3 [get_ports {pcie_rxn[0]}]
 #set_property PACKAGE_PIN U1 [get_ports {pcie_rxn[1]}]

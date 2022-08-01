@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 `include "defines.v"
 
-module top (
+module rtl_top (
     // GPIO
     input  wire [2:0] BOARD_ID,
     // PCIe
@@ -11,7 +11,7 @@ module top (
     output wire [3:0] pcie_txn,
     input  wire       pcie_ref_clk_p,
     input  wire       pcie_ref_clk_n,
-    input  wire       perstn
+    input  wire       pcie_rstn
 );
 
 /* parameters */
@@ -243,7 +243,7 @@ pcie4_uscale_plus_0 pcie4_uscale_plus_inst (
     // Clock and Reset Interface
     .sys_clk    (pcie_sys_clk),
     .sys_clk_gt (pcie_sys_clk_gt),
-    .sys_reset  (perstn)
+    .sys_reset  (pcie_rstn)
 );
 
 /* PCIe Mux */
