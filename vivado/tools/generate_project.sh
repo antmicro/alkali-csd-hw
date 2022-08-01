@@ -7,13 +7,14 @@
 set -e
 
 function help() {
-	echo >&2 "usage: generate_project.sh run switch bar_size bar_unit"
+	echo >&2 "usage: generate_project.sh <run> <switch> <bar_size> <bar_unit> <board>"
 	echo >&2 ""
 	echo >&2 "positional arguments"
 	echo >&2 "  run       vivado run type"
 	echo >&2 "  switch    project type"
 	echo >&2 "  bar_size  size of bar"
 	echo >&2 "  bar_unit  unit of bar"
+	echo >&2 "  board     target board"
 }
 
 function import_file() {
@@ -36,12 +37,14 @@ function source_file() {
 	fi
 }
 
+BOARD=$5
+
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 REPO_ROOT=$(realpath "${SCRIPT_DIR}/../..")
-MAIN_BUILD_DIR=${REPO_ROOT}/build
+MAIN_BUILD_DIR=${REPO_ROOT}/build/${BOARD}
 # arguments handling
 
-if [ "$#" -ne 4 ]; then
+if [ "$#" -ne 5 ]; then
 	echo >&2 "Invalid script usage"
 	help
 	exit 1
@@ -53,16 +56,30 @@ ARG_BAR_SIZE=$3
 ARG_BAR_UNIT=$4
 
 # main project settings
+case ${BOARD} in
+
+basalt)
+	PART_NAME="xczu7ev-ffvc1156-1-e"
+	;;
+
+zcu106)
+	PART_NAME="xczu7ev-ffvc1156-2-e"
+	;;
+
+*)
+	echo >&2 "Unsupported board '${BOARD}'"
+	exit 255
+	;;
+
+esac
+
+PROJECT_NAME="project_${ARG_SWITCH}"
+BUILD_DIR="${MAIN_BUILD_DIR}/${PROJECT_NAME}"
 
 if [ "$ARG_RUN" == "gen_synth" ]; then
-	if [ "$ARG_SWITCH" == "vta" ]; then
-		PROJECT_NAME="project_vta"
-	fi
 
-	PART_NAME="xczu7ev-ffvc1156-1-e"
 	DEFAULT_LANG="Verilog"
 	TOP_MODULE="top"
-	BUILD_DIR="${MAIN_BUILD_DIR}/${PROJECT_NAME}"
 
 	# vivado script generation
 
@@ -78,7 +95,18 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 
 	# vhdl/verilog
 	VIVADO_SRC_HDL_PATH="${REPO_ROOT}/vivado/src/hdl"
-	VIVADO_SRC_HDL_FILES=$(find "${VIVADO_SRC_HDL_PATH}" \
+
+	VIVADO_SRC_HDL_FILES=$(find "${VIVADO_SRC_HDL_PATH}" -maxdepth 1 \
+		-name '*.vhd' -or \
+		-name '*.v' -or \
+		-name '*.sv' -or \
+		-name '*.edif')
+
+	for f in ${VIVADO_SRC_HDL_FILES}; do
+		import_file "$f" "sources_1"
+	done
+
+	VIVADO_SRC_HDL_FILES=$(find "${VIVADO_SRC_HDL_PATH}/${BOARD}" -maxdepth 1 \
 		-name '*.vhd' -or \
 		-name '*.v' -or \
 		-name '*.sv' -or \
@@ -116,9 +144,14 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 	done
 
 	# constr
-	CONSTRS_PATH="${REPO_ROOT}/vivado/src/constrs/"
-	CONSTR_FILES=$(find "${CONSTRS_PATH}" -name '*.xdc')
+	CONSTRS_PATH="${REPO_ROOT}/vivado/src/constrs"
 
+	CONSTR_FILES=$(find "${CONSTRS_PATH}" -maxdepth 1 -name '*.xdc')
+	for f in ${CONSTR_FILES}; do
+		import_file "$f" "constrs_1"
+	done
+
+	CONSTR_FILES=$(find "${CONSTRS_PATH}/${BOARD}" -maxdepth 1 -name '*.xdc')
 	for f in ${CONSTR_FILES}; do
 		import_file "$f" "constrs_1"
 	done
@@ -141,7 +174,7 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 	done
 
 	if [ "$ARG_SWITCH" == "vta" ]; then
-		source_file "${REPO_ROOT}/vivado/src/bd/vivado_block_design.tcl"
+		source_file "${REPO_ROOT}/vivado/src/bd/${BOARD}/vivado_block_design.tcl"
 	fi
 
 	# smp synthesis
@@ -164,20 +197,18 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 	echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]"
 	echo "set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE AddRetime [get_runs impl_1]"
 
-	echo
-	echo "#uncomment this to automatically run synthesis and implementation"
 	echo "launch_runs synth_1 -jobs 6"
 	echo "wait_on_run synth_1"
+
 else
-	BUILD_DIR="${MAIN_BUILD_DIR}/project_${ARG_SWITCH}"
-	echo "open_project ${BUILD_DIR}/project_$ARG_SWITCH.xpr"
+	echo "open_project ${BUILD_DIR}/${PROJECT_NAME}.xpr"
 	echo "update_compile_order -fileset sources_1"
 	echo "open_run synth_1 -name synth_1"
 	if [ "$ARG_SWITCH" == "vta" ]; then
 		echo "startgroup"
 		echo "create_pblock pblock_VTA_HLS"
 		echo "resize_pblock pblock_VTA_HLS -add {SLICE_X58Y0:SLICE_X104Y134 DSP48E2_X6Y0:DSP48E2_X12Y53 RAMB18_X2Y0:RAMB18_X4Y53 RAMB36_X2Y0:RAMB36_X4Y26 URAM288_X0Y0:URAM288_X0Y35}"
-		echo "add_cells_to_pblock pblock_VTA_HLS [get_cells [list vivado_block_design_inst/VTA_HLS]] -clear_locs"
+		echo "add_cells_to_pblock pblock_VTA_HLS [get_cells [list rtl_top/vivado_block_design_inst/VTA_HLS]] -clear_locs"
 		echo "endgroup"
 	fi
 	echo "startgroup "
@@ -185,25 +216,32 @@ else
 	echo "resize_pblock pblock_1 -add {SLICE_X48Y150:SLICE_X109Y209 DSP48E2_X3Y60:DSP48E2_X13Y83 RAMB18_X1Y60:RAMB18_X4Y83 RAMB36_X1Y30:RAMB36_X4Y41 URAM288_X0Y40:URAM288_X0Y55}"
 	echo "endgroup"
 	echo "startgroup"
-	echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/xlconcat_0 vivado_block_design_inst/zynq_ultra_ps_e_0 nolabel_line875 nvmetop_inst pcie_us_axi_dma_inst pcie_us_axi_master_inst pcie_us_axil_master_inst pcie_us_axil_master_inst_0 pcie_us_cfg_inst pcie_us_msi_inst rc_reg status_error_cor_pm_inst status_error_uncor_pm_inst dbg_hub pcie4_uscale_plus_inst]] -clear_locs"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list rtl_top/vivado_block_design_inst/xlconcat_0 rtl_top/vivado_block_design_inst/zynq_ultra_ps_e_0 nolabel_line875 nvmetop_inst pcie_us_axi_dma_inst pcie_us_axi_master_inst pcie_us_axil_master_inst pcie_us_axil_master_inst_0 pcie_us_cfg_inst pcie_us_msi_inst rc_reg status_error_cor_pm_inst status_error_uncor_pm_inst dbg_hub pcie4_uscale_plus_inst]] -clear_locs"
 	echo "endgroup"
 	echo "startgroup"
-	echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/*]] -add_primitives -clear_locs"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list rtl_top/vivado_block_design_inst/*]] -add_primitives -clear_locs"
 	echo "endgroup"
 	echo "startgroup"
-	echo "add_cells_to_pblock pblock_1 [get_cells [list cc_mux_inst cq_demux_inst]] -clear_locs"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list rtl_top/cc_mux_inst cq_demux_inst]] -clear_locs"
 	echo "endgroup"
 	echo "startgroup"
-	echo "add_cells_to_pblock pblock_1 [get_cells [list vivado_block_design_inst/axi_gpio_0 vivado_block_design_inst/axi_gpio_1 vivado_block_design_inst/axi_gpio_2 vivado_block_design_inst/axi_interconnect_4 vivado_block_design_inst/axi_interconnect_0 vivado_block_design_inst/axi_interconnect_1 vivado_block_design_inst/axi_interconnect_2 vivado_block_design_inst/axi_interconnect_3 vivado_block_design_inst/axi_protocol_convert_0 vivado_block_design_inst/axi_protocol_convert_1 vivado_block_design_inst/axi_protocol_convert_2 vivado_block_design_inst/axi_uartlite_0 vivado_block_design_inst/axi_uartlite_1 vivado_block_design_inst/xlconstant_0 vivado_block_design_inst/ila_0 vivado_block_design_inst/ila_1 axi_ram_inst vivado_block_design_inst/proc_sys_reset_0 vivado_block_design_inst/proc_sys_reset_1 vivado_block_design_inst/system_management_wiz_0]] -clear_locs"
+	echo "add_cells_to_pblock pblock_1 [get_cells [list rtl_top/vivado_block_design_inst/axi_gpio_0 rtl_top/vivado_block_design_inst/axi_gpio_1 rtl_top/vivado_block_design_inst/axi_gpio_2 rtl_top/vivado_block_design_inst/axi_interconnect_4 rtl_top/vivado_block_design_inst/axi_interconnect_0 rtl_top/vivado_block_design_inst/axi_interconnect_1 rtl_top/vivado_block_design_inst/axi_interconnect_2 rtl_top/vivado_block_design_inst/axi_interconnect_3 rtl_top/vivado_block_design_inst/axi_protocol_convert_0 rtl_top/vivado_block_design_inst/axi_protocol_convert_1 rtl_top/vivado_block_design_inst/axi_protocol_convert_2 rtl_top/vivado_block_design_inst/axi_uartlite_0 rtl_top/vivado_block_design_inst/axi_uartlite_1 rtl_top/vivado_block_design_inst/xlconstant_0 rtl_top/vivado_block_design_inst/ila_0 rtl_top/vivado_block_design_inst/ila_1 axi_ram_inst rtl_top/vivado_block_design_inst/proc_sys_reset_0 rtl_top/vivado_block_design_inst/proc_sys_reset_1 rtl_top/vivado_block_design_inst/system_management_wiz_0]] -clear_locs"
 	echo "endgroup"
-	echo "file mkdir project_1/project_1.srcs/constrs_1/new"
-	echo "close [ open project_1/project_1.srcs/constrs_1/new/pblock.xdc w ]"
-	echo "add_files -fileset constrs_1 project_1/project_1.srcs/constrs_1/new/pblock.xdc"
-	echo "set_property target_constrs_file project_1/project_1.srcs/constrs_1/new/pblock.xdc [current_fileset -constrset]"
+
+	CONSTRS_NEW=${BUILD_DIR}/${PROJECT_NAME}.srcs/constrs_1/new
+	echo "file mkdir ${CONSTRS_NEW}"
+	echo "close [ open ${CONSTRS_NEW}/pblock.xdc w ]"
+	echo "add_files -fileset constrs_1 ${CONSTRS_NEW}/pblock.xdc"
+	echo "set_property target_constrs_file ${CONSTRS_NEW}/pblock.xdc [current_fileset -constrset]"
+
 	echo "save_constraints -force"
 	echo "close_design"
+
 	echo "reset_run synth_1"
-	echo "launch_runs synth_1 -jobs 16"
+	echo "launch_runs synth_1 -jobs 6"
 	echo "launch_runs impl_1 -to_step write_bitstream"
 	echo "wait_on_run impl_1"
+
+	echo "write_hw_platform -fixed -minimal ${BUILD_DIR}/${PROJECT_NAME}.runs/impl_1/top.xsa -force"
+
 fi
