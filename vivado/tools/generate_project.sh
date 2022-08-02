@@ -174,7 +174,8 @@ if [ "$ARG_RUN" == "gen_synth" ]; then
 	done
 
 	if [ "$ARG_SWITCH" == "vta" ]; then
-		source_file "${REPO_ROOT}/vivado/src/bd/${BOARD}/vivado_block_design.tcl"
+		source_file "${REPO_ROOT}/vivado/src/bd/vivado_block_design.tcl"
+		source_file "${REPO_ROOT}/vivado/src/bd/${BOARD}/zynqmp_config.tcl"
 	fi
 
 	# smp synthesis
