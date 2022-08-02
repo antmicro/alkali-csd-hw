@@ -20,7 +20,7 @@ SBT_OUTPUT_DIR=$(abspath build/chisel_project)
 ${BUILD_DIR}:
 	mkdir -p $@
 
-vivado: ${BUILD_DIR}/${BOARD}/project_vta/out/top.bit
+vivado: ${BUILD_DIR}/${BOARD}/project_vta/out/top.bit ## build bitstream and hardware configuration file (".xsa")
 
 ${BUILD_DIR}/${BOARD}/project_vta/out/top.bit: ${CHISEL_BUILD_DIR}/NVMeTop.v ## build vivado design
 	@echo "Building for board: ${BOARD}"
@@ -48,9 +48,9 @@ ${DOCKER_BUILD_DIR}/docker.ok: hw.dockerfile ${REGGEN_PATH}/requirements.txt | $
 		--build-arg REPO_ROOT="${PWD}" \
 		-t ${DOCKER_TAG} . && touch docker.ok
 
-docker: ${DOCKER_BUILD_DIR}/docker.ok
+docker: ${DOCKER_BUILD_DIR}/docker.ok ## build the developmend docker image
 
-enter: ${DOCKER_BUILD_DIR}/docker.ok ## enter development docker image
+enter: ${DOCKER_BUILD_DIR}/docker.ok ## enter the development docker image
 	docker run \
 		--rm \
 		-v ${PWD}:${PWD} \
@@ -109,6 +109,7 @@ help: ## show this help
 	@echo ""
 	@echo "Additionally, you can use the following environment variables:"
 	@echo ""
+	@printf ${HELP_FORMAT_STRING} "BOARD" "The board to build the gateware for ('basalt' or 'zcu106')"
 	@printf ${HELP_FORMAT_STRING} "BAR_SIZE" "bar size with unit (e.g. 16MB)"
 	@printf ${HELP_FORMAT_STRING} "DOCKER_IMAGE_PREFIX" "custom registry prefix with '/' at the end"
 	@printf ${HELP_FORMAT_STRING} "DOCKER_IMAGE_BASE" "custom docker image base"
