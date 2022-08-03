@@ -1,4 +1,6 @@
 #!/bin/bash
+NC="\\033[0m"
+WHITE="\\033[1;37m"
 
 set -e
 
@@ -62,20 +64,27 @@ if [ "${BOARD}" != "basalt" ] && [ "${BOARD}" != "zcu106" ]; then
 fi
 
 # Generate vivado project and run synthesis
+echo -e "${WHITE}Generating Vivado project...${NC}"
 mkdir -p "${BUILD_DIR}"
 bash "${TOOLS_DIR}/generate_project.sh" gen_synth "$switch" "$size" "$bar_unit" "$BOARD" >"${BUILD_DIR}/project_$switch.tcl"
-vivado -mode batch -source "${BUILD_DIR}/project_$switch.tcl"
+
+echo -e "${WHITE}Running synthesis...${NC}"
+vivado -mode batch -source "${BUILD_DIR}/project_$switch.tcl" || (echo -e "${WHITE}Vivado exited with $?${NC}" && false)
 
 # Patch command for basalt project
 if [ "${BOARD}" == "basalt" ]; then
+	echo -e "${WHITE}Patching files...${NC}"
 	(cd "${BUILD_DIR}" && bash "${TOOLS_DIR}/patch.sh" "$switch")
 fi
 
 # Run implementation and generate bitstream
+echo -e "${WHITE}Running implementation...${NC}"
 bash "${TOOLS_DIR}/generate_project.sh" impl "$switch" "$size" "$bar_unit" "$BOARD" >"${BUILD_DIR}/project_impl_$switch.tcl"
-vivado -mode batch -source "${BUILD_DIR}/project_impl_$switch.tcl"
+vivado -mode batch -source "${BUILD_DIR}/project_impl_$switch.tcl" || (echo -e "${WHITE}Vivado exited with $?${NC}" && false)
 
 # Verify that files exist, copy them
+echo -e "${WHITE}Copying files...${NC}"
+
 IMPL_DIR=${BUILD_DIR}/project_${switch}/project_${switch}.runs/impl_1
 OUTP_DIR=${BUILD_DIR}/project_${switch}/out
 
@@ -85,3 +94,5 @@ test -f "${IMPL_DIR}"/top.xsa
 mkdir -p "${OUTP_DIR}"
 cp "${IMPL_DIR}"/top.bit "${OUTP_DIR}"/
 cp "${IMPL_DIR}"/top.xsa "${OUTP_DIR}"/
+
+echo -e "${WHITE}Done.${NC}"

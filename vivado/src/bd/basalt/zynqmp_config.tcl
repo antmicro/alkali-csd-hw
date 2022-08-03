@@ -1408,3 +1408,5 @@ set_property -dict [ list \
    CONFIG.USB1_BOARD_INTERFACE {custom} \
 ] $zynqmp
 
+validate_bd_design -force -verbose
+save_bd_design

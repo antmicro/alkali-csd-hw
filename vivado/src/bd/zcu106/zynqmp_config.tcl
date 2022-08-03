@@ -1,4 +1,6 @@
 set zynqmp [ get_bd_cells zynq_ultra_ps_e_0 ]
+puts "zynqmp: $zynqmp"
+
 set_property -dict [ list \
    CONFIG.PSU_BANK_0_IO_STANDARD {LVCMOS18} \
    CONFIG.PSU_BANK_1_IO_STANDARD {LVCMOS18} \
@@ -647,3 +649,5 @@ set_property -dict [ list \
    CONFIG.PSU__USB__RESET__POLARITY {Active Low} \
 ] $zynqmp
 
+validate_bd_design -force -verbose
+save_bd_design
