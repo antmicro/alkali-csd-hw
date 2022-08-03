@@ -24,7 +24,7 @@ vivado: ${BUILD_DIR}/${BOARD}/project_vta/out/top.bit ## build bitstream and har
 
 ${BUILD_DIR}/${BOARD}/project_vta/out/top.bit: ${CHISEL_BUILD_DIR}/NVMeTop.v ## build vivado design
 	@echo "Building for board: ${BOARD}"
-	bash -c "set -o pipefail && ./vivado/build_project.sh vta ${BAR_SIZE} ${BOARD} | awk -f ${VIVADO_COLOR_SCRIPT}"
+	bash -c "set -o pipefail && ./vivado/build_project.sh vta ${BAR_SIZE} ${BOARD} 2>&1 | awk -f ${VIVADO_COLOR_SCRIPT}"
 
 generate: ${BUILD_DIR}/registers.json ${SCALA_BUILD_DIR}/RegisterDefs.scala ${SCALA_BUILD_DIR}/CSRRegMap.scala ## generate register description in chisel
 
