@@ -1,9 +1,10 @@
-# Alkali Hardware
+# Alkali FPGA design
 
-This repository contains sources of the alkali-csd-hw project, which can be
+This repository contains FPGA design sources of the Alkali project, which can be
 used to generate the bitstream for the Western Digital NVMe accelerator test
-platform (Basalt board). The project includes a chisel module containing
-the logic for the NVMe registers and the main design with VTA accelerator
+platform (Basalt board) or Xilinx ZCU106 evaluation platform.
+The project includes a chisel module containing logic for the NVMe
+registers and the main design with VTA accelerator
 created for Xilinx Vivado 2019.2.
 
 The register description is auto-generated from the NVMe documentation and,
@@ -58,7 +59,7 @@ includes the most important files and directories.
   tests can be found inside the `src/` directory in the `main/` and `test/`
   subdirectories respectively.
 
-* `docs/` - contains the documentation related to the `alkali-csd-hw` project.
+* `docs/` - contains the documentation related to the `Alkali FPGA design`.
 
 * `hw.dockerfile` - a Dockerfile for building docker images with all the
   tools required to build and test the project.
@@ -71,7 +72,7 @@ includes the most important files and directories.
   the hardware setup for Basalt boards.
 
 * `third-party/` - the directory used to store all external projects used as
-  a part of the `alkali-csd-hw` project. The `register-generator` directory
+  a part of the `Alkali FPGA design`. The `register-generator` directory
   contains scripts used to parse the NVMe specification and generate
   the NVMe registers in chisel. The `verilog-pcie`, on the other hand,
   holds the PCIe IP-cores used in the design for the Basat board.
