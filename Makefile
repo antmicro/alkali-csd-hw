@@ -1,17 +1,22 @@
 SHELL = /bin/bash
 
+ROOT_DIR = $(realpath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+
+# Parametrizable flags
 BOARD ?= basalt
 BAR_SIZE ?= 16MB
 DOCKER_IMAGE_BASE ?= debian:bullseye
+BUILD_DIR ?= $(ROOT_DIR)/build
 
-ROOT_DIR = $(realpath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
-BUILD_DIR ?= $(ROOT_DIR)/build/$(BOARD)
+# Helper directories
 SCALA_BUILD_DIR = $(BUILD_DIR)/scala
 CHISEL_BUILD_DIR = $(BUILD_DIR)/chisel_project
 DOCKER_BUILD_DIR = $(BUILD_DIR)/docker
 THIRD_PARTY_DIR = $(ROOT_DIR)/third-party
+REGGEN_DIR = $(ROOT_DIR)/third-party/registers-generator
+SBT_EXTRA_DIR=$(shell realpath --relative-to $(ROOT_DIR)/chisel $(SCALA_BUILD_DIR))
 
-REGGEN_PATH = $(ROOT_DIR)/third-party/registers-generator
+# Helper macros
 VIVADO_COLOR_SCRIPT = $(ROOT_DIR)/vivado/tools/color_log.awk
 NVME_SPEC_NAME = NVM-Express-1_4-2019.06.10-Ratified.pdf
 
@@ -35,7 +40,12 @@ $(BUILD_DIR)/$(BOARD)/project_vta/out/top.bit: $(CHISEL_BUILD_DIR)/NVMeTop.v
 	bash -c "set -o pipefail && $(ROOT_DIR)/vivado/build_project.sh $(BUILD_DIR) vta $(BAR_SIZE) $(BOARD) 2>&1 | awk -f $(VIVADO_COLOR_SCRIPT)" && \
 	popd
 
-generate: $(BUILD_DIR)/registers.json ## generate register description in chisel
+
+# -----------------------------------------------------------------------------
+# Generate --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+.PHONY: generate
+generate: $(BUILD_DIR)/registers.json ## Generate register description in chisel
 generate: $(SCALA_BUILD_DIR)/RegisterDefs.scala
 generate: $(SCALA_BUILD_DIR)/CSRRegMap.scala
 
@@ -77,11 +87,19 @@ $(BUILD_DIR)/chisel_project/NVMeTop.v: | $(CHISEL_BUILD_DIR)
 	OUTPUT_DIR=$(CHISEL_BUILD_DIR) SBT_EXTRA_DIR=$(SBT_EXTRA_DIR) $(MAKE) -C $(ROOT_DIR)/chisel verilog
 
 
+# -----------------------------------------------------------------------------
+# Test ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+.PHONY: test
 test: $(BUILD_DIR)/registers.json ## run all tests
 test: $(SCALA_BUILD_DIR)/RegisterDefs.scala
 test: $(SCALA_BUILD_DIR)/CSRRegMap.scala
 	SBT_EXTRA_DIR=$(SBT_EXTRA_DIR) $(MAKE) -C chisel testall
 
+
+# -----------------------------------------------------------------------------
+# Format ----------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 format: ## format code
 	find -name "*.sh" -not -path "$(THIRD_PARTY_DIR)/*" -not -path "$(BUILD_DIR)/*" | xargs -r shfmt -w --keep-padding
 	find -name "*.sh" -not -path "$(THIRD_PARTY_DIR)/*" -not -path "$(BUILD_DIR)/*" | xargs -r shellcheck
@@ -123,45 +141,29 @@ enter: $(DOCKER_BUILD_DIR)/docker.ok ## enter the development docker image
 		-w $(PWD) \
 		-it $(DOCKER_TAG) || true
 
-all: vivado ## build all
 
-clean: ## clean build artifacts
+# -----------------------------------------------------------------------------
+# All -------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+.PHONY: all
+all: vivado ## Build all
+
+
+# -----------------------------------------------------------------------------
+# Clean -----------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+.PHONY: clean
+clean: ## Clean build artifacts
 	$(RM) -r .Xil
 	$(RM) -r $(BUILD_DIR)/
 
-.PHONY: all clean vivado generate chisel test docker enter
 
-# chisel register generation
-
-$(BUILD_DIR)/registers.json: ${REGGEN_PATH}/get_reg_fields.py
-$(BUILD_DIR)/registers.json: ${REGGEN_PATH}/${NVME_SPEC_NAME}
-$(BUILD_DIR)/registers.json: | ${BUILD_DIR}
-	${REGGEN_PATH}/get_reg_fields.py ${REGGEN_PATH}/${NVME_SPEC_NAME} -f $@
-
-${SCALA_BUILD_DIR}:
-	@mkdir -p $@
-
-${SCALA_BUILD_DIR}/RegisterDefs.scala: ${REGGEN_PATH}/get_reg_fields_chisel.py
-${SCALA_BUILD_DIR}/RegisterDefs.scala: $(BUILD_DIR)/registers.json
-${SCALA_BUILD_DIR}/RegisterDefs.scala: | ${SCALA_BUILD_DIR}
-	${REGGEN_PATH}/get_reg_fields_chisel.py $(BUILD_DIR)/registers.json -f --git-sha=${GIT_SHA} $@
-
-${SCALA_BUILD_DIR}/CSRRegMap.scala: ${REGGEN_PATH}/get_reg_map_chisel.py ${REGGEN_PATH}/${NVME_SPEC_NAME} | ${SCALA_BUILD_DIR}
-	${REGGEN_PATH}/get_reg_map_chisel.py ${REGGEN_PATH}/${NVME_SPEC_NAME} -f --git-sha=${GIT_SHA} $@
-
-# verilog sources generation
-
-${CHISEL_BUILD_DIR}:
-	@mkdir -p $@
-
-$(BUILD_DIR)/chisel_project/NVMeTop.v: $(BUILD_DIR)/registers.json
-$(BUILD_DIR)/chisel_project/NVMeTop.v: ${SCALA_BUILD_DIR}/RegisterDefs.scala
-$(BUILD_DIR)/chisel_project/NVMeTop.v: ${SCALA_BUILD_DIR}/CSRRegMap.scala
-$(BUILD_DIR)/chisel_project/NVMeTop.v: | ${CHISEL_BUILD_DIR}
-	OUTPUT_DIR=${SBT_OUTPUT_DIR} SBT_EXTRA_DIR=${SBT_EXTRA_DIR} $(MAKE) -C $(ROOT_DIR)/chisel verilog
-
+# -----------------------------------------------------------------------------
+# Help ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 HELP_COLUMN_SPAN = 20
 HELP_FORMAT_STRING = "\033[36m%-$(HELP_COLUMN_SPAN)s\033[0m %s\n"
+.PHONY: help
 help: ## show this help
 	@echo Here is the list of available targets:
 	@echo ""
@@ -174,5 +176,4 @@ help: ## show this help
 	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_PREFIX" "custom registry prefix with '/' at the end"
 	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_BASE" "custom docker image base"
 
-.PHONY: vivado generate chisel test docker format help
 .DEFAULT_GOAL := help
