@@ -9,8 +9,9 @@ DOCKER_IMAGE_BASE ?= debian:bullseye
 BUILD_DIR ?= $(ROOT_DIR)/build
 
 # Helper directories
+BOARD_BUILD_DIR := $(BUILD_DIR)/$(BOARD)
+CHISEL_BUILD_DIR = $(BOARD_BUILD_DIR)/chisel_project
 SCALA_BUILD_DIR = $(BUILD_DIR)/scala
-CHISEL_BUILD_DIR = $(BUILD_DIR)/chisel_project
 DOCKER_BUILD_DIR = $(BUILD_DIR)/docker
 THIRD_PARTY_DIR = $(ROOT_DIR)/third-party
 REGGEN_DIR = $(ROOT_DIR)/third-party/registers-generator
@@ -23,21 +24,25 @@ NVME_SPEC_NAME = NVM-Express-1_4-2019.06.10-Ratified.pdf
 DOCKER_TAG_NAME=hw:1.0
 DOCKER_TAG = $(DOCKER_IMAGE_PREFIX)$(DOCKER_TAG_NAME)
 
-# Build in a board named directory
-BUILD_DIR += /$(BOARD)
+# Generate general and board-specific build directories
+
 $(BUILD_DIR):
+	mkdir -p $@
+
+$(BOARD_BUILD_DIR):
 	mkdir -p $@
 
 # -----------------------------------------------------------------------------
 # Vivado ----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 .PHONY: vivado
-vivado: $(BUILD_DIR)/$(BOARD)/project_vta/out/top.bit ## Build vivado design
+vivado: $(BOARD_BUILD_DIR)/project_vta/out/top.bit ## Build vivado design
 
-$(BUILD_DIR)/$(BOARD)/project_vta/out/top.bit: $(CHISEL_BUILD_DIR)/NVMeTop.v
+$(BOARD_BUILD_DIR)/project_vta/out/top.bit: $(CHISEL_BUILD_DIR)/NVMeTop.v
+$(BOARD_BUILD_DIR)/project_vta/out/top.bit: | $(BOARD_BUILD_DIR)
 	@echo "Building for board: $(BOARD)" && \
-	pushd $(BUILD_DIR) && \
-	bash -c "set -o pipefail && $(ROOT_DIR)/vivado/build_project.sh $(BUILD_DIR) vta $(BAR_SIZE) $(BOARD) 2>&1 | awk -f $(VIVADO_COLOR_SCRIPT)" && \
+	pushd $(BOARD_BUILD_DIR) && \
+	bash -c "set -o pipefail && $(ROOT_DIR)/vivado/build_project.sh $(BOARD_BUILD_DIR) vta $(BAR_SIZE) $(BOARD) 2>&1 | awk -f $(VIVADO_COLOR_SCRIPT)" && \
 	popd
 
 
@@ -80,10 +85,10 @@ chisel: $(BUILD_DIR)/chisel_project/NVMeTop.v ## Generate verilog sources using 
 $(CHISEL_BUILD_DIR):
 	@mkdir -p $@
 
-$(BUILD_DIR)/chisel_project/NVMeTop.v: $(BUILD_DIR)/registers.json
-$(BUILD_DIR)/chisel_project/NVMeTop.v: $(SCALA_BUILD_DIR)/RegisterDefs.scala
-$(BUILD_DIR)/chisel_project/NVMeTop.v: $(SCALA_BUILD_DIR)/CSRRegMap.scala
-$(BUILD_DIR)/chisel_project/NVMeTop.v: | $(CHISEL_BUILD_DIR)
+$(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v: $(BUILD_DIR)/registers.json
+$(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v: $(SCALA_BUILD_DIR)/RegisterDefs.scala
+$(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v: $(SCALA_BUILD_DIR)/CSRRegMap.scala
+$(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v: | $(CHISEL_BUILD_DIR)
 	OUTPUT_DIR=$(CHISEL_BUILD_DIR) SBT_EXTRA_DIR=$(SBT_EXTRA_DIR) $(MAKE) -C $(ROOT_DIR)/chisel verilog
 
 
