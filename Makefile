@@ -1,30 +1,45 @@
-SHELL = /bin/bash
+# -----------------------------------------------------------------------------
+# Common settings -------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 ROOT_DIR = $(realpath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
-# Parametrizable flags
+DOCKER_TAG_NAME=hw:1.0
+NVME_SPEC_NAME = NVM-Express-1_4-2019.06.10-Ratified.pdf
+
+# Input settings -------------------------------------------------------------
+
 BOARD ?= basalt
 BAR_SIZE ?= 16MB
 DOCKER_IMAGE_BASE ?= debian:bullseye
 BUILD_DIR ?= $(ROOT_DIR)/build
 
-# Helper directories
-BOARD_BUILD_DIR := $(BUILD_DIR)/$(BOARD)
+# Input paths -----------------------------------------------------------------
+
+THIRD_PARTY_DIR = $(ROOT_DIR)/third-party
+REGGEN_DIR = $(ROOT_DIR)/third-party/registers-generator
+VIVADO_COLOR_SCRIPT = $(ROOT_DIR)/vivado/tools/color_log.awk
+
+# Output paths ----------------------------------------------------------------
+
+BOARD_BUILD_DIR = $(BUILD_DIR)/$(BOARD)
 CHISEL_BUILD_DIR = $(BOARD_BUILD_DIR)/chisel_project
 SCALA_BUILD_DIR = $(BUILD_DIR)/scala
 DOCKER_BUILD_DIR = $(BUILD_DIR)/docker
-THIRD_PARTY_DIR = $(ROOT_DIR)/third-party
-REGGEN_DIR = $(ROOT_DIR)/third-party/registers-generator
-SBT_EXTRA_DIR=$(shell realpath --relative-to $(ROOT_DIR)/chisel $(SCALA_BUILD_DIR))
+SBT_EXTRA_DIR = $(shell realpath --relative-to $(ROOT_DIR)/chisel $(SCALA_BUILD_DIR))
 
-# Helper macros
-VIVADO_COLOR_SCRIPT = $(ROOT_DIR)/vivado/tools/color_log.awk
-NVME_SPEC_NAME = NVM-Express-1_4-2019.06.10-Ratified.pdf
+# Helpers ---------------------------------------------------------------------
 
-DOCKER_TAG_NAME=hw:1.0
 DOCKER_TAG = $(DOCKER_IMAGE_PREFIX)$(DOCKER_TAG_NAME)
 
-# Generate general and board-specific build directories
+# -----------------------------------------------------------------------------
+# All -------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+.PHONY: all
+all: vivado ## Build all
+
+# Generate general and board-specific build directories -----------------------
 
 $(BUILD_DIR):
 	mkdir -p $@
@@ -33,28 +48,39 @@ $(BOARD_BUILD_DIR):
 	mkdir -p $@
 
 # -----------------------------------------------------------------------------
+# Clean -----------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+.PHONY: clean
+clean: ## Clean build artifacts
+	$(RM) -r .Xil
+	$(RM) -r $(BUILD_DIR)/
+
+# -----------------------------------------------------------------------------
 # Vivado ----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 .PHONY: vivado
-vivado: $(BOARD_BUILD_DIR)/project_vta/out/top.bit ## Build vivado design
+vivado: SHELL := /bin/bash ## Build vivado design
+vivado: $(BOARD_BUILD_DIR)/project_vta/out/top.bit
 
 $(BOARD_BUILD_DIR)/project_vta/out/top.bit: $(CHISEL_BUILD_DIR)/NVMeTop.v
 $(BOARD_BUILD_DIR)/project_vta/out/top.bit: | $(BOARD_BUILD_DIR)
-	@echo "Building for board: $(BOARD)" && \
-	pushd $(BOARD_BUILD_DIR) && \
-	bash -c "set -o pipefail && $(ROOT_DIR)/vivado/build_project.sh $(BOARD_BUILD_DIR) vta $(BAR_SIZE) $(BOARD) 2>&1 | awk -f $(VIVADO_COLOR_SCRIPT)" && \
-	popd
-
+	@echo "Building for board: $(BOARD)"
+	cd $(BOARD_BUILD_DIR) && \
+		set -o pipefail && \
+		$(ROOT_DIR)/vivado/build_project.sh $(BOARD_BUILD_DIR) vta $(BAR_SIZE) $(BOARD) 2>&1 \
+		| awk -f $(VIVADO_COLOR_SCRIPT)
 
 # -----------------------------------------------------------------------------
 # Generate --------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 .PHONY: generate
 generate: $(BUILD_DIR)/registers.json ## Generate register description in chisel
 generate: $(SCALA_BUILD_DIR)/RegisterDefs.scala
 generate: $(SCALA_BUILD_DIR)/CSRRegMap.scala
 
-# chisel register generation --------------------------------------------------
 GIT_SHA = "$(shell git rev-parse --short HEAD)"
 
 $(BUILD_DIR)/registers.json: $(REGGEN_DIR)/get_reg_fields.py
@@ -73,14 +99,12 @@ $(SCALA_BUILD_DIR)/RegisterDefs.scala: | $(SCALA_BUILD_DIR)
 $(SCALA_BUILD_DIR)/CSRRegMap.scala: $(REGGEN_DIR)/get_reg_map_chisel.py $(REGGEN_DIR)/$(NVME_SPEC_NAME) | $(SCALA_BUILD_DIR)
 	$(REGGEN_DIR)/get_reg_map_chisel.py $(REGGEN_DIR)/$(NVME_SPEC_NAME) -f --git-sha=$(GIT_SHA) $@
 
-
 # -----------------------------------------------------------------------------
 # Chisel ----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 .PHONY: chisel
 chisel: $(BUILD_DIR)/chisel_project/NVMeTop.v ## Generate verilog sources using chisel
-
-# verilog sources generation --------------------------------------------------
 
 $(CHISEL_BUILD_DIR):
 	@mkdir -p $@
@@ -91,23 +115,27 @@ $(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v: $(SCALA_BUILD_DIR)/CSRRegMap.scala
 $(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v: | $(CHISEL_BUILD_DIR)
 	OUTPUT_DIR=$(CHISEL_BUILD_DIR) SBT_EXTRA_DIR=$(SBT_EXTRA_DIR) $(MAKE) -C $(ROOT_DIR)/chisel verilog
 
-
 # -----------------------------------------------------------------------------
 # Test ------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 .PHONY: test
 test: $(BUILD_DIR)/registers.json ## run all tests
 test: $(SCALA_BUILD_DIR)/RegisterDefs.scala
 test: $(SCALA_BUILD_DIR)/CSRRegMap.scala
 	SBT_EXTRA_DIR=$(SBT_EXTRA_DIR) $(MAKE) -C chisel testall
 
-
 # -----------------------------------------------------------------------------
 # Format ----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 format: ## format code
 	find -name "*.sh" -not -path "$(THIRD_PARTY_DIR)/*" -not -path "$(BUILD_DIR)/*" | xargs -r shfmt -w --keep-padding
 	find -name "*.sh" -not -path "$(THIRD_PARTY_DIR)/*" -not -path "$(BUILD_DIR)/*" | xargs -r shellcheck
+
+# -----------------------------------------------------------------------------
+# Docker ----------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 $(DOCKER_BUILD_DIR):
 	@mkdir -p $(DOCKER_BUILD_DIR)
@@ -120,17 +148,13 @@ $(DOCKER_BUILD_DIR)/docker.ok: hw.dockerfile $(REGGEN_DIR)/requirements.txt | $(
 		--build-arg REPO_ROOT="$(PWD)" \
 		-t $(DOCKER_TAG) . && touch docker.ok
 
-
-# -----------------------------------------------------------------------------
-# Docker ----------------------------------------------------------------------
-# -----------------------------------------------------------------------------
 .PHONY: docker
 docker: $(DOCKER_BUILD_DIR)/docker.ok ## build the developmend docker image
-
 
 # -----------------------------------------------------------------------------
 # Enter -----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 .PHONY: enter
 enter: $(DOCKER_BUILD_DIR)/docker.ok ## enter the development docker image
 	docker run \
@@ -146,26 +170,10 @@ enter: $(DOCKER_BUILD_DIR)/docker.ok ## enter the development docker image
 		-w $(PWD) \
 		-it $(DOCKER_TAG) || true
 
-
-# -----------------------------------------------------------------------------
-# All -------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
-.PHONY: all
-all: vivado ## Build all
-
-
-# -----------------------------------------------------------------------------
-# Clean -----------------------------------------------------------------------
-# -----------------------------------------------------------------------------
-.PHONY: clean
-clean: ## Clean build artifacts
-	$(RM) -r .Xil
-	$(RM) -r $(BUILD_DIR)/
-
-
 # -----------------------------------------------------------------------------
 # Help ------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 HELP_COLUMN_SPAN = 20
 HELP_FORMAT_STRING = "\033[36m%-$(HELP_COLUMN_SPAN)s\033[0m %s\n"
 .PHONY: help
