@@ -4,15 +4,17 @@
 
 ROOT_DIR = $(realpath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
-DOCKER_TAG_NAME=hw:1.0
+DOCKER_TAG_NAME = hw:1.0
 NVME_SPEC_NAME = NVM-Express-1_4-2019.06.10-Ratified.pdf
 
 # Input settings -------------------------------------------------------------
 
 BOARD ?= basalt
 BAR_SIZE ?= 16MB
-DOCKER_IMAGE_BASE ?= debian:bullseye
 BUILD_DIR ?= $(ROOT_DIR)/build
+
+DOCKER_IMAGE_BASE ?= debian:bullseye
+DOCKER_TAG ?= $(DOCKER_IMAGE_PREFIX)$(DOCKER_TAG_NAME)
 
 # Input paths -----------------------------------------------------------------
 
@@ -27,10 +29,6 @@ CHISEL_BUILD_DIR = $(BOARD_BUILD_DIR)/chisel_project
 SCALA_BUILD_DIR = $(BUILD_DIR)/scala
 DOCKER_BUILD_DIR = $(BUILD_DIR)/docker
 SBT_EXTRA_DIR = $(shell realpath --relative-to $(ROOT_DIR)/chisel $(SCALA_BUILD_DIR))
-
-# Helpers ---------------------------------------------------------------------
-
-DOCKER_TAG = $(DOCKER_IMAGE_PREFIX)$(DOCKER_TAG_NAME)
 
 # -----------------------------------------------------------------------------
 # All -------------------------------------------------------------------------
@@ -61,9 +59,9 @@ clean: ## Clean build artifacts
 # -----------------------------------------------------------------------------
 
 .PHONY: vivado
-vivado: SHELL := /bin/bash ## Build vivado design
-vivado: $(BOARD_BUILD_DIR)/project_vta/out/top.bit
+vivado: $(BOARD_BUILD_DIR)/project_vta/out/top.bit ## Build vivado design
 
+$(BOARD_BUILD_DIR)/project_vta/out/top.bit: SHELL := /bin/bash
 $(BOARD_BUILD_DIR)/project_vta/out/top.bit: $(CHISEL_BUILD_DIR)/NVMeTop.v
 $(BOARD_BUILD_DIR)/project_vta/out/top.bit: | $(BOARD_BUILD_DIR)
 	@echo "Building for board: $(BOARD)"
@@ -186,7 +184,8 @@ help: ## show this help
 	@echo ""
 	@printf $(HELP_FORMAT_STRING) "BOARD" "The board to build the gateware for ('basalt' or 'zcu106')"
 	@printf $(HELP_FORMAT_STRING) "BAR_SIZE" "bar size with unit (e.g. 16MB)"
-	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_PREFIX" "custom registry prefix with '/' at the end"
-	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_BASE" "custom docker image base"
+	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_PREFIX" "registry prefix with '/' at the end"
+	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_BASE" "docker image base"
+	@printf $(HELP_FORMAT_STRING) "DOCKER_TAG" "docker tag for building and running images"
 
 .DEFAULT_GOAL := help
