@@ -1,4 +1,4 @@
-# alkali-csd-hw
+# Alkali Hardware
 
 This repository contains sources of the alkali-csd-hw project, which can be
 used to generate the bitstream for the Western Digital NVMe accelerator test
