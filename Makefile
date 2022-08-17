@@ -13,7 +13,7 @@ BOARD ?= basalt
 BAR_SIZE ?= 16MB
 BUILD_DIR ?= $(ROOT_DIR)/build
 
-DOCKER_IMAGE_BASE ?= debian:bullseye
+DOCKER_IMAGE_BASE ?= debian:buster
 DOCKER_TAG ?= $(DOCKER_IMAGE_PREFIX)$(DOCKER_TAG_NAME)
 
 # Input paths -----------------------------------------------------------------
