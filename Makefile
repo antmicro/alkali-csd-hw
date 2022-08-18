@@ -118,7 +118,7 @@ $(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v: | $(CHISEL_BUILD_DIR)
 # -----------------------------------------------------------------------------
 
 .PHONY: test
-test: $(BUILD_DIR)/registers.json ## run all tests
+test: $(BUILD_DIR)/registers.json ## Run all tests
 test: $(SCALA_BUILD_DIR)/RegisterDefs.scala
 test: $(SCALA_BUILD_DIR)/CSRRegMap.scala
 	SBT_EXTRA_DIR=$(SBT_EXTRA_DIR) $(MAKE) -C chisel testall
@@ -139,7 +139,7 @@ $(DOCKER_BUILD_DIR):
 	@mkdir -p $(DOCKER_BUILD_DIR)
 
 .PHONY: docker
-docker: $(DOCKER_DIR)/hw.dockerfile ## build development docker image
+docker: $(DOCKER_DIR)/hw.dockerfile ## Build the development docker image
 docker: $(DOCKER_DIR)/install_config.txt
 docker: $(DOCKER_DIR)/entrypoint.sh
 docker: $(DOCKER_DIR)/Xilinx_Vivado_2019.2_1106_2127.tar.gz
@@ -155,7 +155,7 @@ docker: | $(DOCKER_BUILD_DIR)
 		-t $(DOCKER_TAG) .
 
 .PHONY: docker/clean
-docker/clean: ## clean docker build artifacts
+docker/clean: ## Clean docker build artifacts
 	$(RM) -r $(DOCKER_BUILD_DIR)
 
 # -----------------------------------------------------------------------------
@@ -163,7 +163,7 @@ docker/clean: ## clean docker build artifacts
 # -----------------------------------------------------------------------------
 
 .PHONY: enter
-enter: ## enter the development docker image
+enter: ## Enter the development docker image
 	docker run \
 		--rm \
 		-v $(PWD):$(PWD) \
@@ -186,7 +186,7 @@ enter: ## enter the development docker image
 HELP_COLUMN_SPAN = 25
 HELP_FORMAT_STRING = "\033[36m%-$(HELP_COLUMN_SPAN)s\033[0m %s\n"
 .PHONY: help
-help: ## show this help
+help: ## Show this help
 	@echo Here is the list of available targets:
 	@echo ""
 	@grep -E '^[a-zA-Z_\/-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf $(HELP_FORMAT_STRING), $$1, $$2}'
