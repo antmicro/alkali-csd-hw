@@ -87,28 +87,38 @@ includes the most important files and directories.
 
 # Prerequisites
 
-To build the design you have to have `Vivado 2019.2` binary available in your
-system path. Additionally, you will need a few system packages.
-You can install them using the following commands:
+To build this project it is recommended to use a dedicated docker container
+with all prerequisites installed. The appropriate docker image can be
+created using `hw.dockerfile` provided in the `docker` directory.
 
-```
-sudo apt update -y
-sudo apt install -y curl default-jdk git make python3 python3-pip wget
-```
+Note that to build the image, you have to provide a tarball with Vivado 2019.2
+installer. This file has to be placed in the
+`docker/Xilinx_Vivado_2019.2_1106_2127.tar.gz` path before building the image.
+The file can be [downloaded](https://www.xilinx.com/member/forms/download/xef.html?filename=Xilinx_Vivado_2019.2_1106_2127.tar.gz)
+from the Official Xilinx Website.
 
-Then, install the required python packages:
-```
-pip3 install -r requirements.txt
-```
+After placing the file in the specified location use `make docker` to build
+the image. In case you want to install all the prerequisites directly on
+your machine, follow the instructions from the `hw.dockerfile`.
+
+Use `make enter` to open the container and then execute the rest of
+the commands inside it.
 
 # Usage
 
-To generate the bitstream for the alkali board simply use:
+**NOTE: You have to be in the dedicated docker container or have all
+the prerequisites installed locally to use the instructions below correctly.
+Refer to the [#Prerequisites](#prerequisites) section in case of any problems
+with building the project**
+
+Before building any target choose the desired board (`basalt` or ` zcu106`),
+by setting the `BOARD` environment variable:
+```
+export BOARD=basalt
+```
+
+Then run the target that you want to compile. The list of targets is available
+after running `make help`. To build all output products use:
 ```
 make all
 ```
-The final `project_vta.bit` bitstream can be found inside the `build` directory
-after the `make all` completes.
-
-Other useful targets that allow the various parts of the project to be built,
-can be listed using `make help`.
