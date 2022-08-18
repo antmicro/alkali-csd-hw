@@ -49,6 +49,13 @@ RUN apt install -y sbt=1.4.9
 RUN apt install -y shellcheck
 COPY --from=mvdan/shfmt /bin/shfmt /bin/shfmt
 
+# Install make 4.3
+RUN wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+RUN tar xf make-4.3.tar.gz && cd make-4.3 && ./configure && make -j$(nproc)
+RUN cp make-4.3/make /opt/.
+RUN rm -rf make-4.3*
+ENV PATH="/opt:${PATH}"
+
 # Configure entrypoint
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
