@@ -13,13 +13,13 @@ BOARD ?= basalt
 BAR_SIZE ?= 16MB
 BUILD_DIR ?= $(ROOT_DIR)/build
 
-DOCKER_IMAGE_BASE ?= debian:buster
 DOCKER_TAG ?= $(DOCKER_IMAGE_PREFIX)$(DOCKER_TAG_NAME)
 
 # Input paths -----------------------------------------------------------------
 
 THIRD_PARTY_DIR = $(ROOT_DIR)/third-party
 REGGEN_DIR = $(ROOT_DIR)/third-party/registers-generator
+DOCKER_DIR = $(ROOT_DIR)/docker
 VIVADO_COLOR_SCRIPT = $(ROOT_DIR)/vivado/tools/color_log.awk
 
 # Output paths ----------------------------------------------------------------
@@ -138,23 +138,32 @@ format: ## format code
 $(DOCKER_BUILD_DIR):
 	@mkdir -p $(DOCKER_BUILD_DIR)
 
-$(DOCKER_BUILD_DIR)/docker.ok: hw.dockerfile $(REGGEN_DIR)/requirements.txt | $(DOCKER_BUILD_DIR) ## build development docker image
-	cp $(ROOT_DIR)/hw.dockerfile $(DOCKER_BUILD_DIR)/Dockerfile
+.PHONY: docker
+docker: $(DOCKER_DIR)/hw.dockerfile ## build development docker image
+docker: $(DOCKER_DIR)/install_config.txt
+docker: $(DOCKER_DIR)/entrypoint.sh
+docker: $(DOCKER_DIR)/Xilinx_Vivado_2019.2_1106_2127.tar.gz
+docker: $(REGGEN_DIR)/requirements.txt
+docker: | $(DOCKER_BUILD_DIR)
+	cp $(DOCKER_DIR)/hw.dockerfile $(DOCKER_BUILD_DIR)/Dockerfile
+	cp $(DOCKER_DIR)/install_config.txt $(DOCKER_BUILD_DIR)/.
+	cp $(DOCKER_DIR)/entrypoint.sh $(DOCKER_BUILD_DIR)/.
+	cp $(DOCKER_DIR)/Xilinx_Vivado_2019.2_1106_2127.tar.gz $(DOCKER_BUILD_DIR)/.
 	cp $(REGGEN_DIR)/requirements.txt $(DOCKER_BUILD_DIR)
 	cd $(DOCKER_BUILD_DIR) && docker build \
-		--build-arg IMAGE_BASE="$(DOCKER_IMAGE_BASE)" \
-		--build-arg REPO_ROOT="$(PWD)" \
-		-t $(DOCKER_TAG) . && touch docker.ok
+		$(DOCKER_BUILD_EXTRA_ARGS) \
+		-t $(DOCKER_TAG) .
 
-.PHONY: docker
-docker: $(DOCKER_BUILD_DIR)/docker.ok ## build the developmend docker image
+.PHONY: docker/clean
+docker/clean: ## clean docker build artifacts
+	$(RM) -r $(DOCKER_BUILD_DIR)
 
 # -----------------------------------------------------------------------------
 # Enter -----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
 .PHONY: enter
-enter: $(DOCKER_BUILD_DIR)/docker.ok ## enter the development docker image
+enter: ## enter the development docker image
 	docker run \
 		--rm \
 		-v $(PWD):$(PWD) \
@@ -166,13 +175,15 @@ enter: $(DOCKER_BUILD_DIR)/docker.ok ## enter the development docker image
 		-u $(shell id -u):$(shell id -g) \
 		-h docker-container \
 		-w $(PWD) \
-		-it $(DOCKER_TAG) || true
+		-it  \
+		$(DOCKER_RUN_EXTRA_ARGS) \
+		$(DOCKER_TAG)
 
 # -----------------------------------------------------------------------------
 # Help ------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
-HELP_COLUMN_SPAN = 20
+HELP_COLUMN_SPAN = 25
 HELP_FORMAT_STRING = "\033[36m%-$(HELP_COLUMN_SPAN)s\033[0m %s\n"
 .PHONY: help
 help: ## show this help
@@ -185,7 +196,9 @@ help: ## show this help
 	@printf $(HELP_FORMAT_STRING) "BOARD" "The board to build the gateware for ('basalt' or 'zcu106')"
 	@printf $(HELP_FORMAT_STRING) "BAR_SIZE" "bar size with unit (e.g. 16MB)"
 	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_PREFIX" "registry prefix with '/' at the end"
-	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_BASE" "docker image base"
 	@printf $(HELP_FORMAT_STRING) "DOCKER_TAG" "docker tag for building and running images"
+	@printf $(HELP_FORMAT_STRING) "DOCKER_RUN_EXTRA_ARGS" "Extra arguments for running docker container"
+	@printf $(HELP_FORMAT_STRING) "DOCKER_BUILD_EXTRA_ARGS" "Extra arguments for building docker"
+
 
 .DEFAULT_GOAL := help

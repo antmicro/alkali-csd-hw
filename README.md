@@ -88,13 +88,13 @@ includes the most important files and directories.
 # Prerequisites
 
 To build this project it is recommended to use a dedicated docker container
-with all prerequisites installed. The appropriate docker image can be
+with all the prerequisites installed. The appropriate docker image can be
 created using `hw.dockerfile` provided in the `docker` directory.
 
 Note that to build the image, you have to provide a tarball with Vivado 2019.2
 installer. This file has to be placed in the
 `docker/Xilinx_Vivado_2019.2_1106_2127.tar.gz` path before building the image.
-The file can be [downloaded](https://www.xilinx.com/member/forms/download/xef.html?filename=Xilinx_Vivado_2019.2_1106_2127.tar.gz)
+It can be [downloaded](https://www.xilinx.com/member/forms/download/xef.html?filename=Xilinx_Vivado_2019.2_1106_2127.tar.gz)
 from the Official Xilinx Website.
 
 After placing the file in the specified location use `make docker` to build
