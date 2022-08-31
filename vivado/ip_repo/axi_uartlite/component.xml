@@ -1514,65 +1514,6 @@ Writing a 1 to this bit position clears the receive FIFO
         <xilinx:canUpgradeFrom>xilinx.com:ip:axi_uartlite:1.02.a</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
       <xilinx:coreCreationDateTime>2020-10-14T06:47:40Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d257068_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d9ea9_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@8d70eef_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@240b1497_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@428fca06_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a111e03_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7301a2b9_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ca520fd_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@718f46db_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e9e5be6_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@729085df_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@56511d1e_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@53552dae_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@22b0ce1b_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@41cb22e7_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@36b2bc78_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@59c2503b_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e45b1e1_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6434913d_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@74bd1927_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@9930706_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@41d379ef_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@baa3eda_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e2c53cb_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3505ecb6_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@66c81b31_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@64fcfcb0_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4af1caca_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_uart/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@23b051ee_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@670f46a7_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5886fc0_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ec1e0c_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c7b966c_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@181adc37_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@fcd49da_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@33b787dd_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1746ce9_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a41f3fe_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@a8d405c_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dd67963_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ffd8889_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ada4a53_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@35258753_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5399307b_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7dedb890_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4aa19452_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@447dd3b8_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a036702_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@545c67ca_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fb44f5c_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5440d2e9_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4604b678_ARCHIVE_LOCATION">/home/kushalc/basalt/basalt_secondary_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@33da42a7_ARCHIVE_LOCATION">/home/kushalc/basalt/branch_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5985c711_ARCHIVE_LOCATION">/home/kushalc/basalt/branch_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@42f7fd01_ARCHIVE_LOCATION">/home/kushalc/basalt/branch_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3c1bdccc_ARCHIVE_LOCATION">/home/kushalc/basalt/branch_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5bdfacfa_ARCHIVE_LOCATION">/home/kushalc/basalt/branch_14_10/scylla_test_suite/vivado_project/basalt_design/axi_uartlite</xilinx:tag>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>

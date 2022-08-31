@@ -23,9 +23,6 @@
 # 2. The following source(s) files that were local or imported into the original project.
 #    (Please see the '$orig_proj_dir' and '$origin_dir' variable setting below at the start of the script)
 #
-#    "/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/basalt_secondary_project/basalt.srcs/sources_1/imports/hdl/basalt_wrapper.v"
-#    "/home/kushalc/basalt/basalt_secondary_1_10/scylla_test_suite/vivado_project/basalt_design/basalt_secondary_project/basalt.srcs/constrs_1/imports/basalt_design/basalt_secondary_top.xdc"
-#
 # 3. The following remote source files that were added to the original project:-
 #
 #    <none>

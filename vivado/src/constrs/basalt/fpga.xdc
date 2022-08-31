@@ -1,7 +1,7 @@
-### Scylla RevC1 (Basalat) ------------------
-# Host PCIe X4 Connections 
-# 
-# MGT Bank 226 for Host PCIe Connections 
+### (Basalt) ------------------
+# Host PCIe X4 Connections
+#
+# MGT Bank 226 for Host PCIe Connections
 set_property PACKAGE_PIN AA20 [get_ports {pcie_rstn}]
 set_property IOSTANDARD LVCMOS18 [get_ports pcie_rstn]
 #set_property PACKAGE_PIN AE22 [get_ports {perstn_11eg}] ## reset for 11EG support
@@ -23,7 +23,7 @@ set_property PACKAGE_PIN R6 [get_ports {pcie_txp[2]}]
 set_property PACKAGE_PIN N6 [get_ports {pcie_txp[3]}]
 #set_property PACKAGE_PIN V7 [get_ports {pcie_ref_clk_n}]
 set_property PACKAGE_PIN V8 [get_ports {pcie_ref_clk_p}]
-###----------------- Scylla RevB1 --------------------------####
+###----------------- AN300 --------------------------####
 #set_property IOSTANDARD LVCMOS18 [get_ports perstn]
 #set_property IOSTANDARD LVCMOS12 [get_ports perstn]
 #set_property PACKAGE_PIN AP3 [get_ports {pcie_rxn[3]}]
@@ -48,8 +48,8 @@ set_property PACKAGE_PIN V8 [get_ports {pcie_ref_clk_p}]
 #
 ###### PCIE PIN LOCATION ENDS #######################
 #-------------------------------------------------------
-# 64 bit DDR4 Interface for Scylla RevC1 (basalt)
-# RevC1 only support 64Bit DDR4 FlyBy Topology  
+# 64 bit DDR4 Interface for AN300
+# RevC1 only support 64Bit DDR4 FlyBy Topology
 # Supported DDR4 Part : MT40A512M16LY-075:E (SDRAM - DDR4 Memory IC 8Gb (512M x 16) Parallel 1.33GHz  96-FBGA (7.5x13.5))
 #
 #set_property PACKAGE_PIN AH8 [get_ports {ddr4a_adr[0]}]
@@ -172,7 +172,7 @@ set_property PACKAGE_PIN V8 [get_ports {pcie_ref_clk_p}]
 #set_property PACKAGE_PIN AK9 [get_ports {ddr4a_ref_clk_n}]
 #set_property PACKAGE_PIN AJ9 [get_ports {ddr4a_ref_clk_p}]
 #set_property PACKAGE_PIN AG9 [get_ports {ddr4a_reset_n}]
-#----------------DDR4A 64Bit Scylla RevB1 Interface -------------------
+#----------------DDR4A 64Bit AN300 Interface -------------------
 #set_property PACKAGE_PIN AH16 [get_ports {ddr4a_act_n}]
 #set_property PACKAGE_PIN AL18 [get_ports {ddr4a_adr[0]}]
 #set_property PACKAGE_PIN AP17 [get_ports {ddr4a_adr[1]}]
@@ -371,7 +371,7 @@ set_property PACKAGE_PIN V8 [get_ports {pcie_ref_clk_p}]
 #
 # -------------------------- DDR4 interface Ends ----------------------#
 #
-# Additional Available IO for Scylla RevC (Basalt)
+# Additional Available IO for AN300
 #set_property PACKAGE_PIN AH23 [get_ports {user_clk_100mhz}]
 #set_property PACKAGE_PIN E23 [get_ports {rework_id[0]}]
 #set_property PACKAGE_PIN C23 [get_ports {rework_id[1]}]
