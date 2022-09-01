@@ -9,7 +9,7 @@ NVME_SPEC_NAME = NVM-Express-1_4-2019.06.10-Ratified.pdf
 
 # Input settings -------------------------------------------------------------
 
-BOARD ?= basalt
+BOARD ?= an300
 BAR_SIZE ?= 16MB
 BUILD_DIR ?= $(ROOT_DIR)/build
 
@@ -193,7 +193,7 @@ help: ## Show this help
 	@echo ""
 	@echo "Additionally, you can use the following environment variables:"
 	@echo ""
-	@printf $(HELP_FORMAT_STRING) "BOARD" "The board to build the gateware for ('basalt' or 'zcu106')"
+	@printf $(HELP_FORMAT_STRING) "BOARD" "The board to build the gateware for ('an300' or 'zcu106')"
 	@printf $(HELP_FORMAT_STRING) "BAR_SIZE" "bar size with unit (e.g. 16MB)"
 	@printf $(HELP_FORMAT_STRING) "DOCKER_IMAGE_PREFIX" "registry prefix with '/' at the end"
 	@printf $(HELP_FORMAT_STRING) "DOCKER_TAG" "docker tag for building and running images"

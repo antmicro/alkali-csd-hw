@@ -60,7 +60,7 @@ ARG_BUILD_DIR=$6
 # main project settings
 case ${BOARD} in
 
-basalt)
+an300)
 	PART_NAME="xczu7ev-ffvc1156-1-e"
 	;;
 

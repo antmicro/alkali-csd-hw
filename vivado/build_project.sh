@@ -5,7 +5,7 @@ WHITE="\\033[1;37m"
 set -e
 
 BOARD=$4
-BOARD=${BOARD=basalt} # Build for Basalt for default
+BOARD=${BOARD=an300} # Build for AN300 for default
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 REPO_ROOT=$(realpath "${SCRIPT_DIR}/..")
@@ -62,7 +62,7 @@ for item in "${gb_units[@]}"; do
 done
 
 # Check board support
-if [ "${BOARD}" != "basalt" ] && [ "${BOARD}" != "zcu106" ]; then
+if [ "${BOARD}" != "an300" ] && [ "${BOARD}" != "zcu106" ]; then
 	echo "Unsupported board '${BOARD}'"
 	exit 255
 fi
@@ -76,8 +76,8 @@ bash "${TOOLS_DIR}/generate_project.sh" gen_synth "$switch" "$size" "$bar_unit" 
 echo -e "${WHITE}Running synthesis...${NC}"
 vivado -mode batch -source "${BUILD_DIR}/project_$switch.tcl" || (echo -e "${WHITE}Vivado exited with $?${NC}" && false)
 
-# Patch command for basalt project
-if [ "${BOARD}" == "basalt" ]; then
+# Patch command for an300 project
+if [ "${BOARD}" == "an300" ]; then
 	echo -e "${WHITE}Patching files...${NC}"
 	(cd "${BUILD_DIR}" && bash "${TOOLS_DIR}/patch.sh" "$switch")
 fi

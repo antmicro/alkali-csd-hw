@@ -1,4 +1,4 @@
-### (Basalt) ------------------
+### (AN300) ------------------
 # Host PCIe X4 Connections
 #
 # MGT Bank 226 for Host PCIe Connections

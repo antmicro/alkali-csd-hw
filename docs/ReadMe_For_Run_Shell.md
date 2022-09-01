@@ -46,7 +46,7 @@ Note : Do Not close this script and terminal. Please use another terminal or tab
     reload.sh
    ```
 
-3. Now open new terminal to see basalt NVMe device, use below commands.
+3. Now open new terminal to see AN300 NVMe device, use below commands.
    ```bash
    lspci | grep "Western Digital Device"
    ```

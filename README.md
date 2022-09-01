@@ -2,7 +2,7 @@
 
 This repository contains FPGA design sources of the Alkali project, which can be
 used to generate the bitstream for the Western Digital NVMe accelerator test
-platform (Basalt board) or Xilinx ZCU106 evaluation platform.
+platform (AN300 board) or Xilinx ZCU106 evaluation platform.
 The project includes a chisel module containing logic for the NVMe
 registers and the main design with VTA accelerator
 created for Xilinx Vivado 2019.2.
@@ -10,7 +10,7 @@ created for Xilinx Vivado 2019.2.
 The register description is auto-generated from the NVMe documentation and,
 together with the rest of the chisel design, is converted to Verilog.
 Finally all the Verilog sources are attached to the Vivado project and
-are used to generate the bitstream for the Basalt board.
+are used to generate the bitstream for the AN300 board.
 
 # Repository structure
 
@@ -69,7 +69,7 @@ includes the most important files and directories.
   inside the project.
 
 * `tests/` - contains test software that can help developing
-  the hardware setup for Basalt boards.
+  the hardware setup for AN300 boards.
 
 * `third-party/` - the directory used to store all external projects used as
   a part of the `Alkali FPGA design`. The `register-generator` directory
@@ -111,10 +111,10 @@ the prerequisites installed locally to use the instructions below correctly.
 Refer to the [#Prerequisites](#prerequisites) section in case of any problems
 with building the project**
 
-Before building any target choose the desired board (`basalt` or ` zcu106`),
+Before building any target choose the desired board (`an300` or ` zcu106`),
 by setting the `BOARD` environment variable:
 ```
-export BOARD=basalt
+export BOARD=an300
 ```
 
 Then run the target that you want to compile. The list of targets is available
