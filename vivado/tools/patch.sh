@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+#
+# Copyright 2021-2022 Western Digital Corporation or its affiliates
+# Copyright 2021-2022 Antmicro
+#
+# SPDX-License-Identifier: Apache-2.0
+
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 REPO_ROOT=$(realpath "${SCRIPT_DIR}/../..")
