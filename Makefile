@@ -102,7 +102,7 @@ $(SCALA_BUILD_DIR)/CSRRegMap.scala: $(REGGEN_DIR)/get_reg_map_chisel.py $(REGGEN
 # -----------------------------------------------------------------------------
 
 .PHONY: chisel
-chisel: $(BUILD_DIR)/chisel_project/NVMeTop.v ## Generate verilog sources using chisel
+chisel: $(BOARD_BUILD_DIR)/chisel_project/NVMeTop.v ## Generate verilog sources using chisel
 
 $(CHISEL_BUILD_DIR):
 	@mkdir -p $@
