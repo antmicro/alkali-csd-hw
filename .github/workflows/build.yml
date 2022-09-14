@@ -1,0 +1,30 @@
+name: Build Alkali Hardware
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build Alkali Hardware
+    runs-on: ubuntu-latest
+    container:
+      image: antmicro/alkali:latest
+    strategy:
+      matrix:
+        board: [an300, zcu106]
+    env:
+      BOARD: ${{ matrix.board }}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - name: Build hardware (without Vivado)
+        run: make chisel
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: alkali-hardware-${{ matrix.board }}
+          path: |
+            build/${{ matrix.board }}/chisel_project
