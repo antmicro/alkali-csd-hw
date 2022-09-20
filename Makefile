@@ -18,7 +18,7 @@ DOCKER_TAG ?= $(DOCKER_IMAGE_PREFIX)$(DOCKER_TAG_NAME)
 # Input paths -----------------------------------------------------------------
 
 THIRD_PARTY_DIR = $(ROOT_DIR)/third-party
-REGGEN_DIR = $(ROOT_DIR)/third-party/registers-generator
+REGGEN_DIR = $(ROOT_DIR)/registers-generator
 DOCKER_DIR = $(ROOT_DIR)/docker
 VIVADO_COLOR_SCRIPT = $(ROOT_DIR)/vivado/tools/color_log.awk
 
