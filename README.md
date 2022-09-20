@@ -36,8 +36,8 @@ includes the most important files and directories.
 ├── hw.dockerfile
 ├── Makefile
 ├── tests
+├── registers-generator
 ├── third-party
-│   ├── registers-generator
 │   └── verilog-pcie
 └── vivado
     ├── build_project.sh
@@ -71,11 +71,12 @@ includes the most important files and directories.
 * `tests/` - contains test software that can help developing
   the hardware setup for AN300 boards.
 
+* `registers-generator` - contains scripts used to parse the NVMe specification
+   and generate the NVMe registers in chisel.
+
 * `third-party/` - the directory used to store all external projects used as
-  a part of the `Alkali FPGA design`. The `register-generator` directory
-  contains scripts used to parse the NVMe specification and generate
-  the NVMe registers in chisel. The `verilog-pcie`, on the other hand,
-  holds the PCIe IP-cores used in the design for the Basat board.
+  a part of the `Alkali FPGA design`. The `verilog-pcie` directory holds
+  the PCIe IP-cores used in the design for the Basat board.
 
 * `vivado` - contains the main Vivado design. The `build_project.sh` is
   a helper script used to build the Vivado design. The `ip_repo/` subdirectory
