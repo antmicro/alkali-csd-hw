@@ -21,7 +21,7 @@ module top (
 
 // ============================================================================
 
-rtl_top rtl_top (
+fpga fpga (
     .BOARD_ID       (BOARD_ID),
 
     .pcie_rxp       (pcie_rxp),
