@@ -99,5 +99,6 @@ test -f "${IMPL_DIR}"/top.xsa
 mkdir -p "${OUTP_DIR}"
 cp "${IMPL_DIR}"/top.bit "${OUTP_DIR}"/
 cp "${IMPL_DIR}"/top.xsa "${OUTP_DIR}"/
+cp "${IMPL_DIR}"/top.ltx "${OUTP_DIR}"/ || true
 
 echo -e "${WHITE}Done.${NC}"
