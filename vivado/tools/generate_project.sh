@@ -255,4 +255,7 @@ else
 
 	echo "write_hw_platform -fixed -minimal ${BUILD_DIR}/${PROJECT_NAME}.runs/impl_1/top.xsa -force"
 
+    echo "open_run impl_1 -name impl_1"
+    echo "write_debug_probes ${BUILD_DIR}/${PROJECT_NAME}.runs/impl_1/top.ltx -force"
+    echo "close_design"
 fi
