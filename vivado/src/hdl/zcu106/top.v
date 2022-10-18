@@ -37,9 +37,9 @@ fpga fpga (
     .pcie_txn       (pcie_txn),
     .pcie_ref_clk_p (pcie_ref_clk_p),
     .pcie_ref_clk_n (pcie_ref_clk_n),
-    .pcie_rstn      (pcie_rstn)
-);
+    .pcie_rstn      (pcie_rstn),
 
-assign led = 8'd0;
+    .leds           (led)
+);
 
 endmodule

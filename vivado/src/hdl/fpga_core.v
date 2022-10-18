@@ -109,7 +109,10 @@ module fpga_core #
     output wire [3:0]                         cfg_interrupt_msi_function_number,
 
     output wire                               status_error_cor,
-    output wire                               status_error_uncor
+    output wire                               status_error_uncor,
+
+    // Info / status / debug
+    output wire [5:0]                         leds
 );
 
 parameter PCIE_ADDR_WIDTH = 64;
@@ -1071,6 +1074,35 @@ pcie_us_msi_inst (
     .cfg_interrupt_msi_function_number(cfg_interrupt_msi_function_number)
 );
 
-endmodule
+// ============================================================================
+// Debug stuff
 
+// Interrupts
+wire dma_irq_led;
+wire nvme_irq_led;
+
+pulser #(.PULSE_LENGTH(1<<24)) pulser_dma (
+    .clk    (clk),
+    .rst    (rst),
+    .trg    (dma_irq),
+    .out    (dma_irq_led)
+);
+
+pulser #(.PULSE_LENGTH(1<<24)) pulser_nvme (
+    .clk    (clk),
+    .rst    (rst),
+    .trg    (nvme_irq),
+    .out    (nvme_irq_led)
+);
+
+assign leds = {
+        dma_irq_led,
+        nvme_irq_led,
+        1'b0,
+        1'b0,
+        1'b0,
+        1'b0
+    };
+
+endmodule
 `resetall

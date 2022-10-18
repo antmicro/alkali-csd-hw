@@ -41,7 +41,10 @@ module fpga (
     output wire [3:0] pcie_txn,
     input  wire       pcie_ref_clk_p,
     input  wire       pcie_ref_clk_n,
-    input  wire       pcie_rstn
+    input  wire       pcie_rstn,
+
+    // Info / status / debug signals
+    output wire [7:0] leds
 );
 
 parameter AXIS_PCIE_DATA_WIDTH = 128;
@@ -150,6 +153,8 @@ wire [3:0]  cfg_interrupt_msi_function_number;
 wire status_error_cor;
 wire status_error_uncor;
 
+wire pcie_link_up;
+
 pcie4_uscale_plus_0
 pcie4_uscale_plus_inst (
     .pci_exp_txn(pcie_txn),
@@ -158,7 +163,7 @@ pcie4_uscale_plus_inst (
     .pci_exp_rxp(pcie_rxp),
     .user_clk(pcie_user_clk),
     .user_reset(pcie_user_reset),
-    .user_lnk_up(),
+    .user_lnk_up(pcie_link_up),
 
     .s_axis_rq_tdata(axis_rq_tdata),
     .s_axis_rq_tkeep(axis_rq_tkeep),
@@ -391,8 +396,25 @@ core_inst (
     .cfg_interrupt_msi_function_number(cfg_interrupt_msi_function_number),
 
     .status_error_cor(status_error_cor),
-    .status_error_uncor(status_error_uncor)
+    .status_error_uncor(status_error_uncor),
+
+    // Info / status / debug
+    .leds (leds[7:2])
 );
+
+// ============================================================================
+// Debug stuff
+
+// PCIe link status
+assign leds[0] = pcie_link_up;
+
+// PCIe clock heartbeat
+reg [31:0] heartbeat_cnt;
+always @(posedge pcie_user_clk or posedge pcie_user_reset)
+    if (pcie_user_reset) heartbeat_cnt <= 0;
+    else                 heartbeat_cnt <= heartbeat_cnt + 1;
+
+assign leds[1] = heartbeat_cnt[26];
 
 endmodule
 
