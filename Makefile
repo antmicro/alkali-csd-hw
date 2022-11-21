@@ -175,6 +175,8 @@ enter: ## Enter the development docker image
 		-u $(shell id -u):$(shell id -g) \
 		-h docker-container \
 		-w $(PWD) \
+		-e DISPLAY=$(DISPLAY) \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-it \
 		$(DOCKER_RUN_EXTRA_ARGS) \
 		$(DOCKER_TAG)

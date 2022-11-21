@@ -62,6 +62,9 @@ RUN cp make-4.3/make /opt/.
 RUN rm -rf make-4.3*
 ENV PATH="/opt:${PATH}"
 
+# Install packages to allow Vivado GUI
+RUN apt install -y libegl1
+
 # Configure entrypoint
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
