@@ -175,7 +175,7 @@ enter: ## Enter the development docker image
 		-u $(shell id -u):$(shell id -g) \
 		-h docker-container \
 		-w $(PWD) \
-		-it  \
+		-it \
 		$(DOCKER_RUN_EXTRA_ARGS) \
 		$(DOCKER_TAG)
 
