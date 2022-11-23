@@ -92,18 +92,13 @@ To build this project it is recommended to use a dedicated docker container
 with all the prerequisites installed. The appropriate docker image can be
 created using `hw.dockerfile` provided in the `docker` directory.
 
-Note that to build the image, you have to provide a tarball with Vivado 2019.2
-installer. This file has to be placed in the
-`docker/Xilinx_Vivado_2019.2_1106_2127.tar.gz` path before building the image.
-It can be [downloaded](https://www.xilinx.com/member/forms/download/xef.html?filename=Xilinx_Vivado_2019.2_1106_2127.tar.gz)
-from the Official Xilinx Website.
-
-After placing the file in the specified location use `make docker` to build
-the image. In case you want to install all the prerequisites directly on
-your machine, follow the instructions from the `hw.dockerfile`.
-
 Use `make enter` to open the container and then execute the rest of
-the commands inside it.
+the commands inside it. If you want to bind `vivado` from outside
+the container you have to provide a custom binding option, by setting the
+`DOCKER_RUN_EXTRA_ARGS` environment variable before entering the container:
+```
+DOCKER_RUN_EXTRA_ARGS="-v <path-to-vivado-host>:<path-to-vivado-container>" make enter
+```
 
 # Usage
 
@@ -111,6 +106,11 @@ the commands inside it.
 the prerequisites installed locally to use the instructions below correctly.
 Refer to the [#Prerequisites](#prerequisites) section in case of any problems
 with building the project**
+
+Start off with loading the Vivado environment:
+```
+source <path-to-vivado-container>/settings64.sh
+```
 
 Before building any target choose the desired board (`an300` or ` zcu106`),
 by setting the `BOARD` environment variable:
