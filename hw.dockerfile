@@ -10,32 +10,20 @@ RUN apt update
 
 # Install Vivado
 RUN apt install -y \
-  wget \
-  x11-xserver-utils \
-  libxtst6 \
   build-essential \
-  xsltproc \
   bzip2 \
-  tcl \
-  libtinfo5
-
-COPY Xilinx_Vivado_2019.2_1106_2127.tar.gz /
-COPY install_config.txt /
-
-RUN tar -xzf Xilinx_Vivado_2019.2_1106_2127.tar.gz && \
-    /Xilinx_Vivado_2019.2_1106_2127/xsetup --agree 3rdPartyEULA,WebTalkTerms,XilinxEULA --batch Install --config install_config.txt && \
-    rm -rf Xilinx_Vivado_2019.2_1106_2127*
-RUN rm install_config.txt
-
-# Install system dependencies
-RUN apt install -y \
   curl \
   default-jdk \
   git \
+  libtinfo5 \
+  libxtst6 \
   make \
   python3 \
   python3-pip \
-  wget
+  tcl \
+  wget \
+  x11-xserver-utils \
+  xsltproc
 
 # Install python dependencies
 COPY requirements.txt requirements.txt
@@ -61,8 +49,3 @@ RUN tar xf make-4.3.tar.gz && cd make-4.3 && ./configure && make -j$(nproc)
 RUN cp make-4.3/make /opt/.
 RUN rm -rf make-4.3*
 ENV PATH="/opt:${PATH}"
-
-# Configure entrypoint
-COPY entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/bin/bash"]

@@ -139,16 +139,10 @@ $(DOCKER_BUILD_DIR):
 	@mkdir -p $(DOCKER_BUILD_DIR)
 
 .PHONY: docker
-docker: $(DOCKER_DIR)/hw.dockerfile ## Build the development docker image
-docker: $(DOCKER_DIR)/install_config.txt
-docker: $(DOCKER_DIR)/entrypoint.sh
-docker: $(DOCKER_DIR)/Xilinx_Vivado_2019.2_1106_2127.tar.gz
+docker: hw.dockerfile ## Build the development docker image
 docker: $(REGGEN_DIR)/requirements.txt
 docker: | $(DOCKER_BUILD_DIR)
-	cp $(DOCKER_DIR)/hw.dockerfile $(DOCKER_BUILD_DIR)/Dockerfile
-	cp $(DOCKER_DIR)/install_config.txt $(DOCKER_BUILD_DIR)/.
-	cp $(DOCKER_DIR)/entrypoint.sh $(DOCKER_BUILD_DIR)/.
-	cp $(DOCKER_DIR)/Xilinx_Vivado_2019.2_1106_2127.tar.gz $(DOCKER_BUILD_DIR)/.
+	cp hw.dockerfile $(DOCKER_BUILD_DIR)/Dockerfile
 	cp $(REGGEN_DIR)/requirements.txt $(DOCKER_BUILD_DIR)
 	cd $(DOCKER_BUILD_DIR) && docker build \
 		$(DOCKER_BUILD_EXTRA_ARGS) \
